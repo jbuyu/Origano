@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-const TaskList = ({ tasks, name, groupID }) => {
+const TaskList = ({ tasks, name, id, createNewTask }) => {
   return (
     <div className="tasks">
       {tasks.map((task) => {
@@ -10,6 +10,7 @@ const TaskList = ({ tasks, name, groupID }) => {
               <strong>{name}</strong>
             </h3>
             <span>{task.name}</span>
+            <button onClick={() => createNewTask(id)}>Create</button>
           </div>
         );
       })}
@@ -28,5 +29,12 @@ function mapStateToProps(state, ownProps) {
     }),
   };
 }
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    createNewTask(id) {
+      console.log(id);
+    },
+  };
+}
 
-export default connect(mapStateToProps)(TaskList);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
