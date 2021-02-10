@@ -5,8 +5,8 @@ import TaskList from "./TaskList";
 const Dashboard = ({ groups }) => {
   return (
     <div className="App">
-      {groups.map(({ name, id }, idx) => {
-        return <TaskList key={idx} name={name} id={id} />;
+      {groups.map(({ name, id }) => {
+        return <TaskList key={id} name={name} id={id} />;
       })}
     </div>
   );

@@ -5,12 +5,12 @@ const TaskList = ({ tasks, name }) => {
     <div className="tasks">
       {tasks.map((task) => {
         return (
-          <ul>
+          <div key={task.id}>
             <h3>
               <strong>{name}</strong>
             </h3>
-            <li key={task.id}>{task.name}</li>
-          </ul>
+            <span>{task.name}</span>
+          </div>
         );
       })}
     </div>
