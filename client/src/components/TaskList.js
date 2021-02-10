@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { requestTaskCreation } from "../store/mutations";
 const TaskList = ({ tasks, name, id, createNewTask }) => {
   return (
     <div className="tasks">
@@ -33,6 +34,7 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     createNewTask(id) {
       console.log(id);
+      dispatch(requestTaskCreation(id));
     },
   };
 }
