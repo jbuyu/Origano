@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-const TaskList = ({ tasks, name }) => {
+const TaskList = ({ tasks, name, groupID }) => {
   return (
     <div className="tasks">
       {tasks.map((task) => {
