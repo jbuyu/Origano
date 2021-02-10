@@ -16,7 +16,7 @@ export const defaultState = {
   ],
   groups: [
     {
-      name: "To Do",
+      name: "Pending",
       id: "G1",
       owner: "U1",
     },

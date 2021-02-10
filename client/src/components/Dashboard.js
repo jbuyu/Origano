@@ -1,7 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
+import TaskList from "./TaskList";
+
 const Dashboard = ({ groups }) => {
-  return <div className="dash">Dashboard</div>;
+  return (
+    <div className="dash">
+      {groups.map(({ name, id }, idx) => {
+        return <TaskList key={idx} name={name} id={id} />;
+      })}
+    </div>
+  );
 };
 
 function mapStateToProps(state) {
