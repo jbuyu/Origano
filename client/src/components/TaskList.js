@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 const TaskList = ({ tasks, name }) => {
   return (
     <div className="tasks">
-      {tasks.map((task, idx) => {
+      {tasks.map((task) => {
         return (
           <ul>
             <h3>
-              <strong>{name}</strong>{" "}
+              <strong>{name}</strong>
             </h3>
-            <li key={idx}>{task.name}</li>
+            <li key={task.id}>{task.name}</li>
           </ul>
         );
       })}
