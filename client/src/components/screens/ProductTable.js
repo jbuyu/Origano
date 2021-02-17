@@ -1,8 +1,18 @@
-import React from "react";
-import products from "../../products";
+import React, { useState, useEffect } from "react";
 import Rating from "../Rating";
 import { Link } from "react-router-dom";
+import Axios from "axios";
+const BASE_URL = "/api/products";
 export const ProductTable = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await Axios.get(BASE_URL);
+      setProducts(data.products);
+    };
+
+    fetchProducts();
+  }, []);
   return (
     <div className="px-2">
       <table className="bg-white rounded-lg mx-auto my-6 p-16 table-auto">
