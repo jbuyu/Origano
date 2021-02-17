@@ -38,7 +38,7 @@ const products = [
   {
     _id: 4,
     name: "Blueberries",
-    image: "/images/blueb.jpeg",
+    image: "/images/blueb.jpg",
     description:
       "Discount wine makers for people who can't afford grapes or elder berries.",
     category: "Fruit",
@@ -50,7 +50,7 @@ const products = [
   {
     _id: 5,
     name: "Herbs",
-    image: "/images/herbs.jpeg",
+    image: "/images/herbs.jpg",
     description:
       "A fine mixture of all your favorite herbs and spices. Corriander, cilantro and ground parsley",
     category: "Spice",
@@ -62,7 +62,7 @@ const products = [
   {
     _id: 6,
     name: "Pepper",
-    image: "/images/peppers.jpeg",
+    image: "/images/pepper.jpeg",
     description:
       "Season your meals with fresh papers neatly curated and packed.",
     category: "Fruit",
@@ -74,7 +74,7 @@ const products = [
   {
     _id: 7,
     name: "Tomato",
-    image: "/images/tomatoes.jpeg",
+    image: "/images/tomatoes.jpg",
     description:
       "Bundled up with capsicums for the price of one. Cherry and Hillbilly potatoes also available ",
     category: "Fruit",
