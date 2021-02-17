@@ -1,5 +1,7 @@
 import React from "react";
 import { FcRating } from "react-icons/fc";
+import PropTypes from "prop-types";
+
 const Rating = ({ value, text }) => {
   {
     if (value === 1) {
@@ -40,6 +42,10 @@ const Rating = ({ value, text }) => {
       );
     }
   }
+};
+Rating.prototype = {
+  value: PropTypes.number.isRequired,
+  text: PropTypes.string,
 };
 
 export default Rating;

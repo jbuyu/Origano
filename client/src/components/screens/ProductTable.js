@@ -1,7 +1,8 @@
 import React from "react";
 import products from "../../products";
 import Rating from "../Rating";
-const Table = () => {
+import { Link } from "react-router-dom";
+export const ProductTable = () => {
   return (
     <div className="px-2">
       <table className="bg-white rounded-lg mx-auto my-6 p-16 table-auto">
@@ -59,9 +60,11 @@ const Table = () => {
                     <Rating value={rating} />
                   </td>
                   <td className="px-16 py-4">
-                    <button className="bg-green-400 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black ">
-                      View
-                    </button>
+                    <Link to={`/product/${_id}`}>
+                      <button className="bg-green-400 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black ">
+                        View
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               );
@@ -72,5 +75,3 @@ const Table = () => {
     </div>
   );
 };
-
-export default Table;

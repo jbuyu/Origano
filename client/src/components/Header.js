@@ -1,7 +1,6 @@
 import React from "react";
 import Logo from "../icons/logo.svg";
-import HealthBtn from "../icons/health.png";
-import Tree from "../icons/tree.png";
+import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 const Header = () => {
@@ -11,9 +10,9 @@ const Header = () => {
   return (
     <header className="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
       <div className="flex-1 flex justify-between items-center">
-        <a href="#">
+        <Link to="/">
           <img className="h-24 w-24" src={Logo} alt="logo" />
-        </a>
+        </Link>
       </div>
 
       <label htmlFor="menu-toggle" className="cursor-pointer lg:hidden block">
@@ -31,48 +30,48 @@ const Header = () => {
         <nav>
           <ul className="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
             <li>
-              <a
+              <Link
                 className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400"
-                href="#"
+                to="/features"
               >
                 Features
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400"
-                href="#"
+                to="/pricing"
               >
                 Pricing
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400"
-                href="#"
+                to="/docs"
               >
                 Documentation
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2"
-                href="#"
+                to="/support"
               >
                 Support
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
-        <a
-          href="#"
+        <Link
+          to="/profile"
           className="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 cursor-pointer"
         >
           <CgProfile
             className="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400"
             alt="profile-imag"
           />
-        </a>
+        </Link>
       </div>
     </header>
   );
