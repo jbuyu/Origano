@@ -4,11 +4,11 @@ const products = [
     name: "Eggs",
     image: "/images/eggs.jpeg",
     description:
-      " Organic Eggs from free range chikens. Soclicited from farms all over Nyandarua's best organic farmers",
+      " Organic Eggs from free range chikens. Soclicited from farms all over Nyandarua",
     category: "Breakfast",
     price: 90,
     countInStock: 4,
-    rating: 4,
+    rating: 3,
     numReviews: 4,
   },
   {
@@ -16,7 +16,7 @@ const products = [
     name: "Apples",
     image: "/images/apples.jpeg",
     description:
-      "Fresh Apples imported from Angola. These are the andelluvian types so they last way longer than most and are Juicier",
+      "Fresh Andelluvian Apples imported from Angola. These  last  longer",
     category: "Fruit",
     price: 40,
     countInStock: 50,
@@ -28,7 +28,7 @@ const products = [
     name: "Avocado",
     image: "/images/avocado.jpeg",
     description:
-      "Freshly sourced Avocados picked and sorted by the organic planters asociation. A consortium of avocad pickers deep in the Nyandaruan escarpments",
+      "Freshly sourced Avocados picked and sorted by the organic planters asociation.",
     category: "Fruit",
     price: 40,
     countInStock: 50,
@@ -44,7 +44,7 @@ const products = [
     category: "Fruit",
     price: 190,
     countInStock: 10,
-    rating: 5,
+    rating: 3,
     numReviews: 3,
   },
   {
@@ -56,7 +56,7 @@ const products = [
     category: "Spice",
     price: 80,
     countInStock: 50,
-    rating: 3.5,
+    rating: 3,
     numReviews: 6,
   },
   {
@@ -64,7 +64,7 @@ const products = [
     name: "Pepper",
     image: "/images/pepper.jpeg",
     description:
-      "Season your meals with fresh papers neatly curated and packed.",
+      "Season your meals with fresh peppers neatly curated and packed.",
     category: "Fruit",
     price: 30,
     countInStock: 5,
