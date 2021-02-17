@@ -12,7 +12,7 @@ const Header = () => {
     <header className="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
       <div className="flex-1 flex justify-between items-center">
         <a href="#">
-          <img className="h-1/6 w-1/6" src={Logo} alt="logo" />
+          <img className="h-20 w-20" src={Logo} alt="logo" />
         </a>
       </div>
 
