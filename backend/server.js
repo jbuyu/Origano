@@ -17,9 +17,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //route middlewares
-app.use("/products", ProductsRouter);
+app.use("/api/products", ProductsRouter);
 
 app.listen(PORT, () => {
   consola.success("Server is running on port", PORT);
-  consola.success("mongo", process.env.MONGO_URI);
 });
