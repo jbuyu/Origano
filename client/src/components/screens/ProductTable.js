@@ -44,7 +44,6 @@ export const ProductTable = () => {
                     <img
                       className="md:h-50 md:w-50 h-14 w-14 rounded-2xl object-cover"
                       src={image}
-                      alt="organic-image"
                     />
                   </td>
                   <td>
