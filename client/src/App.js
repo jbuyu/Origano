@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <Router>
-      <div className="antialiased bg-gray-200">
+      <div className="antialiased bg-gray-100">
         <Header />
         <Route exact path="/" component={ProductTable} />
         <Route path="/product/:id" component={Product} />

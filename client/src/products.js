@@ -4,24 +4,26 @@ const products = [
     name: "Eggs",
     image: "/images/eggs.jpeg",
     description:
-      " Organic Eggs from free range chikens. Soclicited from farms all over Nyandarua",
+      " Organic Eggs from free range chikens. Soclicited from farms all over Nyandarua.",
     category: "Breakfast",
     price: 90,
     countInStock: 4,
     rating: 3,
     numReviews: 4,
+    alt: "eggs",
   },
   {
     _id: 2,
     name: "Apples",
     image: "/images/apples.jpeg",
     description:
-      "Fresh Andelluvian Apples imported from Angola. These  last  longer",
+      "Fresh Andelluvian Apples imported from Angola. These  last  longer.",
     category: "Fruit",
     price: 40,
     countInStock: 50,
     rating: 5,
     numReviews: 3,
+    alt: "apples",
   },
   {
     _id: 3,
@@ -34,6 +36,7 @@ const products = [
     countInStock: 50,
     rating: 3,
     numReviews: 4,
+    alt: "avocado",
   },
   {
     _id: 4,
@@ -46,18 +49,20 @@ const products = [
     countInStock: 10,
     rating: 3,
     numReviews: 3,
+    alt: "blueberries",
   },
   {
     _id: 5,
     name: "Herbs",
     image: "/images/herbs.jpg",
     description:
-      "A fine mixture of all your favorite herbs and spices. Corriander, cilantro and ground parsley",
+      "A fine mixture of all your favorite herbs and spices. Corriander, cilantro and ground parsley.",
     category: "Spice",
     price: 80,
-    countInStock: 50,
+    countInStock: 0,
     rating: 3,
     numReviews: 6,
+    alt: "herbs",
   },
   {
     _id: 6,
@@ -70,18 +75,20 @@ const products = [
     countInStock: 5,
     rating: 5,
     numReviews: 10,
+    alt: "pepper",
   },
   {
     _id: 7,
     name: "Tomato",
     image: "/images/tomatoes.jpg",
     description:
-      "Bundled up with capsicums for the price of one. Cherry and Hillbilly potatoes also available ",
+      "Bundled up with capsicums for the price of one. Cherry and Hillbilly potatoes also available.",
     category: "Fruit",
     price: 20,
     countInStock: 5,
     rating: 5,
     numReviews: 3,
+    alt: "tomato",
   },
 ];
 export default products;
