@@ -1,3 +1,5 @@
+//dotenv
+require("dotenv").config();
 //library imports
 const express = require("express");
 const consola = require("consola");
@@ -19,4 +21,5 @@ app.use("/products", ProductsRouter);
 
 app.listen(PORT, () => {
   consola.success("Server is running on port", PORT);
+  consola.success("mongo", process.env.MONGO_URI);
 });
