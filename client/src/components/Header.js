@@ -1,5 +1,7 @@
 import React from "react";
 import Logo from "../icons/logo.svg";
+import HealthBtn from "../icons/health.png";
+import Tree from "../icons/tree.png";
 import { FaBars } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 const Header = () => {
