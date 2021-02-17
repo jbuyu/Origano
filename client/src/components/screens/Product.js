@@ -55,14 +55,20 @@ export const Product = ({ match }) => {
                   <span className="text-gray-700 text-base mx-2">{price}</span>
                 </div>
               </div>
-              <div className="flex items-center mt-6">
-                <button className="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
+              {countInStock > 0 ? (
+                <div className="flex items-center mt-6">
+                  <button className="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
+                    Order
+                  </button>
+                  <button className="mx-2 text-gray-600 border rounded-md p-2 hover:bg-gray-200 focus:outline-none">
+                    <FaCartArrowDown />
+                  </button>
+                </div>
+              ) : (
+                <button className="mt-6 cursor-not-allowed px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
                   Order
                 </button>
-                <button className="mx-2 text-gray-600 border rounded-md p-2 hover:bg-gray-200 focus:outline-none">
-                  <FaCartArrowDown />
-                </button>
-              </div>
+              )}
             </div>
           </div>
         </div>
