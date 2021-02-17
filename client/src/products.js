@@ -1,6 +1,6 @@
 const products = [
   {
-    id: 1,
+    _id: 1,
     name: "Eggs",
     image: "/images/eggs.jpeg",
     description:
@@ -12,7 +12,7 @@ const products = [
     numReviews: 4,
   },
   {
-    id: 2,
+    _id: 2,
     name: "Apples",
     image: "/images/apples.jpeg",
     description:
@@ -24,7 +24,7 @@ const products = [
     numReviews: 3,
   },
   {
-    id: 2,
+    _id: 3,
     name: "Avocado",
     image: "/images/avocado.jpeg",
     description:
@@ -36,7 +36,7 @@ const products = [
     numReviews: 4,
   },
   {
-    id: 2,
+    _id: 4,
     name: "Blueberries",
     image: "/images/blueb.jpeg",
     description:
@@ -48,7 +48,7 @@ const products = [
     numReviews: 3,
   },
   {
-    id: 2,
+    _id: 5,
     name: "Herbs",
     image: "/images/herbs.jpeg",
     description:
@@ -60,7 +60,7 @@ const products = [
     numReviews: 6,
   },
   {
-    id: 2,
+    _id: 6,
     name: "Pepper",
     image: "/images/peppers.jpeg",
     description:
@@ -72,7 +72,7 @@ const products = [
     numReviews: 10,
   },
   {
-    id: 2,
+    _id: 7,
     name: "Tomato",
     image: "/images/tomatoes.jpeg",
     description:
