@@ -17,9 +17,24 @@ import productsRouter from "./routes/productsRouter.js";
 //middleware
 app.use(cors());
 
+// app.use((err, res, req, res) => {
+//   const error = new Error(`Not Found - `);
+// });
+
+app.use((err, req, res, next) => {
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(statusCode);
+  res.json({
+    message: err.message,
+    stack: process.env.NODE_ENV === "PRODUCTION" ? null : err.stack,
+  });
+  next();
+});
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//db
 connectDB();
 
 //route middlewares
