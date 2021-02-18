@@ -9,6 +9,7 @@ export const ProductTable = () => {
     const fetchProducts = async () => {
       const { data } = await Axios.get(BASE_URL);
       setProducts(data.products);
+      console.log("pro", data.products);
     };
 
     fetchProducts();
@@ -43,43 +44,44 @@ export const ProductTable = () => {
           </tr>
         </thead>
         <tbody className="bg-gray-200">
-          {products.map(
-            ({ _id, name, image, description, rating, category, alt }) => {
-              return (
-                <tr
-                  key={_id}
-                  className="bg-white border-4 border-gray-200 rounded-md"
-                >
-                  <td className="px-16 py-12 flex flex-row items-center justify-center">
-                    <img
-                      className="md:h-50 md:w-50 h-14 w-14 rounded-2xl object-cover"
-                      src={image}
-                      alt={alt}
-                    />
-                  </td>
-                  <td>
-                    <span className="text-center ml-2 font-semibold">
-                      {name}
-                    </span>
-                  </td>
-                  <td className="px-16 py-4">
-                    <span>{description}</span>
-                  </td>
-                  <td className="px-16 py-4">{category}</td>
-                  <td className="px-16 py-4">
-                    <Rating value={rating} />
-                  </td>
-                  <td className="px-16 py-4">
-                    <Link to={`/product/${_id}`}>
-                      <button className="bg-green-400 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black ">
-                        View
-                      </button>
-                    </Link>
-                  </td>
-                </tr>
-              );
-            }
-          )}
+          {products &&
+            products.map(
+              ({ _id, name, image, description, rating, category, alt }) => {
+                return (
+                  <tr
+                    key={_id}
+                    className="bg-white border-4 border-gray-200 rounded-md"
+                  >
+                    <td className="px-16 py-12 flex flex-row items-center justify-center">
+                      <img
+                        className="md:h-50 md:w-50 h-14 w-14 rounded-2xl object-cover"
+                        src={image}
+                        alt={alt}
+                      />
+                    </td>
+                    <td>
+                      <span className="text-center ml-2 font-semibold">
+                        {name}
+                      </span>
+                    </td>
+                    <td className="px-16 py-4">
+                      <span>{description}</span>
+                    </td>
+                    <td className="px-16 py-4">{category}</td>
+                    <td className="px-16 py-4">
+                      <Rating value={rating} />
+                    </td>
+                    <td className="px-16 py-4">
+                      <Link to={`/product/${_id}`}>
+                        <button className="bg-green-400 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black ">
+                          View
+                        </button>
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              }
+            )}
         </tbody>
       </table>
     </div>

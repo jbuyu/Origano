@@ -11,7 +11,7 @@ const Header = () => {
     <header className="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
       <div className="flex-1 flex justify-between items-center">
         <Link to="/">
-          <img className="h-24 w-24" src={Logo} alt="logo" />
+          <img className="h-16 w-16" src={Logo} alt="logo" />
         </Link>
       </div>
 
