@@ -7,13 +7,12 @@ import consola from "consola";
 const PORT = process.env.PORT || 4000;
 import cors from "cors";
 import bodyParser from "body-parser";
-import products from "./data/products.js";
 
 //db
 import connectDB from "./config/db.js";
 const app = express();
 //modules imports
-// import { getProduct, getProducts } from "./routes/ProductsRouter.js";
+import productsRouter from "./routes/productsRouter.js";
 
 //middleware
 app.use(cors());
@@ -24,19 +23,7 @@ app.use(bodyParser.json());
 connectDB();
 
 //route middlewares
-// app.use("/api/products", getProducts);
-// app.use("/api/products/:id", getProduct);
-
-app.get("/api/products", (req, res) => {
-  res.json({ products });
-});
-
-app.get("/api/products/:id", (req, res) => {
-  let productId = req.params.id;
-  console.log(typeof productId);
-  const product = products.find((product) => product._id === productId);
-  res.json({ product });
-});
+app.use("/api/products", productsRouter);
 
 app.listen(PORT, () => {
   consola.success("Server is running on port", PORT);
