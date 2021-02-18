@@ -35,16 +35,16 @@ export const Product = ({ match }) => {
                     <h3 className="text-gray-700 uppercase text-lg mt-2">
                       {name}
                     </h3>
-                    <div className="mt-2">
+                    {/* <div className="mt-2">
                       <label className="text-gray-700 text-sm" htmlFor="count">
                         RATING
                       </label>
                       <div className="flex items-center mt-1">
                         <span className="text-gray-700 text-base mx-2">
-                          {/* <Rating value={rating} /> */}
+                          <Rating value={rating} />
                         </span>
                       </div>
-                    </div>
+                    </div> */}
                     <span className="text-gray-500 mt-3">{`Ksh. ${price}`}</span>
                     <hr className="my-3" />
                     <div>{description}</div>

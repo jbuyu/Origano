@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const Rating = ({ value, text }) => {
   if (value === 1) {
-    <FcRating />;
+    return <FcRating />;
   } else if (value === 2) {
     return (
       <div className="flex flex-row">
