@@ -91,4 +91,4 @@ const products = [
     alt: "tomato",
   },
 ];
-module.exports.products = products;
+export default products;

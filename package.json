@@ -5,6 +5,7 @@
   "repository": "https://github.com/jbuyu/persistent-redux.git",
   "author": "jbuyu <jbuyu@ymail.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",

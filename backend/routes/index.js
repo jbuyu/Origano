@@ -1,5 +1,3 @@
-const ProductsRouter = require("./ProductsRouter");
+import { getProduct, getProducts } from "./ProductsRouter";
 
-module.exports = {
-  ProductsRouter,
-};
+export { getProduct, getProducts };

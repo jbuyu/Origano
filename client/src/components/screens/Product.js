@@ -13,7 +13,7 @@ export const Product = ({ match }) => {
       setProduct(data.product);
     };
     fetchProduct();
-  }, []);
+  }, [match]);
 
   let { image, name, price, countInStock, rating, description, alt } = product;
   return (
