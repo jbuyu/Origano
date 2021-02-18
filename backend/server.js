@@ -8,6 +8,9 @@ const PORT = process.env.PORT || 4000;
 import cors from "cors";
 import bodyParser from "body-parser";
 import products from "./data/products.js";
+
+//db
+import connectDB from "./config/db.js";
 const app = express();
 //modules imports
 // import { getProduct, getProducts } from "./routes/ProductsRouter.js";
@@ -17,6 +20,8 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+connectDB();
 
 //route middlewares
 // app.use("/api/products", getProducts);
@@ -35,5 +40,4 @@ app.get("/api/products/:id", (req, res) => {
 
 app.listen(PORT, () => {
   consola.success("Server is running on port", PORT);
-  consola.success("Server is running on port", process.env.NODE_ENV);
 });
