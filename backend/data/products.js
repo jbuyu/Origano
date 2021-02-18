@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: "1",
     name: "Eggs",
     image: "/images/eggs.jpeg",
     description:
@@ -11,9 +10,9 @@ const products = [
     rating: 3,
     numReviews: 4,
     alt: "eggs",
+    brand: "Cooki Reelers",
   },
   {
-    _id: "2",
     name: "Apples",
     image: "/images/apples.jpeg",
     description:
@@ -24,9 +23,9 @@ const products = [
     rating: 5,
     numReviews: 3,
     alt: "apples",
+    brand: "Ontario Farmers Assciation",
   },
   {
-    _id: "3",
     name: "Avocado",
     image: "/images/avocado.jpeg",
     description:
@@ -37,9 +36,9 @@ const products = [
     rating: 3,
     numReviews: 4,
     alt: "avocado",
+    brand: "Klonginke Growers",
   },
   {
-    _id: "4",
     name: "Blueberries",
     image: "/images/blueb.jpg",
     description:
@@ -50,9 +49,9 @@ const products = [
     rating: 3,
     numReviews: 3,
     alt: "blueberries",
+    brand: "Tulio Aggrovet",
   },
   {
-    _id: "5",
     name: "Herbs",
     image: "/images/herbs.jpg",
     description:
@@ -63,9 +62,9 @@ const products = [
     rating: 3,
     numReviews: 6,
     alt: "herbs",
+    brand: "Tara Platers",
   },
   {
-    _id: "6",
     name: "Pepper",
     image: "/images/pepper.jpeg",
     description:
@@ -76,9 +75,9 @@ const products = [
     rating: 5,
     numReviews: 10,
     alt: "pepper",
+    brand: "Johnson & Johnson",
   },
   {
-    _id: "7",
     name: "Tomato",
     image: "/images/tomatoes.jpg",
     description:
@@ -89,6 +88,7 @@ const products = [
     rating: 5,
     numReviews: 3,
     alt: "tomato",
+    brand: "Deloitte",
   },
 ];
 export default products;
