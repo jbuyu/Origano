@@ -41,6 +41,7 @@ const Rating = ({ value, text }) => {
     );
   }
 };
+
 Rating.prototype = {
   value: PropTypes.number.isRequired,
   text: PropTypes.string,
