@@ -6,8 +6,8 @@ import { listProducts } from "../../actions/productActions";
 export const ProductTable = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(listProducts);
-  }, []);
+    dispatch(listProducts());
+  }, [dispatch]);
   const products = [];
   return (
     <div className="px-2">
