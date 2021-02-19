@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import Rating from "../Rating";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-const BASE_URL = "/api/products";
+const BASE_URL = "http://localhost:4000/api/products";
 export const ProductTable = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchProducts = async () => {
       const { data } = await Axios.get(BASE_URL);
-      setProducts(data.products);
-      console.log("pro", data.products);
+      setProducts(data);
+      console.log("pro", data);
     };
 
     fetchProducts();

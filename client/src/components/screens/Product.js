@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { FaCartArrowDown } from "react-icons/fa";
 import Rating from "../Rating";
 import Axios from "axios";
-let BASE_URL = "/api/products";
+let BASE_URL = "http://localhost:4000/api/products";
 export const Product = ({ match }) => {
   let productId = match.params.id;
   const [product, setProduct] = useState({});
   useEffect(() => {
     const fetchProduct = async () => {
       let { data } = await Axios.get(`${BASE_URL}/${productId}`);
-      console.log("pro", data.product);
-      setProduct(data.product);
+      console.log("pro", data);
+      setProduct(data);
     };
     fetchProduct();
   }, [match]);
