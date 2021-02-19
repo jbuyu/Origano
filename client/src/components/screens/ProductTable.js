@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Rating from "../Rating";
 import { Link } from "react-router-dom";
-import Axios from "axios";
-const BASE_URL = "http://localhost:4000/api/products";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../../actions/productActions";
 export const ProductTable = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await Axios.get(BASE_URL);
-      setProducts(data);
-      console.log("pro", data);
-    };
-
-    fetchProducts();
+    dispatch(listProducts);
   }, []);
+  const products = [];
   return (
     <div className="px-2">
       <table className="bg-white rounded-lg mx-auto my-6 p-16 table-auto">
