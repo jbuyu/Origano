@@ -7,38 +7,28 @@ import consola from "consola";
 const PORT = process.env.PORT || 4000;
 import cors from "cors";
 import bodyParser from "body-parser";
+const app = express();
+import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 //db
 import connectDB from "./config/db.js";
-const app = express();
 //modules imports
 import productsRouter from "./routes/productsRouter.js";
 
 //middleware
 app.use(cors());
-
-// app.use((err, res, req, res) => {
-//   const error = new Error(`Not Found - `);
-// });
-
-app.use((err, req, res, next) => {
-  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-  res.status(statusCode);
-  res.json({
-    message: err.message,
-    stack: process.env.NODE_ENV === "PRODUCTION" ? null : err.stack,
-  });
-  next();
-});
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//db
-connectDB();
-
 //route middlewares
 app.use("/api/products", productsRouter);
+
+//error middlewares
+app.use(notFound);
+app.use(errorHandler);
+
+//db
+connectDB();
 
 app.listen(PORT, () => {
   consola.success("Server is running on port", PORT);
