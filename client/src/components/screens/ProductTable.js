@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../actions/productActions";
 import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
-
+import ErrorMessage from "../ErrorMessage";
 import LoadingSVG from "../../icons/loading.svg";
 export const ProductTable = () => {
   let [color, setColor] = useState("#ffffff");
@@ -16,7 +16,6 @@ export const ProductTable = () => {
   const override = css`
     display: block;
     margin: 0 auto;
-    padding-top: 20;
     border-color: red;
   `;
   useEffect(() => {
@@ -26,9 +25,9 @@ export const ProductTable = () => {
     <>
       {loading ? (
         // <LoadingSVG />
-        <ClipLoader color={color} loading={loading} css={override} size={150} />
+        <ClipLoader color={color} css={override} size={250} />
       ) : error ? (
-        <p>{error}</p>
+        <ErrorMessage>{error}</ErrorMessage>
       ) : (
         <div className="px-2">
           <table className="bg-white rounded-lg mx-auto my-6 p-16 table-auto">
@@ -40,19 +39,15 @@ export const ProductTable = () => {
                 <th className="px-16 py-2">
                   <span className="text-gray-600">Name</span>
                 </th>
-
                 <th className="px-16 py-2">
                   <span className="text-gray-600">Description</span>
                 </th>
-
                 <th className="px-16 py-2">
                   <span className="text-gray-600">Category</span>
                 </th>
-
                 <th className="px-16 py-2">
                   <span className="text-gray-600">Rating</span>
                 </th>
-
                 <th className="px-16 py-2">
                   <span className="text-gray-600">View</span>
                 </th>

@@ -37,7 +37,7 @@ const Header = () => {
                 Features
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400"
                 to="/pricing"
@@ -52,7 +52,7 @@ const Header = () => {
               >
                 Documentation
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2"
