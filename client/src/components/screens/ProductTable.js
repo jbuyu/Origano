@@ -30,7 +30,7 @@ export const ProductTable = () => {
         <ErrorMessage>{error}</ErrorMessage>
       ) : (
         <div className="px-2">
-          <table className="bg-white rounded-lg mx-auto my-6 p-16 table-auto">
+          <table className="bg-white rounded-lg mx-auto my-6 p-16 table-auto w-3/4">
             <thead className="justify-between">
               <tr className="bg-gray-100">
                 <th className="px-16 py-2">
@@ -53,7 +53,7 @@ export const ProductTable = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-gray-200">
+            <tbody className="bg-gray-200 rounded-md">
               {products &&
                 products.map(
                   ({
