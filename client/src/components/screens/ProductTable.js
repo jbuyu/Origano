@@ -7,8 +7,6 @@ import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
 import ErrorMessage from "../ErrorMessage";
 export const ProductTable = () => {
-  let [color, setColor] = useState("#ffffff");
-
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
@@ -23,8 +21,7 @@ export const ProductTable = () => {
   return (
     <>
       {loading ? (
-        // <LoadingSVG />
-        <ClipLoader color={color} css={override} size={250} />
+        <ClipLoader css={override} size={250} />
       ) : error ? (
         <ErrorMessage>{error}</ErrorMessage>
       ) : (
