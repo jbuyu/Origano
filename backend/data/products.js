@@ -13,16 +13,16 @@ const products = [
     brand: "Cooki Reelers",
   },
   {
-    name: "Apples",
-    image: "/images/apples.jpeg",
+    name: "Oranges",
+    image: "/images/oranges.jpeg",
     description:
-      "Fresh Andelluvian Apples imported from Angola. These  last  longer.",
+      "Fresh Andelluvian Oranges imported from Angola. These  last  longer.",
     category: "Fruit",
     price: 40,
     countInStock: 50,
     rating: 5,
     numReviews: 3,
-    alt: "apples",
+    alt: "oranges",
     brand: "Ontario Farmers Assciation",
   },
   {
@@ -39,16 +39,16 @@ const products = [
     brand: "Klonginke Growers",
   },
   {
-    name: "Blueberries",
-    image: "/images/blueb.jpg",
+    name: "Pumpkins",
+    image: "/images/pumpkins.jpg",
     description:
-      "Discount wine makers for people who can't afford grapes or elder berries.",
+      "Discount gouard makers for people who can't afford real gourds.",
     category: "Fruit",
     price: 190,
     countInStock: 10,
     rating: 3,
     numReviews: 3,
-    alt: "blueberries",
+    alt: "gouards",
     brand: "Tulio Aggrovet",
   },
   {
@@ -65,16 +65,16 @@ const products = [
     brand: "Tara Platers",
   },
   {
-    name: "Pepper",
-    image: "/images/pepper.jpeg",
+    name: "Mashrooms",
+    image: "/images/shrooms.jpeg",
     description:
-      "Season your meals with fresh peppers neatly curated and packed.",
+      "Season your meals with fresh shrooms neatly curated and packed.",
     category: "Fruit",
     price: 30,
     countInStock: 5,
     rating: 5,
     numReviews: 10,
-    alt: "pepper",
+    alt: "shroom",
     brand: "Johnson & Johnson",
   },
   {

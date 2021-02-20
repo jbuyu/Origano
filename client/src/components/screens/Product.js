@@ -2,8 +2,18 @@ import React, { useEffect, useState } from "react";
 import { FaCartArrowDown } from "react-icons/fa";
 import Rating from "../Rating";
 import Axios from "axios";
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/react";
 let BASE_URL = "http://localhost:4000/api/products";
+
 export const Product = ({ match }) => {
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
+  let [color, setColor] = useState("#ffffff");
+
   let productId = match.params.id;
   const [product, setProduct] = useState({});
   useEffect(() => {
@@ -25,11 +35,15 @@ export const Product = ({ match }) => {
               <div className="flex flex-row">
                 <div>
                   <div className="w-full h-64 md:w-1/2 lg:h-96">
-                    <img
-                      className="h-4/5 w-full rounded-3xl object-cover max-w-lg mx-auto"
-                      src={image}
-                      alt={alt}
-                    />
+                    {image ? (
+                      <img
+                        className="h-4/5 w-full rounded-lg object-cover max-w-lg mx-auto"
+                        src={image}
+                        alt={alt}
+                      />
+                    ) : (
+                      <ClipLoader color={color} css={override} size={250} />
+                    )}
                   </div>
                   <div className="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/2">
                     <h3 className="text-gray-700 uppercase text-lg mt-2">

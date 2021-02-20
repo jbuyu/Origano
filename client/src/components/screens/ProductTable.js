@@ -6,7 +6,6 @@ import { listProducts } from "../../actions/productActions";
 import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
 import ErrorMessage from "../ErrorMessage";
-import LoadingSVG from "../../icons/loading.svg";
 export const ProductTable = () => {
   let [color, setColor] = useState("#ffffff");
 
@@ -30,7 +29,7 @@ export const ProductTable = () => {
         <ErrorMessage>{error}</ErrorMessage>
       ) : (
         <div className="px-2">
-          <table className="bg-white rounded-lg mx-auto my-6 p-16 table-auto w-3/4">
+          <table className="bg-white rounded-md mx-auto my-6 p-16 table-auto w-3/4">
             <thead className="justify-between">
               <tr className="bg-gray-100">
                 <th className="px-16 py-2">
@@ -53,7 +52,7 @@ export const ProductTable = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-gray-200 rounded-md">
+            <tbody className="bg-gray-200 rounded-full">
               {products &&
                 products.map(
                   ({
@@ -68,7 +67,7 @@ export const ProductTable = () => {
                     return (
                       <tr
                         key={_id}
-                        className="bg-white border-4 border-gray-200 rounded-md"
+                        className="bg-white border-gray-200 rounded-md"
                       >
                         <td className="px-16 py-12 flex flex-row items-center justify-center">
                           <img
