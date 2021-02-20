@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { FaCartArrowDown } from "react-icons/fa";
 import Rating from "../Rating";
 import ClipLoader from "react-spinners/ClipLoader";
+import SyncLoader from "react-spinners/SyncLoader";
 import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../../actions/productActions";
+import ErrorMessage from "../ErrorMessage";
 export const Product = ({ match }) => {
+  const [qty, useQty] = useState(0);
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
   let { loading, error, product } = productDetails;
@@ -23,7 +26,11 @@ export const Product = ({ match }) => {
   let { image, name, price, countInStock, rating, description, alt } = product;
   return (
     <div>
-      {product ? (
+      {loading ? (
+        <ClipLoader css={override} size={250} />
+      ) : error ? (
+        <ErrorMessage>{error}</ErrorMessage>
+      ) : (
         <main className="my-8">
           <div className="container mx-auto px-6">
             <div className="md:flex md:items-center">
@@ -37,7 +44,7 @@ export const Product = ({ match }) => {
                         alt={alt}
                       />
                     ) : (
-                      <ClipLoader css={override} size={250} />
+                      <SyncLoader size={15} />
                     )}
                   </div>
                   <div className="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/2">
@@ -99,8 +106,6 @@ export const Product = ({ match }) => {
             </div>
           </div>
         </main>
-      ) : (
-        <p>no</p>
       )}
     </div>
   );

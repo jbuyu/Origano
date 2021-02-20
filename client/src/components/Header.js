@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../icons/brocc.svg";
 import { Link } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaCartArrowDown } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 const Header = () => {
   const btnClick = () => {
@@ -34,31 +34,19 @@ const Header = () => {
                 className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400"
                 to="/features"
               >
-                Features
+                <button className="mx-2 text-gray-600 border rounded-md p-2 hover:bg-gray-200 focus:outline-none">
+                  <FaCartArrowDown />
+                </button>
+                CART
               </Link>
             </li>
-            {/* <li>
-              <Link
-                className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400"
-                to="/pricing"
-              >
-                Pricing
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400"
-                to="/docs"
-              >
-                Documentation
-              </Link>
-            </li> */}
+
             <li>
               <Link
                 className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2"
                 to="/support"
               >
-                Support
+                SIGN IN
               </Link>
             </li>
           </ul>
