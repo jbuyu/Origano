@@ -8,8 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../../actions/productActions";
 import ErrorMessage from "../ErrorMessage";
 import "./Product.css";
-import Dropdown from "./DropDown";
+import Select from "react-select";
+
 export const Product = ({ match }) => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
   const [qty, useQty] = useState(0);
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
@@ -61,16 +64,6 @@ export const Product = ({ match }) => {
                     <h3 className="text-gray-700 uppercase text-lg mt-2">
                       {name}
                     </h3>
-                    {/* <div className="mt-2">
-                      <label className="text-gray-700 text-sm" htmlFor="count">
-                        RATING
-                      </label>
-                      <div className="flex items-center mt-1">
-                        <span className="text-gray-700 text-base mx-2">
-                          <Rating value={rating} />
-                        </span>
-                      </div>
-                    </div> */}
                     <span className="text-gray-500 mt-3">{`Ksh. ${price}`}</span>
                     <hr className="my-3" />
                     <div>{description}</div>
@@ -83,9 +76,35 @@ export const Product = ({ match }) => {
                     </label>
                     <div className="flex items-center mt-1">
                       <span className="text-gray-700 text-base mx-2">
-                        {countInStock > 0 ? "In Stock" : "Out of Stock"}
+                        {countInStock > 0 ? countInStock : "Out of Stock"}
                       </span>
                     </div>
+                  </div>
+                  <div className="mt-2">
+                    <label className="text-gray-700 text-sm" htmlFor="count">
+                      Quantity
+                    </label>
+                    <br />
+                    {/* {countInStock && (
+                      <Dropdown
+                        options={[...Array(countInStock).keys()]}
+                        onOptionSelect={(option) => {
+                          console.log("Selected Option", option);
+                        }}
+                      />
+                    )} */}
+                    {countInStock && (
+                      <Select
+                        defaultValue={selectedOption}
+                        onChange={setSelectedOption}
+                        options={[
+                          ...Array(countInStock).keys(),
+                        ].map((count) => ({
+                          label: count + 1,
+                          value: count + 1,
+                        }))}
+                      />
+                    )}
                   </div>
                   <div className="mt-2">
                     <label className="text-gray-700 text-sm" htmlFor="count">
@@ -97,12 +116,7 @@ export const Product = ({ match }) => {
                       </span>
                     </div>
                   </div>
-                  <Dropdown
-                    options={[...Array(countInStock).keys()]}
-                    onOptionSelect={(option) => {
-                      console.log("Selected Option", option);
-                    }}
-                  />
+
                   {countInStock > 0 ? (
                     <div className="flex items-center mt-6">
                       <button className="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">

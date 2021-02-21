@@ -10,7 +10,7 @@ function Dropdown({ options, onOptionSelect }) {
     // Toggle the dropdown if the button is clicked
     <>
       <button onClick={() => setActive(!isActive)} className={buttonClasses}>
-        Options
+        Quantity
       </button>
       <div
         className={classNames(
