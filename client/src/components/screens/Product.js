@@ -95,14 +95,15 @@ export const Product = ({ match }) => {
                     )} */}
                     {countInStock && (
                       <Select
+                        className="w-2/3 mt-2"
                         defaultValue={selectedOption}
                         onChange={setSelectedOption}
-                        options={[
-                          ...Array(countInStock).keys(),
-                        ].map((count) => ({
-                          label: count + 1,
-                          value: count + 1,
-                        }))}
+                        options={[...Array(countInStock).keys()].map(
+                          (count) => ({
+                            label: count + 1,
+                            value: count + 1,
+                          })
+                        )}
                       />
                     )}
                   </div>
