@@ -23,11 +23,11 @@ function Dropdown({ options, onOptionSelect }) {
       >
         {options.map((option) => (
           <div
-            className="p-1 ml-2"
-            key={option}
-            onClick={(e) => onOptionSelect(option)}
+            className="p-1 ml-2 cursor-pointer"
+            key={option + 1}
+            onClick={(e) => onOptionSelect(option + 1)}
           >
-            {option}
+            {option + 1}
           </div>
         ))}
       </div>
