@@ -10,13 +10,12 @@ import ErrorMessage from "../ErrorMessage";
 import "./Product.css";
 import Select from "react-select";
 
-export const Product = ({ match }) => {
+export const Product = ({ match, history }) => {
   const [selectedOption, setSelectedOption] = useState(null);
-
-  const [qty, useQty] = useState(0);
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
   let { loading, error, product } = productDetails;
+  let { image, name, price, countInStock, rating, description, alt } = product;
   const override = css`
     display: block;
     margin: 0 auto;
@@ -28,14 +27,10 @@ export const Product = ({ match }) => {
     dispatch(listProductDetails(productId));
   }, [dispatch, match]);
 
-  let { image, name, price, countInStock, rating, description, alt } = product;
-
-  const setCount = (count) => {
-    // useQty(count);
-    console.log(count);
-  };
-  const makeCount = () => {
-    console.log("hey");
+  const addToCartHandler = () => {
+    console.log("mam", selectedOption.value);
+    selectedOption &&
+      history.push(`/cart/${productId}?qty=${selectedOption.value}`);
   };
   return (
     <div>
@@ -120,7 +115,10 @@ export const Product = ({ match }) => {
 
                   {countInStock > 0 ? (
                     <div className="flex items-center mt-6">
-                      <button className="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
+                      <button
+                        onClick={addToCartHandler}
+                        className="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
+                      >
                         Order
                       </button>
                       <button className="mx-2 text-gray-600 border rounded-md p-2 hover:bg-gray-200 focus:outline-none">
@@ -128,10 +126,7 @@ export const Product = ({ match }) => {
                       </button>
                     </div>
                   ) : (
-                    <button
-                      onClick={makeCount}
-                      className="mt-6 cursor-not-allowed px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
-                    >
+                    <button className="mt-6 cursor-not-allowed px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
                       Order
                     </button>
                   )}

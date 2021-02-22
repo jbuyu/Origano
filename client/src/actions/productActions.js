@@ -6,6 +6,8 @@ import {
   PRODUCT_DETAILS_FAIL,
   PRODUCT_DETAILS_SUCCESS,
 } from "../constants/productConstants";
+
+import { CART_ADD_ITEM, REMOVE_CART_ITEM } from "../constants/cartConstants";
 import Axios from "axios";
 const BASE_URL = "http://localhost:4000/api/products";
 

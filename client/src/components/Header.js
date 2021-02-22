@@ -32,7 +32,7 @@ const Header = () => {
             <li>
               <Link
                 className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400"
-                to="/features"
+                to="/cart"
               >
                 <button className="mx-2 text-gray-600 border rounded-md p-2 hover:bg-gray-200 focus:outline-none">
                   <FaCartArrowDown />
