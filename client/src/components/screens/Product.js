@@ -11,7 +11,7 @@ import "./Product.css";
 import Select from "react-select";
 
 export const Product = ({ match, history }) => {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(1);
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
   let { loading, error, product } = productDetails;
@@ -29,8 +29,10 @@ export const Product = ({ match, history }) => {
 
   const addToCartHandler = () => {
     console.log("mam", selectedOption.value);
-    selectedOption &&
-      history.push(`/cart/${productId}?qty=${selectedOption.value}`);
+
+    let selectedValue = selectedOption.value ? selectedOption.value : 1;
+
+    selectedOption && history.push(`/cart/${productId}?qty=${selectedValue}`);
   };
   return (
     <div>
