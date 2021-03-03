@@ -32,23 +32,23 @@ export const CartScreen = ({ match, history, location }) => {
             </h2>
           </div>
           <table className="w-full">
-            <thead className="flex mt-10 mb-5  w-full">
-              <tr className="py-2">
-                <th className="font-semibold text-gray-600 text-xs uppercase w-2/5 px-20">
+            <thead className="flex mt-10 mb-5">
+              <tr className="py-2 flex w-3/5">
+                <th className="font-semibold text-gray-600 text-left text-xs uppercase w-2/5 text-xs ">
                   Product Details
                 </th>
-                <th className="font-semibold  text-gray-600 text-xs uppercase w-2/5 text-center px-20 py-4">
+                <th className="font-semibold  text-gray-600 text-xs uppercase w-2/5 text-center text-xs  py-4">
                   Quantity
                 </th>
-                <th className="font-semibold  text-gray-600 text-xs uppercase w-2/5 text-center px-20 py-4">
+                <th className="font-semibold  text-gray-600 text-xs uppercase w-2/5 text-center text-xs  py-4">
                   Price
                 </th>
-                <th className="font-semibold  text-gray-600 text-xs uppercase w-2/5 text-center px-20 py-4">
+                <th className="font-semibold  text-gray-600 text-xs uppercase w-2/5 text-center text-xs  py-4">
                   Total
                 </th>
               </tr>
             </thead>
-            <tbody className="flex mt-10 mb-5  w-full flex-row">
+            <tbody className="mt-10 mb-5 w-full">
               {cartItems ? (
                 cartItems.map(
                   ({
@@ -62,7 +62,7 @@ export const CartScreen = ({ match, history, location }) => {
                   }) => (
                     <tr
                       key={product}
-                      className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5 w-3/5"
+                      className="flex items-center hover:bg-gray-100 -mx-8 px-4 py-5 w-3/5"
                     >
                       <td className="flex w-2/5">
                         <div className="w-20">
@@ -76,7 +76,7 @@ export const CartScreen = ({ match, history, location }) => {
                           <span className="text-sm text-center w-1/5 font-semibold text-sm">
                             {name}
                           </span>
-                          <span className="text-red-500 text-xs text-center w-1/5 ">
+                          <span className="text-red-500 text-xs w-2/5 ">
                             {brand}
                           </span>
                           <a
@@ -88,7 +88,7 @@ export const CartScreen = ({ match, history, location }) => {
                         </div>
                       </td>
 
-                      <td className=" px-20 py-4 text-center w-1/5 font-semibold text-sm">
+                      <td className="py-4 text-center w-2/5 font-semibold text-sm">
                         <input
                           className="mx-2 border text-center w-8"
                           type="text"
@@ -96,10 +96,10 @@ export const CartScreen = ({ match, history, location }) => {
                           onChange={changeQuant}
                         />
                       </td>
-                      <td className="text-center w-1/5 font-semibold text-sm px-20 py-4">
+                      <td className="text-center w-2/5 font-semibold text-sm  py-4">
                         {price}
                       </td>
-                      <td className="text-center w-1/5 font-semibold text-sm px-20 py-4">
+                      <td className="text-center w-2/5 font-semibold text-sm  py-4">
                         {qty * price}
                       </td>
                     </tr>
