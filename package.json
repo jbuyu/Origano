@@ -12,7 +12,8 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder",
-    "data:destroy": "node backend/seeder -d"
+    "data:destroy": "node backend/seeder -d",
+    "allInstall": "yarn && cd client && yarn"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
