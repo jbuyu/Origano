@@ -13,9 +13,12 @@ export const CartScreen = ({ match, history, location }) => {
 
   const { cartItems } = cart;
 
-  console.log(cartItems);
+  // console.log(cartItems);
   const changeQuant = () => {
     console.log("change");
+  };
+  const removeFromCart = (product) => {
+    console.log(product);
   };
 
   useEffect(() => {
@@ -80,6 +83,9 @@ export const CartScreen = ({ match, history, location }) => {
                             {brand}
                           </span>
                           <a
+                            onClick={() => {
+                              removeFromCart(product);
+                            }}
                             href="#"
                             className="font-semibold hover:text-red-500 text-gray-500 text-xs text-center w-1/5 font-semibold text-sm"
                           >
