@@ -97,14 +97,14 @@ export const CartScreen = ({ match, history, location }) => {
 
                       <td className="font-semibold  text-black  uppercase w-2/5 text-center text-xs px-4 py-4 flex flex-row">
                         <input
-                          className="mx-2 border text-center w-8"
+                          className="mx-2 border text-center w-10 h-8"
                           type="text"
                           value={qty}
                           onChange={(e) =>
                             dispatch(addToCart(product, Number(e.target.value)))
                           }
                         />
-                        <div className="text-xs text-gray-400 ">
+                        <div className="text-xs text-gray-400 text-center py-2">
                           {countInStock}
                         </div>
                         {/* <Select
