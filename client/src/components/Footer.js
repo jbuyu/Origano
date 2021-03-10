@@ -15,7 +15,7 @@ const Footer = () => {
                   to="/pricing"
                   className="text-indigo-400  text-md hover:border-indigo-800"
                 >
-                  Pricing
+                  Brochure
                 </Link>
               </span>
               {/* <span className="my-2">
@@ -44,7 +44,7 @@ const Footer = () => {
                   to="/docs"
                   className="text-indigo-400 text-md hover:border-indigo-800"
                 >
-                  Docs
+                  Terms and Conditions
                 </Link>
               </span>
             </div>
@@ -57,7 +57,7 @@ const Footer = () => {
                   to="/support"
                   className="text-indigo-400  text-md hover:border-indigo-800"
                 >
-                  Support
+                  Online 
                 </Link>
               </span>
             </div>

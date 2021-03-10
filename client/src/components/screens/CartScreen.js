@@ -36,17 +36,17 @@ export const CartScreen = ({ match, history, location }) => {
           </div>
           <table className="w-full">
             <thead className="flex mt-10 mb-5">
-              <tr className="py-2 flex w-3/5">
-                <th className="font-semibold text-gray-600 text-left text-xs uppercase w-2/5 text-xs ">
+              <tr className="py-2 flex w-3/5 content-center">
+                <th className="font-semibold text-gray-600 text-center text-xs uppercase w-3/5 text-xs py-4 ">
                   Product Details
                 </th>
-                <th className="font-semibold  text-gray-600 text-xs uppercase w-2/5 text-center text-xs  py-4">
+                <th className="font-semibold  text-gray-600  uppercase w-2/5 text-left text-xs  py-4">
                   Quantity
                 </th>
-                <th className="font-semibold  text-gray-600 text-xs uppercase w-2/5 text-center text-xs  py-4">
+                <th className="font-semibold  text-gray-600  uppercase w-2/5 text-center text-xs  py-4">
                   Price
                 </th>
-                <th className="font-semibold  text-gray-600 text-xs uppercase w-2/5 text-center text-xs  py-4">
+                <th className="font-semibold  text-gray-600  uppercase w-2/5 text-center text-xs  py-4">
                   Total
                 </th>
               </tr>
@@ -67,7 +67,7 @@ export const CartScreen = ({ match, history, location }) => {
                       key={product}
                       className="flex items-center hover:bg-gray-100 -mx-8 px-4 py-5 w-3/5"
                     >
-                      <td className="flex w-2/5">
+                      <td className="flex font-semibold text-gray-600 text-center w-3/5  py-4">
                         <div className="w-20">
                           <img
                             className="h-16 w-16 rounded-xl"
@@ -94,7 +94,7 @@ export const CartScreen = ({ match, history, location }) => {
                         </div>
                       </td>
 
-                      <td className="py-4 text-center w-2/5 font-semibold text-sm">
+                      <td className="font-semibold  text-gray-600  uppercase w-2/5 text-center text-xs px-4 py-4">
                         <input
                           className="mx-2 border text-center w-8"
                           type="text"
@@ -102,10 +102,10 @@ export const CartScreen = ({ match, history, location }) => {
                           onChange={changeQuant}
                         />
                       </td>
-                      <td className="text-center w-2/5 font-semibold text-sm  py-4">
+                      <td className="font-semibold  text-gray-600  uppercase w-2/5 text-right text-sm px-4 py-4">
                         {price}
                       </td>
-                      <td className="text-center w-2/5 font-semibold text-sm  py-4">
+                      <td className="font-semibold  text-gray-600  uppercase w-2/5 text-right text-sm px-4 py-4">
                         {qty * price}
                       </td>
                     </tr>
