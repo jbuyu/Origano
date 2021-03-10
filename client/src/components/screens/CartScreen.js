@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../actions/cartActions";
 import ErrorMessage from "../ErrorMessage";
+import Select from 'react-select'
 
 export const CartScreen = ({ match, history, location }) => {
   const productID = match.params.id;
@@ -95,12 +96,12 @@ export const CartScreen = ({ match, history, location }) => {
                       </td>
 
                       <td className="font-semibold  text-gray-600  uppercase w-2/5 text-center text-xs px-4 py-4">
-                        <input
+                        {/* <input
                           className="mx-2 border text-center w-8"
                           type="text"
                           value={qty}
-                          onChange={changeQuant}
-                        />
+                          onChange={(e)=> dispatch(addToCart(product, Number(e.target.value)))}
+                        /> */}
                       </td>
                       <td className="font-semibold  text-gray-600  uppercase w-2/5 text-right text-sm px-4 py-4">
                         {price}
