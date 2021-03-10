@@ -35,7 +35,7 @@ export const Product = ({ match, history }) => {
     selectedOption && history.push(`/cart/${productId}?qty=${selectedValue}`);
   };
   return (
-    <div>
+    <div className="min-h-full">
       {loading ? (
         <ClipLoader css={override} size={250} />
       ) : error ? (

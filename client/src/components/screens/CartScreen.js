@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../actions/cartActions";
 import ErrorMessage from "../ErrorMessage";
-import Select from 'react-select'
+import Select from "react-select";
 
 export const CartScreen = ({ match, history, location }) => {
   const productID = match.params.id;
@@ -80,7 +80,7 @@ export const CartScreen = ({ match, history, location }) => {
                           <span className="text-sm text-center w-1/5 font-semibold text-sm">
                             {name}
                           </span>
-                          <span className="text-red-500 text-xs w-2/5 ">
+                          <span className="text-red-400 text-xs w-2/5 ">
                             {brand}
                           </span>
                           <a
@@ -88,20 +88,36 @@ export const CartScreen = ({ match, history, location }) => {
                               removeFromCart(product);
                             }}
                             href="#"
-                            className="font-semibold hover:text-red-500 text-gray-500 text-xs text-center w-1/5 font-semibold text-sm"
+                            className="font-semibold hover:text-red-600 text-gray-500 text-xs text-center w-1/5 font-semibold text-sm mt-2"
                           >
                             Remove
                           </a>
                         </div>
                       </td>
 
-                      <td className="font-semibold  text-gray-600  uppercase w-2/5 text-center text-xs px-4 py-4">
-                        {/* <input
+                      <td className="font-semibold  text-black  uppercase w-2/5 text-center text-xs px-4 py-4 flex flex-row">
+                        <input
                           className="mx-2 border text-center w-8"
                           type="text"
                           value={qty}
-                          onChange={(e)=> dispatch(addToCart(product, Number(e.target.value)))}
-                        /> */}
+                          onChange={(e) =>
+                            dispatch(addToCart(product, Number(e.target.value)))
+                          }
+                        />
+                        <div className="text-xs text-gray-400 ">
+                          {countInStock}
+                        </div>
+                        {/* <Select
+                        className="w-2/3 mt-2"
+                        defaultValue={qty}
+                        onChange={(e)=> dispatch(addToCart(product, Number(e.target.value)))}
+                        options={[...Array(countInStock).keys()].map(
+                          (count) => ({
+                            label: count + 1,
+                            value: count + 1,
+                          })
+                        )}
+                      /> */}
                       </td>
                       <td className="font-semibold  text-gray-600  uppercase w-2/5 text-right text-sm px-4 py-4">
                         {price}
