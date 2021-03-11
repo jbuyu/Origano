@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../../actions/cartActions";
 import ErrorMessage from "../ErrorMessage";
-import Select from "react-select";
+// import Select from "react-select";
+import {RiDeleteBin6Line} from 'react-icons/ri'
 
 export const CartScreen = ({ match, history, location }) => {
   const productID = match.params.id;
@@ -102,7 +103,7 @@ export const CartScreen = ({ match, history, location }) => {
                             href="#"
                             className="font-semibold hover:text-red-600 text-gray-500 text-xs text-center w-1/5 mt-2"
                           >
-                            Remove
+                            <RiDeleteBin6Line size={20}/>
                           </a>
                         </div>
                       </td>
