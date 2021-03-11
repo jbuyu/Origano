@@ -31,14 +31,21 @@ export const CartScreen = ({ match, history, location }) => {
         <div className="w-full bg-white px-10 py-10">
           <div className="flex justify-between border-b pb-8">
             <h1 className="font-semibold text-2xl">Shopping Cart</h1>
-            <h2 className="font-semibold text-2xl">
-              {qty > 1 ? `${qty} Items` : `${qty} Item`}
+            <div className="flex flex-col">
+
+            <h2 className="font-semibold text-lg">
+              { cartItems && cartItems.reduce((acc, item)=>acc + item.qty, 0)} Items
             </h2>
+
+            <h2 className="font-semibold text-lg text-indigo-400">
+              { cartItems && cartItems.reduce((acc, item)=>acc + item.qty * item.price, 0).toFixed(2)} /-
+            </h2>
+            </div>
           </div>
           <table className="w-full">
             <thead className="flex mt-10 mb-5">
               <tr className="py-2 flex w-3/5 content-center">
-                <th className="font-semibold text-gray-600 text-center text-xs uppercase w-3/5 text-xs py-4 ">
+                <th className="font-semibold text-gray-600 text-center  uppercase w-3/5 text-xs py-4 ">
                   Product Details
                 </th>
                 <th className="font-semibold  text-gray-600  uppercase w-2/5 text-left text-xs  py-4">
@@ -77,7 +84,7 @@ export const CartScreen = ({ match, history, location }) => {
                           />
                         </div>
                         <div className="flex flex-col justify-between ml-4 flex-grow">
-                          <span className="text-sm text-center w-1/5 font-semibold text-sm">
+                          <span className="text-sm text-center w-1/5 font-semibold ">
                             {name}
                           </span>
                           <span className="text-red-400 text-xs w-2/5 ">
@@ -88,7 +95,7 @@ export const CartScreen = ({ match, history, location }) => {
                               removeFromCart(product);
                             }}
                             href="#"
-                            className="font-semibold hover:text-red-600 text-gray-500 text-xs text-center w-1/5 font-semibold text-sm mt-2"
+                            className="font-semibold hover:text-red-600 text-gray-500 text-xs text-center w-1/5 mt-2"
                           >
                             Remove
                           </a>
