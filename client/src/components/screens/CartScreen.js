@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart } from "../../actions/cartActions";
+import { addToCart, removeFromCart } from "../../actions/cartActions";
 import ErrorMessage from "../ErrorMessage";
 import Select from "react-select";
 
@@ -18,9 +18,14 @@ export const CartScreen = ({ match, history, location }) => {
   const changeQuant = () => {
     console.log("change");
   };
-  const removeFromCart = (product) => {
+  const removeCartItem = (product) => {
     console.log(product);
+    dispatch(removeFromCart(product))
   };
+  const checkoutButton = ()=>{
+    //do sth
+    history.push('/login?redirect=shipping')
+  }
 
   useEffect(() => {
     dispatch(addToCart(productID, qty));
@@ -92,7 +97,7 @@ export const CartScreen = ({ match, history, location }) => {
                           </span>
                           <a
                             onClick={() => {
-                              removeFromCart(product);
+                              removeCartItem(product);
                             }}
                             href="#"
                             className="font-semibold hover:text-red-600 text-gray-500 text-xs text-center w-1/5 mt-2"
@@ -156,13 +161,13 @@ export const CartScreen = ({ match, history, location }) => {
           </Link>
         </div>
 
-        {/* <div id="summary" className="w-1/4 px-8 py-10">
+        <div id="summary" className="w-1/4 px-8 py-10">
           <h1 className="font-semibold text-2xl border-b pb-8">
             Order Summary
           </h1>
           <div className="flex justify-between mt-10 mb-5">
-            <span className="font-semibold text-sm uppercase">Items 3</span>
-            <span className="font-semibold text-sm">590$</span>
+            <span className="font-semibold text-sm uppercase">Items {cartItems.reduce((acc, item)=> acc + item.qty, 0)}</span>
+            <span className="font-semibold text-sm">{cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0).toFixed(2)}</span>
           </div>
           <div>
             <label className="font-medium inline-block mb-3 text-sm uppercase">
@@ -174,7 +179,7 @@ export const CartScreen = ({ match, history, location }) => {
           </div>
           <div className="py-10">
             <label
-              for="promo"
+              htmlFor="promo"
               className="font-semibold inline-block mb-3 text-sm uppercase"
             >
               Promo Code
@@ -186,7 +191,7 @@ export const CartScreen = ({ match, history, location }) => {
               className="p-2 text-sm w-full"
             />
           </div>
-          <button className="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">
+          <button className="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase rounded-sm">
             Apply
           </button>
           <div className="border-t mt-8">
@@ -194,11 +199,14 @@ export const CartScreen = ({ match, history, location }) => {
               <span>Total cost</span>
               <span>$600</span>
             </div>
-            <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+            {
+              cartItems.length > 0 &&
+            <button onClick={checkoutButton} className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
               Checkout
             </button>
+            }
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );
