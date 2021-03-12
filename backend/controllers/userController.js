@@ -1,10 +1,10 @@
 import express from 'express'
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
+import generateToken from '../utils/generateToken.js'
 
-
-//@desc     Fetch all products
-//@route    GET /api/products
+//@desc     Post user data
+//@route    POST /api/users/auth
 //access    Public
 
 const authUser = asyncHandler(async(req,res)=>{
@@ -18,7 +18,7 @@ const authUser = asyncHandler(async(req,res)=>{
             name: user.name,
             email: user.email,
             isAdmin:user.isAdmin,
-            token: null
+            token: generateToken(user._id)
         })
     } else {
         res.status(401)
@@ -26,6 +26,16 @@ const authUser = asyncHandler(async(req,res)=>{
     }
 })
 
+
+//@desc     Fetch all users
+//@route    GET /api/users
+//access    Public
+const getUsers = asyncHandler(async(req,res)=>{
+    const users = await User.find({})
+    res.json(users)
+})
+
 export {
-    authUser
+    authUser,
+    getUsers
 }
