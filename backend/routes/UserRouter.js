@@ -1,4 +1,5 @@
 import express from "express";
+import {protect} from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
@@ -9,7 +10,7 @@ import {
 } from '../controllers/userController.js'
 
 router.get('/', getUsers)
-router.get('/profile', getUserProfile)
+router.route('/profile').get(protect,getUserProfile) 
 router.post('/login', authUser)
 
 
