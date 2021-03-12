@@ -35,7 +35,16 @@ const getUsers = asyncHandler(async(req,res)=>{
     res.json(users)
 })
 
+
+//@desc     Fetch all profile
+//@route    GET /api/users/profile
+//access    Private
+const getUserProfile = asyncHandler(async(req,res)=>{
+    res.send('Success')
+})
+
 export {
     authUser,
-    getUsers
+    getUsers,
+    getUserProfile
 }
