@@ -6,7 +6,7 @@ import express from "express";
 import consola from "consola";
 const PORT = process.env.PORT || 4000;
 import cors from "cors";
-import bodyParser from "body-parser";
+// import bodyParser from "body-parser";
 const app = express();
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
@@ -14,14 +14,16 @@ import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
 //modules imports
 import productsRouter from "./routes/productsRouter.js";
+import userRouter from "./routes/UserRouter.js";
 
 //middleware
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 //route middlewares
 app.use("/api/products", productsRouter);
+app.use("/api/users", userRouter);
 
 //error middlewares
 app.use(notFound);
