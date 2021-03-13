@@ -88,7 +88,8 @@ export const LoginScreen = ({ location, history }) => {
             <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
               Don't have an account ?
               <Link
-                to={redirect ? `/register?redirect=${redirect}` : "/register"}
+                to="register"
+                // to={redirect ? `/register?redirect=${redirect}` : "/register"}
                 className="cursor-pointer text-indigo-600 hover:text-indigo-800 ml-1"
               >
                 Register

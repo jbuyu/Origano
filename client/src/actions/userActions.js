@@ -50,7 +50,12 @@ export const logout = () => (dispatch) => {
   });
 };
 
-export const register = (email, password, name) => async (dispatch) => {
+export const register = (email, name, password, ) => async (dispatch) => {
+  // console.log({
+  //   email: email,
+  //   name: name,
+  //   password: password,
+  // });
   try {
     dispatch({
       type: USER_REGISTER_REQUEST,
