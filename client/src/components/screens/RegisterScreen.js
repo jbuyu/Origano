@@ -9,6 +9,8 @@ export const RegisterScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState(null);
   const [color, setColor] = useState("#FCA5A5");
 
   const dispatch = useDispatch();
@@ -19,15 +21,18 @@ export const RegisterScreen = ({ location, history }) => {
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   useEffect(() => {
-    // if (userInfo) {
-    //   history.push(redirect);
-    // }
-  });
+    if (userInfo) {
+      history.push(redirect);
+    }
+  }, [userInfo, history, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    dispatch(register(email, name, password));
+    if (password !== confirmPassword) {
+      setMessage("Passwords do not match");
+    } else {
+      dispatch(register(email, name, password));
+    }
     //submit
   };
   return (
@@ -66,7 +71,7 @@ export const RegisterScreen = ({ location, history }) => {
                 <input
                   className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm"
                   type="text"
-                  placeholder="Enter Full Name"
+                  placeholder="Enter names"
                   value={name}
                   onChange={(e) => {
                     setName(e.target.value);
@@ -81,13 +86,36 @@ export const RegisterScreen = ({ location, history }) => {
                 </div>
                 <input
                   className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm"
-                  type="text"
-                  placeholder="Enter your password"
+                  type="password"
+                  placeholder="Enter password"
                   value={password}
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
                 />
+              </div>
+              <div className="mt-8">
+                <div className="flex justify-between items-center">
+                  <div className="text-sm font-bold text-gray-700 tracking-wide">
+                    Confirm Password
+                  </div>
+                </div>
+                <input
+                  className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm"
+                  type="password"
+                  placeholder="Confirm password"
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="mt-2 flex flex-row justify-center items-center ">
+                {message && (
+                  <span className="text-sm bg-red-300 rounded-lg px-6 py-1">
+                    {message}
+                  </span>
+                )}
               </div>
               <div className="mt-10">
                 <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg">
@@ -98,7 +126,7 @@ export const RegisterScreen = ({ location, history }) => {
             <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
               Already Registered ?
               <Link
-                to="/login"
+                to={redirect ? `/login?redirect=${redirect}` : "/login"}
                 className="cursor-pointer text-indigo-600 hover:text-indigo-800 ml-1"
               >
                 Login

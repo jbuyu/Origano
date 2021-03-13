@@ -50,7 +50,7 @@ export const logout = () => (dispatch) => {
   });
 };
 
-export const register = (email, name, password, ) => async (dispatch) => {
+export const register = (email, name, password) => async (dispatch) => {
   // console.log({
   //   email: email,
   //   name: name,
@@ -73,6 +73,10 @@ export const register = (email, name, password, ) => async (dispatch) => {
     );
     dispatch({
       type: USER_REGISTER_SUCCESS,
+      payload: data,
+    });
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
       payload: data,
     });
     localStorage.setItem("userInfo", JSON.stringify(data));

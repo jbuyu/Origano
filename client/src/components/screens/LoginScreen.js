@@ -21,7 +21,7 @@ export const LoginScreen = ({ location, history }) => {
     if (userInfo) {
       history.push(redirect);
     }
-  });
+  }, [dispatch, userInfo, history]);
 
   const submitHandler = (e) => {
     e.preventDefault();
