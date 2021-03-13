@@ -71,7 +71,7 @@ export const LoginScreen = ({ location, history }) => {
                 </div>
                 <input
                   className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm"
-                  type="text"
+                  type="password"
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => {
