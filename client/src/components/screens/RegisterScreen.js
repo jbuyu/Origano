@@ -3,17 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
 import { HashLoader } from "react-spinners";
-import { login } from "../../actions/userActions";
+import { register } from "../../actions/userActions";
 
-export const LoginScreen = ({ location, history }) => {
+export const RegisterScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [color, setColor] = useState("#FCA5A5");
 
   const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, error, userInfo } = userRegister;
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
@@ -25,7 +26,7 @@ export const LoginScreen = ({ location, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    dispatch(register(email, name, password));
     //submit
   };
   return (
@@ -35,8 +36,8 @@ export const LoginScreen = ({ location, history }) => {
         <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
           <h2 className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl xl:text-bold">
             <span className="flex flex-row justify-between items-center">
-              Log in
-              <img src="log.png" alt="log_in" />
+              Register
+              <img src="/sign.png" alt="sign_up" />
             </span>
           </h2>
           <div className="mt-12">
@@ -58,15 +59,23 @@ export const LoginScreen = ({ location, history }) => {
               <div className="mt-8">
                 <div className="flex justify-between items-center">
                   <div className="text-sm font-bold text-gray-700 tracking-wide">
-                    Password
+                    Name
                   </div>
-                  <div>
-                    <Link
-                      to="/reset"
-                      className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800 cursor-pointer"
-                    >
-                      Forgot Password?
-                    </Link>
+                </div>
+                <input
+                  className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm"
+                  type="text"
+                  placeholder="Enter Full Name"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="mt-8">
+                <div className="flex justify-between items-center">
+                  <div className="text-sm font-bold text-gray-700 tracking-wide">
+                    Password
                   </div>
                 </div>
                 <input
@@ -81,17 +90,17 @@ export const LoginScreen = ({ location, history }) => {
               </div>
               <div className="mt-10">
                 <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg">
-                  Log In
+                  Register
                 </button>
               </div>
             </form>
             <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
-              Don't have an account ?
+              Already Registered ?
               <Link
-                to={redirect ? `/register?redirect=${redirect}` : "/register"}
+                to="/login"
                 className="cursor-pointer text-indigo-600 hover:text-indigo-800 ml-1"
               >
-                Register
+                Login
               </Link>
             </div>
             <div className="flex flex-row justify-center itemds-center">
