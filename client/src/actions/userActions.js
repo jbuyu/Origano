@@ -1,12 +1,13 @@
 import axios from "axios";
 import {
-    USER_LOGIN_FAIL,
-    USER_LOGIN_REQUEST,
-    USER_LOGIN_SUCCESS,
+  USER_LOGIN_FAIL,
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
 } from "../constants/userConstants";
 const BASE_URL = "http://localhost:4000";
 
 export const login = (email, password) => async (dispatch) => {
+  console.log(email, password)
   try {
     dispatch({
       type: USER_LOGIN_REQUEST,

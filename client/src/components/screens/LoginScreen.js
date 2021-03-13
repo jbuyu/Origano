@@ -48,7 +48,7 @@ export const LoginScreen = ({ location, history }) => {
                   placeholder="guadalupe@gmail.com"
                   value={email}
                   onChange={(e) => {
-                    setEmail(email);
+                    setEmail(e.target.value);
                   }}
                 />
               </div>
@@ -58,9 +58,9 @@ export const LoginScreen = ({ location, history }) => {
                     Password
                   </div>
                   <div>
-                    <a className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800 cursor-pointer">
+                    <Link to="/reset" className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800 cursor-pointer">
                       Forgot Password?
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <input
@@ -69,7 +69,7 @@ export const LoginScreen = ({ location, history }) => {
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => {
-                    setPassword(e.target.password);
+                    setPassword(e.target.value);
                   }}
                 />
               </div>
@@ -81,15 +81,12 @@ export const LoginScreen = ({ location, history }) => {
             </form>
             <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
               Don't have an account ?
-              <a className="cursor-pointer text-indigo-600 hover:text-indigo-800 ml-1">
-                <Link
-                  to={
-                    redirect ? `/register?redirecct=${redirect}` : "/register"
-                  }
-                >
+              <Link to={
+                    redirect ? `/register?redirect=${redirect}` : "/register"
+                  } className="cursor-pointer text-indigo-600 hover:text-indigo-800 ml-1">
+               
                   Sign up
-                </Link>
-              </a>
+              </Link>
             </div>
             <div className="flex flex-row justify-center itemds-center">
               {loading && <HashLoader color={color}></HashLoader>}
