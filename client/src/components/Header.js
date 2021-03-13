@@ -4,11 +4,17 @@ import { Link } from "react-router-dom";
 import { FaBars, FaCartArrowDown } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../actions/userActions";
 const Header = () => {
+  const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const btnClick = () => {
     // console.log("howdy");
+  };
+  const logOutHandler = () => {
+    console.log("out");
+    dispatch(logout());
   };
   return (
     <header className="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
@@ -48,44 +54,40 @@ const Header = () => {
                 <div className="py-10">
                   <div className="dropdown inline-block relative">
                     <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-6 rounded inline-flex items-center">
-                      <span className="mr-1">
+                      <span className="mr-1 flex flex-row items-center justify-between">
                         <CgProfile
-                          className="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400"
+                          className="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400 mr-1"
                           alt="profile-imag"
                         />
+                        {userInfo.name.split(" ")[1]
+                          ? userInfo.name.split(" ")[1]
+                          : userInfo.name}
                       </span>
                       <svg
                         className="fill-current h-4 w-4"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                       >
-                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
+                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                       </svg>
                     </button>
                     <ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
                       <li className="">
-                        <a
-                          className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                          href="#"
+                        <Link
+                          to="/profile"
+                          className="bg-gray-200 hover:bg-gray-400 py-2 px-12 block whitespace-no-wrap"
                         >
-                          One
-                        </a>
+                          Profile
+                        </Link>
                       </li>
-                      <li className="">
-                        <a
-                          className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                          href="#"
+                      <li>
+                        <button
+                          onClick={logOutHandler}
+                          className="bg-gray-200 hover:bg-gray-400 py-2 px-12 block whitespace-no-wrap"
+                          to="/logout"
                         >
-                          Two
-                        </a>
-                      </li>
-                      <li className="">
-                        <a
-                          className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                          href="#"
-                        >
-                          Three is the magic number
-                        </a>
+                          Logout
+                        </button>
                       </li>
                     </ul>
                   </div>
@@ -103,15 +105,6 @@ const Header = () => {
             <li></li>
           </ul>
         </nav>
-        {/* <Link
-          to="/profile"
-          className="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 cursor-pointer"
-        >
-          <CgProfile
-            className="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400"
-            alt="profile-imag"
-          />
-        </Link> */}
       </div>
     </header>
   );
