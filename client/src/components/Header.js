@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../icons/brocc.svg";
+import Logo from "../icons/hop.svg";
 import { Link } from "react-router-dom";
 import { FaBars, FaCartArrowDown } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
@@ -20,7 +20,7 @@ const Header = () => {
     <header className="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
       <div className="flex-1 flex justify-between items-center">
         <Link to="/">
-          <img className="h-16 w-16 p-1" src={Logo} alt="logo" />
+          <img  className="h-16 w-16 p-1" src={Logo} alt="logo" />
         </Link>
       </div>
 
