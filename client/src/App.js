@@ -5,6 +5,7 @@ import { ProductTable } from "./components/screens/ProductTable";
 import { Product } from "./components/screens/Product";
 import Footer from "./components/Footer";
 import { CartScreen } from "./components/screens/CartScreen";
+import { LoginScreen } from "./components/screens/LoginScreen";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <div className="antialiased bg-gray-100">
         <Header />
         <Route exact path="/" component={ProductTable} />
+        <Route exact path="/login" component={LoginScreen} />
         <Route path="/product/:id" component={Product} />
         <Route path="/cart/:id?" component={CartScreen} />
         <Footer />
