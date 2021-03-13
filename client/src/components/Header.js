@@ -44,7 +44,7 @@ const Header = () => {
             <li>
               <Link
                 className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2"
-                to="/support"
+                to="/login"
               >
                 SIGN IN
               </Link>
