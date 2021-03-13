@@ -6,12 +6,14 @@ const router = express.Router()
 import {
     authUser,
     getUsers,
-    getUserProfile
+    getUserProfile,
+    registerUser
 } from '../controllers/userController.js'
 
 router.get('/', getUsers)
 router.route('/profile').get(protect,getUserProfile) 
 router.post('/login', authUser)
+router.post('/register', registerUser)
 
 
 export default router;

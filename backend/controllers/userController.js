@@ -2,6 +2,8 @@ import express from "express";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
+
+
 //@desc     Post user data
 //@route    POST /api/users/auth
 //access    Public
@@ -24,6 +26,43 @@ const authUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid email or password");
   }
 });
+
+
+//@desc     Register User
+//@route    POST /api/users/register
+//access    Public
+
+const registerUser = asyncHandler(async (req, res) => {
+  const { email, password, name  } = req.body;
+  const userExist = await User.findOne({ email });
+  if(userExist){
+    res.status(400)
+    throw new Error('User already Exists')
+  }
+  const user = await User.create({
+    name,
+    email, 
+    password
+  })
+  if(user){
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    })
+
+  } else {
+    res.status(404)
+    throw new Error('Invalid User Data')
+  }
+  
+});
+
+
+
+
 
 //@desc     Fetch all users
 //@route    GET /api/users
@@ -54,4 +93,4 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export { authUser, getUsers, getUserProfile };
+export { authUser, getUsers, getUserProfile, registerUser };
