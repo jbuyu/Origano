@@ -104,7 +104,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`${BASE_URL}/api/users/${id}`, config);
+    const { data } = await axios.post(`${BASE_URL}/api/users/profile${id}`, config);
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data,

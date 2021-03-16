@@ -24,38 +24,35 @@ export const ProfileScreen = ({ location, history }) => {
 
 
   useEffect(() => {
+    console.log('userinf', userInfo)
     if (!userInfo) {
+      
       history.push('/login');
     } else {
         if(!user.name){
             dispatch(getUserDetails('profile'))
+            console.log('user', user)
         } else {
             setName(user.name)
             setEmail(user.name)
         }
     }
-  }, [userInfo, history]);
+  }, [dispatch, userInfo, history, user]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setMessage("Passwords do not match");
     } else {
-      dispatch(register(email, name, password));
+      // dispatch(register(email, name, password));
     }
     //submit
   };
   return (
     <div className="lg:flex flex flex-row justify-center items-center">
-      <div className="lg:w-1/2 xl:max-w-screen-sm">
+      <div className="flex flex-col lg:w-1/2 xl:max-w-screen-sm">
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
-          <h2 className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl xl:text-bold">
-            <span className="flex flex-row justify-between items-center">
-              Register
-              <img src="/sign.png" alt="sign_up" />
-            </span>
-          </h2>
           <div className="mt-12">
             <form onSubmit={submitHandler}>
               <div>
@@ -129,24 +126,19 @@ export const ProfileScreen = ({ location, history }) => {
               </div>
               <div className="mt-10">
                 <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg">
-                  Register
+                  Update
                 </button>
               </div>
             </form>
-            <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
-              Already Registered ?
-              <Link
-                to={redirect ? `/login?redirect=${redirect}` : "/login"}
-                className="cursor-pointer text-indigo-600 hover:text-indigo-800 ml-1"
-              >
-                Login
-              </Link>
-            </div>
             <div className="flex flex-row justify-center itemds-center">
               {loading && <HashLoader color={color}></HashLoader>}
             </div>
           </div>
         </div>
+      </div>
+      <div className="flex flex-col">
+        <h3>My Orders</h3>
+        <p>Miami</p>
       </div>
     </div>
   );
