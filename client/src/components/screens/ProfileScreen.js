@@ -24,7 +24,7 @@ export const ProfileScreen = ({ location, history }) => {
 
 
   useEffect(() => {
-    console.log('userinf', userInfo)
+    console.log('userinfo', userInfo)
     if (!userInfo) {
       
       history.push('/login');
