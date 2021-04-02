@@ -24,14 +24,13 @@ export const ProfileScreen = ({ location, history }) => {
 
 
   useEffect(() => {
-    console.log('userinfo', userInfo)
+    console.log('usereffect', user)
     if (!userInfo) {
-      
       history.push('/login');
     } else {
         if(!user.name){
             dispatch(getUserDetails('profile'))
-            console.log('user', user)
+            console.log('getting')
         } else {
             setName(user.name)
             setEmail(user.name)
