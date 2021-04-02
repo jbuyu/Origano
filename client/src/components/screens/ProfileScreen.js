@@ -33,7 +33,7 @@ export const ProfileScreen = ({ location, history }) => {
             console.log('getting')
         } else {
             setName(user.name)
-            setEmail(user.name)
+            setEmail(user.email)
         }
     }
   }, [dispatch, userInfo, history, user]);
@@ -123,7 +123,7 @@ export const ProfileScreen = ({ location, history }) => {
                   </span>
                 )}
               </div>
-              <div className="mt-10">
+              <div className="m-10">
                 <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg">
                   Update
                 </button>
@@ -135,8 +135,8 @@ export const ProfileScreen = ({ location, history }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col">
-        <h3>My Orders</h3>
+      <div className=" flex flex-col">
+        <h3 className="top-0" >My Orders</h3>
         <p>Miami</p>
       </div>
     </div>
