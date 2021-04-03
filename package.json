@@ -16,6 +16,7 @@
     "allInstall": "yarn && cd client && yarn"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "consola": "^2.15.3",

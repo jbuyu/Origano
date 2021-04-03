@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
 import { HashLoader } from "react-spinners";
-import { getUserDetails } from "../../actions/userActions";
+import { getUserDetails, updateUserProfile } from "../../actions/userActions";
 
 export const ProfileScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
@@ -18,23 +18,24 @@ export const ProfileScreen = ({ location, history }) => {
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
 
   useEffect(() => {
-    console.log('usereffect', user)
+    console.log("usereffect", user);
     if (!userInfo) {
-      history.push('/login');
+      history.push("/login");
     } else {
-        if(!user.name){
-            dispatch(getUserDetails('profile'))
-            console.log('getting')
-        } else {
-            setName(user.name)
-            setEmail(user.email)
-        }
+      if (!user.name) {
+        dispatch(getUserDetails("profile"));
+        console.log("getting");
+      } else {
+        setName(user.name);
+        setEmail(user.email);
+      }
     }
   }, [dispatch, userInfo, history, user]);
 
@@ -42,8 +43,18 @@ export const ProfileScreen = ({ location, history }) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setMessage("Passwords do not match");
+      setTimeout(() => {
+        setMessage("");
+      }, 1000);
     } else {
-      // dispatch(register(email, name, password));
+      let userData = {
+        id: user._id,
+        name,
+        email,
+        password,
+      };
+      dispatch(updateUserProfile(userData));
+      console.log(userData);
     }
     //submit
   };
@@ -53,6 +64,18 @@ export const ProfileScreen = ({ location, history }) => {
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
           <div className="mt-12">
+            <div className="mt-2 flex flex-row justify-center items-center ">
+              {message && (
+                <span className="text-sm bg-red-300 rounded-lg px-10 py-2 mb-4">
+                  {message}
+                </span>
+              )}
+              {success && (
+                <span className="text-sm bg-green-400 rounded-lg px-10 py-2 mb-4">
+                  Profile Updated
+                </span>
+              )}
+            </div>
             <form onSubmit={submitHandler}>
               <div>
                 <div className="text-sm font-bold text-gray-700 tracking-wide">
@@ -116,15 +139,12 @@ export const ProfileScreen = ({ location, history }) => {
                   }}
                 />
               </div>
-              <div className="mt-2 flex flex-row justify-center items-center ">
-                {message && (
-                  <span className="text-sm bg-red-300 rounded-lg px-6 py-1">
-                    {message}
-                  </span>
-                )}
-              </div>
+
               <div className="m-10">
-                <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg">
+                <button
+                  onClick={submitHandler}
+                  className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg"
+                >
                   Update
                 </button>
               </div>
@@ -136,7 +156,7 @@ export const ProfileScreen = ({ location, history }) => {
         </div>
       </div>
       <div className=" flex flex-col">
-        <h3 className="top-0" >My Orders</h3>
+        <h3 className="top-0">My Orders</h3>
         <p>Miami</p>
       </div>
     </div>
