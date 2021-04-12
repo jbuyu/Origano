@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
+import {saveShippingAddress} from '../../actions/cartActions'
 
 export const ShippingScreen = ({ history }) => {
   //redux
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  const { shippingAddress } = cart;
 
   //state
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [postCode, setPostCode] = useState("");
-  const [country, setCountry] = useState("");
+  const [address, setAddress] = useState(shippingAddress.address);
+  const [city, setCity] = useState(shippingAddress.city);
+  const [postCode, setPostCode] = useState(shippingAddress.postCode);
+  const [country, setCountry] = useState(shippingAddress.country);
+
+  const dispatch = useDispatch();
 
   //fns
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("miami");
+    dispatch(saveShippingAddress({ address, city, postCode, country }));
+    history.push('/payment')
     //do sthn
   };
 
@@ -34,7 +39,8 @@ export const ShippingScreen = ({ history }) => {
               Items {cartItems.reduce((acc, item) => acc + item.qty, 0)}
             </span>
             <span className="font-semibold text-sm">
-              $ {cartItems
+              ${" "}
+              {cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}
             </span>
@@ -48,7 +54,7 @@ export const ShippingScreen = ({ history }) => {
               id="address"
               placeholder="Enter Address"
               className="p-2 text-sm w-full"
-              value={address}
+              value={address || ""}
               onChange={(e) => {
                 setAddress(e.target.value);
               }}
@@ -64,7 +70,7 @@ export const ShippingScreen = ({ history }) => {
               id="city"
               placeholder="Enter City"
               className="p-2 text-sm w-full"
-              value={city}
+              value={city || ""}
               onChange={(e) => {
                 setCity(e.target.value);
               }}
@@ -80,7 +86,7 @@ export const ShippingScreen = ({ history }) => {
               id="country"
               placeholder="Enter Country"
               className="p-2 text-sm w-full"
-              value={country}
+              value={country || ""}
               onChange={(e) => {
                 setCountry(e.target.value);
               }}
@@ -96,14 +102,14 @@ export const ShippingScreen = ({ history }) => {
               id="postCode"
               placeholder="Enter Postal Code"
               className="p-2 text-sm w-full"
-              value={postCode}
+              value={postCode || ""}
               onChange={(e) => {
                 setPostCode(e.target.value);
               }}
               required
             />
           </div>
-          <div className="py-10">
+          {/* <div className="py-10">
             <label
               htmlFor="promo"
               className="font-semibold inline-block mb-3 text-sm uppercase"
@@ -116,15 +122,14 @@ export const ShippingScreen = ({ history }) => {
               placeholder="Enter your code"
               className="p-2 text-sm w-full"
             />
-          </div>
-          <button className="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase rounded-sm">
-            Apply
-          </button>
+          </div> */}
+         
           <div className="border-t mt-8">
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
               <span className="font-semibold text-sm">
-                $ {cartItems
+                ${" "}
+                {cartItems
                   .reduce((acc, item) => acc + item.qty * item.price, 0)
                   .toFixed(2)}
               </span>
