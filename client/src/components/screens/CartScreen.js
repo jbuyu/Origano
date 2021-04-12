@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../../actions/cartActions";
 import ErrorMessage from "../ErrorMessage";
 // import Select from "react-select";
-import {RiDeleteBin6Line} from 'react-icons/ri'
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 export const CartScreen = ({ match, history, location }) => {
   const productID = match.params.id;
@@ -21,12 +21,12 @@ export const CartScreen = ({ match, history, location }) => {
   };
   const removeCartItem = (product) => {
     console.log(product);
-    dispatch(removeFromCart(product))
+    dispatch(removeFromCart(product));
   };
-  const checkoutButton = ()=>{
+  const checkoutButton = () => {
     //do sth
-    history.push('/login?redirect=shipping')
-  }
+    history.push("/login?redirect=shipping");
+  };
 
   useEffect(() => {
     dispatch(addToCart(productID, qty));
@@ -38,14 +38,19 @@ export const CartScreen = ({ match, history, location }) => {
           <div className="flex justify-between border-b pb-8">
             <h1 className="font-semibold text-2xl">Shopping Cart</h1>
             <div className="flex flex-col">
+              <h2 className="font-semibold text-lg">
+                {cartItems &&
+                  cartItems.reduce((acc, item) => acc + item.qty, 0)}{" "}
+                Items
+              </h2>
 
-            <h2 className="font-semibold text-lg">
-              { cartItems && cartItems.reduce((acc, item)=>acc + item.qty, 0)} Items
-            </h2>
-
-            <h2 className="font-semibold text-lg text-indigo-400">
-              { cartItems && cartItems.reduce((acc, item)=>acc + item.qty * item.price, 0).toFixed(2)} /-
-            </h2>
+              <h2 className="font-semibold text-lg text-indigo-400">
+                {cartItems &&
+                  cartItems
+                    .reduce((acc, item) => acc + item.qty * item.price, 0)
+                    .toFixed(2)}{" "}
+                /-
+              </h2>
             </div>
           </div>
           <table className="w-full">
@@ -103,7 +108,7 @@ export const CartScreen = ({ match, history, location }) => {
                             href="#"
                             className="font-semibold hover:text-red-600 text-gray-500 text-xs text-center w-1/5 mt-2"
                           >
-                            <RiDeleteBin6Line size={20}/>
+                            <RiDeleteBin6Line size={20} />
                           </a>
                         </div>
                       </td>
@@ -167,8 +172,14 @@ export const CartScreen = ({ match, history, location }) => {
             Order Summary
           </h1>
           <div className="flex justify-between mt-10 mb-5">
-            <span className="font-semibold text-sm uppercase">Items {cartItems.reduce((acc, item)=> acc + item.qty, 0)}</span>
-            <span className="font-semibold text-sm">{cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0).toFixed(2)}</span>
+            <span className="font-semibold text-sm uppercase">
+              Items {cartItems.reduce((acc, item) => acc + item.qty, 0)}
+            </span>
+            <span className="font-semibold text-sm">
+              {cartItems
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
+                .toFixed(2)}
+            </span>
           </div>
           <div>
             <label className="font-medium inline-block mb-3 text-sm uppercase">
@@ -198,14 +209,21 @@ export const CartScreen = ({ match, history, location }) => {
           <div className="border-t mt-8">
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>$600</span>
+              <span className="font-semibold text-sm">
+                $
+                {cartItems
+                  .reduce((acc, item) => acc + item.qty * item.price, 0)
+                  .toFixed(2)}
+              </span>
             </div>
-            {
-              cartItems.length > 0 &&
-            <button onClick={checkoutButton} className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
-              Checkout
-            </button>
-            }
+            {cartItems.length > 0 && (
+              <button
+                onClick={checkoutButton}
+                className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+              >
+                Checkout
+              </button>
+            )}
           </div>
         </div>
       </div>
