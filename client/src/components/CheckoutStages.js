@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 export const CheckoutStages = ({ step1, step2, step3, step4 }) => {
   return (
-    <div className="flex flex-row" >
-      <nav className="px-4">
+    <div className="flex flex-row">
+      <nav className="px-4 ">
         {step1 ? (
-          <Link to="/login">
+          <Link to="/login" className="text-indigo-700">
             Sign-In
             <FaArrowAltCircleRight />
           </Link>
@@ -19,8 +19,8 @@ export const CheckoutStages = ({ step1, step2, step3, step4 }) => {
         )}
       </nav>
       <nav className="px-4">
-        {step1 ? (
-          <Link to="/shipping">
+        {step2 ? (
+          <Link to="/shipping" className="text-indigo-700">
             Shipping
             <FaArrowAltCircleRight />
           </Link>
@@ -32,8 +32,8 @@ export const CheckoutStages = ({ step1, step2, step3, step4 }) => {
         )}
       </nav>
       <nav className="px-4">
-        {step1 ? (
-          <Link to="/payment">
+        {step3 ? (
+          <Link to="/payment" className="text-indigo-700">
             Payment
             <FaArrowAltCircleRight />
           </Link>
@@ -45,15 +45,15 @@ export const CheckoutStages = ({ step1, step2, step3, step4 }) => {
         )}
       </nav>
       <nav className="px-4">
-        {step1 ? (
-          <Link to="placeorder">
+        {step4 ? (
+          <Link to="/placeorder" className="text-indigo-700">
             Order
             <FaArrowAltCircleRight />
           </Link>
         ) : (
           <Link className="disabled:opacity-50">
             Order
-            <FaArrowAltCircleRight  />
+            <FaArrowAltCircleRight />
           </Link>
         )}
       </nav>
