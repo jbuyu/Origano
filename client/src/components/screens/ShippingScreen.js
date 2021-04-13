@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import {saveShippingAddress} from '../../actions/cartActions'
+import { saveShippingAddress } from "../../actions/cartActions";
+import { CheckoutStages } from "../CheckoutStages";
 
 export const ShippingScreen = ({ history }) => {
   //redux
@@ -21,17 +22,16 @@ export const ShippingScreen = ({ history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(saveShippingAddress({ address, city, postCode, country }));
-    history.push('/payment')
+    history.push("/payment");
     //do sthn
   };
 
   return (
     <div className="flex flex-row justify-center align-middle">
-      <div id="summary" className=" w-1/4 px-8 py-10 ">
+      <div id="summary" className=" w-1/3 px-8 py-10 ">
+        <CheckoutStages step1 step2 />
         <div className="flex flex-row justify-center align-middle">
-          <h1 className="font-semibold text-2xl border-b pb-8">
-            Order Summary
-          </h1>
+          <h1 className="mt-2 font-semibold text-2xl border-b pb-8">Shipping</h1>
         </div>
         <form onSubmit={submitHandler}>
           <div className="flex justify-between mt-10 mb-5">
@@ -123,7 +123,7 @@ export const ShippingScreen = ({ history }) => {
               className="p-2 text-sm w-full"
             />
           </div> */}
-         
+
           <div className="border-t mt-8">
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
