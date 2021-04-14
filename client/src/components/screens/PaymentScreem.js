@@ -23,8 +23,8 @@ export const PaymentScreen = ({ history }) => {
   //fns
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(savePaymentMethod());
-    history.push("/payment");
+    dispatch(savePaymentMethod(paymentMethod));
+    history.push("/order");
     //do sthn
   };
 
