@@ -39,7 +39,7 @@ export const PaymentScreen = ({ history }) => {
             <h1 className="mt-4 font-semibold text-2xl border-b pb-6">
               Payment
             </h1>
-            <form onSubmit={submitHandler}>
+            <form  onSubmit={submitHandler}>
               <div className="mt-4">
                 <label className="inline-flex items-center">
                   <input
@@ -56,7 +56,7 @@ export const PaymentScreen = ({ history }) => {
                     <img className="h-9 w-9" src={PaypalSvg} alt="logo" />
                   </span>
                 </label>
-                <label className="inline-flex items-center ml-6">
+                <label className="inline-flex items-center sm:ml-6">
                   <input
                     type="radio"
                     className="form-radio"
