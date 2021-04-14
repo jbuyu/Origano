@@ -36,32 +36,34 @@ export const PaymentScreen = ({ history }) => {
           <h1 className="mt-4 font-semibold text-2xl border-b pb-6">Payment</h1>
         </div>
         <form onSubmit={submitHandler}>
-          <div class="mt-4 flex flex-col">
-            <span class="text-gray-700">Account Type</span>
-            <div class="mt-2">
-              <label class="inline-flex items-center">
+          <div className="mt-4 flex flex-col">
+            <span className="text-gray-700">Account Type</span>
+            <div className="mt-2">
+              <label className="inline-flex items-center">
                 <input
                   type="radio"
-                  class="form-radio"
-                //   name="accountType"
+                  className="form-radio"
+                  name="paymentmethod"
+                  id="paypal"
                   value="paypal"
                   onChange={(e)=>{
                       setPaymentMethod(e.target.value)
                   }}
                 />
-                <span class="ml-2">Paypal</span>
+                <span className="ml-2">Paypal</span>
               </label>
-              <label class="inline-flex items-center ml-6">
+              <label className="inline-flex items-center ml-6">
                 <input
                   type="radio"
-                  class="form-radio"
-                //   name="accountType"
+                  className="form-radio"
+                  name="paymentmethod"
+                  id="mpesa"
                   value="mpesa"
                   onChange={(e)=>{
                     setPaymentMethod(e.target.value)
                 }}
                 />
-                <span class="ml-2">Mpesa</span>
+                <span className="ml-2">Mpesa</span>
               </label>
             </div>
           </div>

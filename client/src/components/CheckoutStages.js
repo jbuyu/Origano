@@ -8,12 +8,12 @@ export const CheckoutStages = ({ step1, step2, step3, step4 }) => {
       <nav className="px-4 ">
         {step1 ? (
           <Link to="/login" className="text-indigo-700">
-            Sign-In
+            Auth
             <FaArrowAltCircleRight />
           </Link>
         ) : (
-          <Link className="disabled:opacity-50 cursor-not-allowed">
-            Sign-In
+          <Link to="/login" className="disabled:opacity-50 cursor-not-allowed">
+            Auth
             <FaArrowAltCircleRight />
           </Link>
         )}
@@ -25,7 +25,7 @@ export const CheckoutStages = ({ step1, step2, step3, step4 }) => {
             <FaArrowAltCircleRight />
           </Link>
         ) : (
-          <Link className="disabled:opacity-50 cursor-not-allowed">
+          <Link to="/shipping" className="disabled:opacity-50 cursor-not-allowed">
             Shipping
             <FaArrowAltCircleRight />
           </Link>
@@ -38,7 +38,7 @@ export const CheckoutStages = ({ step1, step2, step3, step4 }) => {
             <FaArrowAltCircleRight />
           </Link>
         ) : (
-          <Link className="disabled:opacity-50 cursor-not-allowed">
+          <Link to="/payment" className="disabled:opacity-50 cursor-not-allowed">
             Payment
             <FaArrowAltCircleRight />
           </Link>
@@ -51,7 +51,7 @@ export const CheckoutStages = ({ step1, step2, step3, step4 }) => {
             <FaArrowAltCircleRight />
           </Link>
         ) : (
-          <Link className="disabled:opacity-50 cursor-not-allowed">
+          <Link to="/placeorder" className="disabled:opacity-50 cursor-not-allowed">
             Order
             <FaArrowAltCircleRight />
           </Link>
