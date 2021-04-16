@@ -24,7 +24,9 @@ export const PaymentScreen = ({ history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
-    history.push("/placeorder");
+    if(paymentMethod){
+      history.push("/placeorder");
+    }
     //do sthn
   };
 
@@ -62,7 +64,7 @@ export const PaymentScreen = ({ history }) => {
                     className="form-radio"
                     name="paymentmethod"
                     id="mpesa"
-                    value="mpesa"
+                    value="mPesa"
                     onChange={(e) => {
                       setPaymentMethod(e.target.value);
                     }}

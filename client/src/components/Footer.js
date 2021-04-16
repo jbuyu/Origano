@@ -1,12 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MpesaSvg from "../icons/mpesa.svg";
+import PaypalSvg from "../icons/paypal.svg";
+
 const Footer = () => {
   return (
     <footer className="footer bg-white relative pt-1 border-blue-700 ">
       <div className="container mx-auto px-6 py-4">
         <div className="sm:flex sm:mt-8">
-          <div className="mt-8 sm:mt-0 sm:w-full sm:px-8 flex flex-col md:flex-row justify-between">
-            <div className="flex flex-col">
+          <div className="mt-8 sm:mt-0 sm:w-full sm:px-8 flex flex-col md:flex-row justify-between align-middle items-center ">
+            <div className="flex flex-col mb-4">
+              <span className="font-bold text-gray-700 uppercase ">
+                Payment
+              </span>
+              <span className=" flex flex-col items-center">
+                <Link
+                  to="/docs"
+                  className="text-indigo-400 text-md hover:border-indigo-800"
+                >
+                  <span className="ml-2">
+                    <img className="h-12 w-12 p-1" src={MpesaSvg} alt="logo" />
+                  </span>
+                  <span className="ml-2">
+                    <img className="h-12 w-12 p-1" src={PaypalSvg} alt="logo" />
+                  </span>
+                </Link>
+              </span>
+            </div>
+
+            <div className="flex flex-col align-top">
               <span className="font-bold text-gray-700 uppercase mb-2">
                 Pricing
               </span>
@@ -18,38 +40,18 @@ const Footer = () => {
                   Brochure
                 </Link>
               </span>
-              {/* <span className="my-2">
-                <a
-                  to="#"
-                  className="text-indigo-400  text-md hover:border-indigo-800"
-                >
-                  link 1
-                </a>
-              </span>
-              <span className="my-2">
-                <a
-                  to="#"
-                  className="text-indigo-400  text-md hover:border-indigo-800"
-                >
-                  link 1
-                </a>
-              </span> */}
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-gray-700 uppercase mt-4 md:mt-0 mb-2">
-                Docs
-              </span>
               <span className="my-2">
                 <Link
-                  to="/docs"
-                  className="text-indigo-400 text-md hover:border-indigo-800"
+                  to="/pricing"
+                  className="text-indigo-400  text-md hover:border-indigo-800"
                 >
-                  Terms and Conditions
+                  Listings
                 </Link>
               </span>
             </div>
+
             <div className="flex flex-col">
-              <span className="font-bold text-gray-700 uppercase mt-4 md:mt-0 mb-2">
+              <span className="font-bold text-gray-700 uppercase ">
                 Support
               </span>
               <span className="my-2">
@@ -57,7 +59,7 @@ const Footer = () => {
                   to="/support"
                   className="text-indigo-400  text-md hover:border-indigo-800"
                 >
-                  Online 
+                  Tech Support
                 </Link>
               </span>
             </div>
