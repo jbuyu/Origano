@@ -14,21 +14,16 @@ const Footer = () => {
                 Payment
               </span>
               <span className=" flex flex-col items-center">
-                <Link
-                  to="/docs"
-                  className="text-indigo-400 text-md hover:border-indigo-800"
-                >
-                  <span className="ml-2">
-                    <img className="h-12 w-12 p-1" src={MpesaSvg} alt="logo" />
-                  </span>
-                  <span className="ml-2">
-                    <img className="h-12 w-12 p-1" src={PaypalSvg} alt="logo" />
-                  </span>
-                </Link>
+                <span className="ml-2">
+                  <img className="h-12 w-12 p-1" src={MpesaSvg} alt="logo" />
+                </span>
+                <span className="ml-2">
+                  <img className="h-12 w-12 p-1" src={PaypalSvg} alt="logo" />
+                </span>
               </span>
             </div>
 
-            <div className="flex flex-col align-top">
+            <div className="flex flex-col items-center">
               <span className="font-bold text-gray-700 uppercase mb-2">
                 Pricing
               </span>
@@ -40,17 +35,10 @@ const Footer = () => {
                   Brochure
                 </Link>
               </span>
-              <span className="my-2">
-                <Link
-                  to="/pricing"
-                  className="text-indigo-400  text-md hover:border-indigo-800"
-                >
-                  Listings
-                </Link>
-              </span>
+              
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center">
               <span className="font-bold text-gray-700 uppercase ">
                 Support
               </span>
