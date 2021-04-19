@@ -7,15 +7,33 @@ import { CheckoutStages } from "../CheckoutStages";
 
 export const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cart);
-  const {cartItems} = cart
+  const { cartItems } = cart;
   let { address, city, postCode, country } = cart.shippingAddress;
 
   //fn
-  const placerderButton = ()=>{
+  const placerderButton = () => {
     //placeorder
-  }
+    console.log("now");
+  };
+
+  //price calcs
+  const addDecimals = (num) => {
+    return (Math.round(num * 100) / 100).toFixed(2);
+  };
+  cart.itemPrice = addDecimals(
+    cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)
+  );
+  cart.shippingPrice = addDecimals(cart.itemPrice > 100 ? 0 : 100);
+  cart.taxPrice = addDecimals(Number((0.15 * cart.itemPrice).toFixed(2)));
+
+  cart.totalPrice = (
+    Number(cart.itemPrice)+
+    Number(cart.shippingPrice) +
+    Number(cart.taxPrice) 
+  ).toFixed(2)
+  console.log(cart.taxPrice)
   return (
-    <div className="flex flex-row justify-center ">
+    <div className="flex flex-row justify-center m-4">
       <div className="flex flex-col mt-4 ">
         <CheckoutStages step1 step2 step3 step4 />
         <div>
@@ -81,7 +99,7 @@ export const PlaceOrderScreen = () => {
                 </ul>
               )}
             </span>
-           
+
             <span className="w-2/5">
               <div id="summary" className="w-3/4 px-8 py-10 ml-1 ">
                 <h1 className="font-semibold text-2xl border-b pb-8">
@@ -92,38 +110,42 @@ export const PlaceOrderScreen = () => {
                     Items {cartItems.reduce((acc, item) => acc + item.qty, 0)}
                   </span>
                   <span className="font-semibold text-sm">
-                    {cartItems
-                      .reduce((acc, item) => acc + item.qty * item.price, 0)
-                      .toFixed(2)}
+                    {cart.itemPrice}
                   </span>
                 </div>
-                <div>
-                  <label className="font-medium inline-block mb-3 text-sm uppercase">
+                <div className="flex justify-between mt-10 mb-5">
+                  <span className="font-semibold text-sm uppercase">
                     Shipping
-                  </label>
-                  <select className="block p-2 text-gray-600 w-full text-sm">
-                    <option>Standard shipping - $10.00</option>
-                  </select>
+                  </span>
+                  <span className="font-semibold text-sm">
+                    {cart.shippingPrice} /-
+                  </span>
+                </div>
+                <div className="flex justify-between mt-10 mb-5">
+                  <span className="font-semibold text-sm uppercase">Tax</span>
+                  <span className="font-semibold text-sm">
+                    {cart.taxPrice} /-
+                  </span>
                 </div>
 
                 <div className="border-t mt-8">
                   <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                     <span>Total cost</span>
                     <span className="font-semibold text-sm">
-                      $
-                      {cartItems
-                        .reduce((acc, item) => acc + item.qty * item.price, 0)
-                        .toFixed(2)}
+                      {cart.totalPrice}
+                      /-
                     </span>
                   </div>
-                  {cartItems.length > 0 && (
-                    <button
-                      onClick={placerderButton}
-                      className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
-                    >
-                      Checkout
-                    </button>
-                  )}
+                  <div className="flex justify-center">
+                    {cartItems.length > 0 && (
+                      <button
+                        onClick={placerderButton}
+                        className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-3/5 rounded-md "
+                      >
+                        Order
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </span>
