@@ -49,7 +49,7 @@ export const Product = ({ match, history }) => {
                   <div className="w-full h-64 md:w-1/2 lg:h-96">
                     {image ? (
                       <img
-                        className="h-4/5 w-full rounded-lg object-cover max-w-lg mx-auto"
+                        className="h-4/5 w-full rounded-3xl object-cover max-w-lg mx-auto"
                         src={image}
                         alt={alt}
                       />

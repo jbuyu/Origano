@@ -15,7 +15,6 @@ import { PlaceOrderScreen } from "./components/screens/PlaceOrderScreen";
 function App() {
   return (
     <Router>
-      <div className="antialiased bg-gray-100">
         <Header />
         <Route exact path="/" component={ProductTable} />
         <Route exact path="/login" component={LoginScreen} />
@@ -27,7 +26,6 @@ function App() {
         <Route path="/product/:id" component={Product} />
         <Route path="/cart/:id?" component={CartScreen} />
         <Footer />
-      </div>
     </Router>
   );
 }
