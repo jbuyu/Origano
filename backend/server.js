@@ -14,7 +14,8 @@ import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
 //modules imports
 import productsRouter from "./routes/productsRouter.js";
-import userRouter from "./routes/UserRouter.js";
+import userRouter from "./routes/userRouter.js";
+import orderRouter from "./routes/orderRouter.js";
 
 //middleware
 app.use(cors());
@@ -24,6 +25,7 @@ app.use(express.json());
 //route middlewares
 app.use("/api/products", productsRouter);
 app.use("/api/users", userRouter);
+app.use("/api/orders", orderRouter);
 
 //error middlewares
 app.use(notFound);
