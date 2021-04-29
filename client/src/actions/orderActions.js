@@ -57,6 +57,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await Axios.get(`${BASE_URL}/api/orders/${id}`, config);
+    
     dispatch({
       type: ORDER_DETAILS_SUCCESS,
       payload: data,
