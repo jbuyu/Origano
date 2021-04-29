@@ -27,6 +27,8 @@ export const OrderScreen = ({ match }) => {
   //fn
   useEffect(() => {
     dispatch(getOrderDetails(orderId));
+    console.log("getting orderdetails");
+
   }, []);
 
   return loading ? (
