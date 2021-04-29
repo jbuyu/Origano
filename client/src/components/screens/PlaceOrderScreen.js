@@ -4,36 +4,36 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { CheckoutStages } from "../CheckoutStages";
-import {createOrder} from '../../actions/orderActions'
+import { createOrder } from "../../actions/orderActions";
 
-export const PlaceOrderScreen = ({history}) => {
-  const dispatch = useDispatch()
+export const PlaceOrderScreen = ({ history }) => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   let { address, city, postCode, country } = cart.shippingAddress;
 
-
-  const orderCreate = useSelector(state => state.orderCreate)
-  const {order, success, error} = orderCreate;
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
   //fn
   useEffect(() => {
-   if(success){
-     history.push(`/order/${order._id}`)
-   }
-  }, [history, success])
+    if (success) {
+      history.push(`/order/${order._id}`);
+    }
+  }, [history, success]);
   const placerderButton = () => {
     //placeorder
     console.log("order");
-    dispatch(createOrder({
-      orderItems: cart.cartItems,
-      shippingAddress: cart.shippingAddress,
-      paymentMethod: cart.paymentMethod,
-      itemPrice: cart.itemPrice,
-      shippingPrice: cart.shippingPrice,
-      taxPrice: cart.taxPrice,
-      totalPrice: cart.totalPrice
-      
-    }))
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemPrice: cart.itemPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      })
+    );
   };
 
   //price calcs
@@ -47,11 +47,11 @@ export const PlaceOrderScreen = ({history}) => {
   cart.taxPrice = addDecimals(Number((0.15 * cart.itemPrice).toFixed(2)));
 
   cart.totalPrice = (
-    Number(cart.itemPrice)+
+    Number(cart.itemPrice) +
     Number(cart.shippingPrice) +
-    Number(cart.taxPrice) 
-  ).toFixed(2)
-  console.log(cart.taxPrice)
+    Number(cart.taxPrice)
+  ).toFixed(2);
+  console.log(cart.taxPrice);
   return (
     <div className="flex flex-row justify-center m-4">
       <div className="flex flex-col mt-4 ">
@@ -156,12 +156,10 @@ export const PlaceOrderScreen = ({history}) => {
                       /-
                     </span>
                   </div>
-                  <div className="flex justify center">
-                    {
-                      error && (
-                        <span className="bg-red-300" >{error}</span>
-                      ) 
-                    }
+                  <div className="flex justify center m-2 ">
+                    {error && (
+                      <span className="bg-red-300 rounded-md p-2">{error}</span>
+                    )}
                   </div>
                   <div className="flex justify-center">
                     {cartItems.length > 0 && (
