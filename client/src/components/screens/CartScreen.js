@@ -8,6 +8,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 export const CartScreen = ({ match, history, location }) => {
   const productID = match.params.id;
+  console.log(productID)
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
 
   let dispatch = useDispatch();

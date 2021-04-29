@@ -15,9 +15,7 @@ export const OrderScreen = ({ match }) => {
   const { cartItems } = cart;
 
 
-  const orderDetails = useSelector((state) => state.orderDetails);
-  const { order, loading, error } = orderDetails;
-  let { address, city, postCode, country } = order.shippingAddress;
+ 
 
   const override = css`
     display: block;
@@ -28,6 +26,10 @@ export const OrderScreen = ({ match }) => {
   useEffect(() => {
     dispatch(getOrderDetails(orderId));
   }, []);
+
+  const orderDetails = useSelector((state) => state.orderDetails);
+  const { order, loading, error } = orderDetails;
+  let { address, city, postCode, country } = order.shippingAddress;
 
   return loading ? (
     <ClipLoader css={override} size={250} />
@@ -43,7 +45,7 @@ export const OrderScreen = ({ match }) => {
           <p>
             <strong className="p-2">Address :</strong>
             <span className=" text-base text-gray-500">
-              {address}, {city}, {postCode}, {country}
+              {/* {address}, {city}, {postCode}, {country} */}
             </span>
           </p>
         </div>
