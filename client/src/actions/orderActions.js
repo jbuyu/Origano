@@ -51,13 +51,12 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     } = getState();
     const config = {
       headers: {
-        // "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
     const { data } = await Axios.get(`${BASE_URL}/api/orders/${id}`, config);
-    
+   
     dispatch({
       type: ORDER_DETAILS_SUCCESS,
       payload: data,

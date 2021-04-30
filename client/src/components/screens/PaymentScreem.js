@@ -58,7 +58,7 @@ export const PaymentScreen = ({ history }) => {
                     <img className="h-9 w-9" src={PaypalSvg} alt="logo" />
                   </span>
                 </label>
-                <label className="inline-flex items-center sm:ml-6">
+                <label className="inline-flex items-center md:ml-6">
                   <input
                     type="radio"
                     className="form-radio"

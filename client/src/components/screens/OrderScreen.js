@@ -15,8 +15,6 @@ export const OrderScreen = ({ match }) => {
   const { cartItems } = cart;
 
 
- 
-
   const override = css`
     display: block;
     margin: 0 auto;
@@ -25,7 +23,7 @@ export const OrderScreen = ({ match }) => {
   //fn
   useEffect(() => {
     dispatch(getOrderDetails(orderId));
-  }, []);
+  }, [orderId]);
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;

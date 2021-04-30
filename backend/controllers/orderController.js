@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 
 import Order from "../models/orderModel.js";
+import consola from "consola";
 
 //@desc     Create new Order
 //@route    POST /api/orders
@@ -19,7 +20,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
   if (orderItems && orderItems.length === 0) {
     res.status(400);
     throw new Error("No order items");
-    return
+    return;
   } else {
     const order = new Order({
       orderItems,
@@ -31,30 +32,29 @@ const addOrderItems = asyncHandler(async (req, res) => {
       shippingPrice,
       totalPrice,
     });
-    const createOrder = await order.save()
-    res.status(201).json(createOrder)
+    const createOrder = await order.save();
+    res.status(201).json(createOrder);
   }
 });
-
 
 //@desc     Get Order By ID
 //@route    GET /api/orders/:id
 //@access    Private
 
-const getOrderById = asyncHandler(async (req,res)=>{
+const getOrderById = asyncHandler(async (req, res) => {
+  consola.success("Hit order route");
   const order = await Order.findById(req.params.id).populate(
-    'user',
-    'name email'
-  )
-  if(order){
-    res.json(order)
+    "user",
+    "name email"
+  );
+  if (order) {
+    consola.success("Found order, retrieving....");
+    res.json(order);
   } else {
-    res.status(404)
-    throw new Error('Order not Found')
-
+    consola.error("Nowpe, no order");
+    res.status(404);
+    throw new Error("Order not Found");
   }
-})
+});
 
-
-
-export {addOrderItems, getOrderById}
+export { addOrderItems, getOrderById };
