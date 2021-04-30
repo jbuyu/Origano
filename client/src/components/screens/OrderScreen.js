@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Axios from 'axios';
+import {PayPalButton} from 'react-paypal-button-v2'
 import { css } from "@emotion/react";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +11,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { getOrderDetails } from "../../actions/orderActions";
 
 export const OrderScreen = ({ match }) => {
+
+  const [sdkReady, setSdkReady] = useState(false)
   const override = css`
     display: block;
     margin: 0 auto;
@@ -21,13 +25,38 @@ export const OrderScreen = ({ match }) => {
   let { address, city, postCode, country } = cart.shippingAddress;
 
   //fn
-  useEffect(() => {
-    dispatch(getOrderDetails(orderId));
-  }, [dispatch, orderId]);
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
+
+
+  // paypal
+  const orderPay = useSelector((state) => state.orderPay);
+  const { success:successPay, loading:loadingPay } = orderPay;
   // let { address, city, postCode, country } = order.shippingAddress;
+
+  useEffect(() => {
+    const BASE_URL = 'http://localhost:4000'
+    const addPayPalScript = async ()=>{
+      const {data: clientId} = await Axios.get(`${BASE_URL}/api/config/paypal`)
+      const script = document.createElement('script')
+      script.type = 'text/javascript'
+      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
+      script.async = true
+      script.onload = ()=>{
+        setSdkReady(true)
+      }
+      document.body.appendChild(script)
+    }
+    // addPayPalScript()
+    if(!order || successPay ){
+      dispatch(getOrderDetails(orderId));
+    } else if(!order.isPaid){
+      if(!window.paypal){
+        addPayPalScript()
+      }
+    }
+  }, [dispatch, orderId, successPay, order]);
 
 
   //calculations
@@ -199,16 +228,15 @@ export const OrderScreen = ({ match }) => {
                       <span className="bg-red-300 rounded-md p-2">{error}</span>
                     )}
                   </div>
-                  {/* <div className="flex justify-center">
-                    {cartItems.length > 0 && (
-                      <button
+                  <div className="flex justify-center">
+                    {!order.isPaid && (
+                      <PayPalButton
                         // onClick={placerderButton}
                         className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-3/5 rounded-md "
-                      >
-                        Order
-                      </button>
+                      />
+                     
                     )}
-                  </div> */}
+                  </div>
                 </div>
               </div>
             </span>
