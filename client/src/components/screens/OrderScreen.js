@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
-import Axios from 'axios';
-import {PayPalButton} from 'react-paypal-button-v2'
+import Axios from "axios";
+import { PayPalButton } from "react-paypal-button-v2";
 import { css } from "@emotion/react";
+import {SyncLoader} from 'react-spinners'
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import ClipLoader from "react-spinners/ClipLoader";
 
-import { getOrderDetails } from "../../actions/orderActions";
+import { getOrderDetails, payOrder } from "../../actions/orderActions";
+
+import {ORDER_PAY_RESET} from '../../constants/orderConstants'
 
 export const OrderScreen = ({ match }) => {
-
-  const [sdkReady, setSdkReady] = useState(false)
+  const [sdkReady, setSdkReady] = useState(false);
   const override = css`
     display: block;
     margin: 0 auto;
@@ -29,35 +31,43 @@ export const OrderScreen = ({ match }) => {
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
 
-
   // paypal
   const orderPay = useSelector((state) => state.orderPay);
-  const { success:successPay, loading:loadingPay } = orderPay;
+  const { success: successPay, loading: loadingPay } = orderPay;
   // let { address, city, postCode, country } = order.shippingAddress;
 
   useEffect(() => {
-    const BASE_URL = 'http://localhost:4000'
-    const addPayPalScript = async ()=>{
-      const {data: clientId} = await Axios.get(`${BASE_URL}/api/config/paypal`)
-      const script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
-      script.async = true
-      script.onload = ()=>{
-        setSdkReady(true)
-      }
-      document.body.appendChild(script)
-    }
+    const BASE_URL = "http://localhost:4000";
+    const addPayPalScript = async () => {
+      const { data: clientId } = await Axios.get(
+        `${BASE_URL}/api/config/paypal`
+      );
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+      script.async = true;
+      script.onload = () => {
+        setSdkReady(true);
+      };
+      document.body.appendChild(script);
+    };
     // addPayPalScript()
-    if(!order || successPay ){
+    if (!order || successPay) {
+      dispatch({
+        type:ORDER_PAY_RESET
+      })
       dispatch(getOrderDetails(orderId));
-    } else if(!order.isPaid){
-      if(!window.paypal){
-        addPayPalScript()
+    } else if (!order.isPaid) {
+      if (!window.paypal) {
+        addPayPalScript();
       }
     }
   }, [dispatch, orderId, successPay, order]);
 
+  const successPaymentHandler = (paymentResult)=>{
+    console.log(paymentResult)
+    dispatch(payOrder(orderId, paymentResult))
+  }
 
   //calculations
   const addDecimals = (num) => {
@@ -92,7 +102,9 @@ export const OrderScreen = ({ match }) => {
           </p>
           <p>
             <strong>Email: </strong>
-            <a className="underline" href={`mailto: ${order.user.email}`}>{order.user.email}</a>
+            <a className="underline" href={`mailto: ${order.user.email}`}>
+              {order.user.email}
+            </a>
           </p>
           <p>
             <strong className="p-2">Address :</strong>
@@ -102,19 +114,16 @@ export const OrderScreen = ({ match }) => {
           </p>
           <p>
             <strong className="p-2">Delivery status :</strong>
-            {
-              order.isDelivered ? 
-           ( <span className=" text-md bg-green-400 px-2 rounded-md">
-              Delivered on
-              {order.deliveredAt}
-            </span>) : 
-            (
-         
+            {order.isDelivered ? (
+              <span className=" text-md bg-green-400 px-2 rounded-md">
+                Delivered on
+                {order.deliveredAt}
+              </span>
+            ) : (
               <span className=" text-md bg-red-400 px-2 rounded-md">
                 Not Delivered
               </span>
-            )
-            }
+            )}
           </p>
         </div>
         <div>
@@ -129,19 +138,16 @@ export const OrderScreen = ({ match }) => {
           </p>
           <p>
             <strong className="p-2">Payment status :</strong>
-            {
-              order.isPaid ? 
-           ( <span className=" text-md bg-green-400 px-2 rounded-md">
-              Paid on
-              {order.paidAt}
-            </span>) : 
-            (
-         
+            {order.isPaid ? (
+              <span className=" text-md bg-green-400 px-2 rounded-md">
+                Paid on
+                {order.paidAt}
+              </span>
+            ) : (
               <span className=" text-md bg-red-400 px-2 rounded-md">
                 Not Paid
               </span>
-            )
-            }
+            )}
           </p>
         </div>
         <div>
@@ -207,7 +213,7 @@ export const OrderScreen = ({ match }) => {
                     {cart.shippingPrice} /-
                   </span>
                 </div>
-                
+
                 <div className="flex justify-between mt-10 mb-5">
                   <span className="font-semibold text-sm uppercase">Tax</span>
                   <span className="font-semibold text-sm">
@@ -229,13 +235,26 @@ export const OrderScreen = ({ match }) => {
                     )}
                   </div>
                   <div className="flex justify-center">
-                    {!order.isPaid && (
-                      <PayPalButton
-                        // onClick={placerderButton}
-                        className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-3/5 rounded-md "
-                      />
-                     
-                    )}
+                    {!order.isPaid &&
+                    (
+                      <span>
+                        {
+                          loadingPay && < SyncLoader/>
+                        }
+                        {
+                          !sdkReady ? (
+                            <SyncLoader/>
+                          ) : (
+                            <PayPalButton     
+                            amount={order.totalPrice}
+                            onSuccess={order.successPaymentHandler}
+
+                            />
+                          )
+                        }
+                      </span>
+                    )
+                    }
                   </div>
                 </div>
               </div>
