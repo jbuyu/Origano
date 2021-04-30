@@ -23,11 +23,28 @@ export const OrderScreen = ({ match }) => {
   //fn
   useEffect(() => {
     dispatch(getOrderDetails(orderId));
-  }, [orderId]);
+  }, [dispatch, orderId]);
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
   // let { address, city, postCode, country } = order.shippingAddress;
+
+
+  //calculations
+  const addDecimals = (num) => {
+    return (Math.round(num * 100) / 100).toFixed(2);
+  };
+  cart.itemPrice = addDecimals(
+    cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)
+  );
+  cart.shippingPrice = addDecimals(cart.itemPrice > 100 ? 0 : 100);
+  cart.taxPrice = addDecimals(Number((0.15 * cart.itemPrice).toFixed(2)));
+
+  cart.totalPrice = (
+    Number(cart.itemPrice) +
+    Number(cart.shippingPrice) +
+    Number(cart.taxPrice)
+  ).toFixed(2);
 
   return loading ? (
     <ClipLoader css={override} size={250} />
