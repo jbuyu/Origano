@@ -55,7 +55,7 @@ export const ShippingScreen = ({ history }) => {
               type="text"
               id="address"
               placeholder="Enter Address"
-              className="p-2 text-sm w-full"
+              className="p-2 text-sm w-full bg-gray-200"
               value={address || ""}
               onChange={(e) => {
                 setAddress(e.target.value);
@@ -71,7 +71,7 @@ export const ShippingScreen = ({ history }) => {
               type="text"
               id="city"
               placeholder="Enter City"
-              className="p-2 text-sm w-full"
+              className="p-2 text-sm w-full bg-gray-200"
               value={city || ""}
               onChange={(e) => {
                 setCity(e.target.value);
@@ -87,7 +87,7 @@ export const ShippingScreen = ({ history }) => {
               type="text"
               id="country"
               placeholder="Enter Country"
-              className="p-2 text-sm w-full"
+              className="p-2 text-sm w-full bg-gray-200"
               value={country || ""}
               onChange={(e) => {
                 setCountry(e.target.value);
@@ -103,7 +103,7 @@ export const ShippingScreen = ({ history }) => {
               type="text"
               id="postCode"
               placeholder="Enter Postal Code"
-              className="p-2 text-sm w-full"
+              className="p-2 text-sm w-full bg-gray-200"
               value={postCode || ""}
               onChange={(e) => {
                 setPostCode(e.target.value);
@@ -122,7 +122,7 @@ export const ShippingScreen = ({ history }) => {
               type="text"
               id="promo"
               placeholder="Enter your code"
-              className="p-2 text-sm w-full"
+              className="p-2 text-sm w-full bg-gray-200"
             />
           </div> */}
 

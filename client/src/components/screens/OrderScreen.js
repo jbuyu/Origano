@@ -9,8 +9,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { getOrderDetails } from "../../actions/orderActions";
 
 export const OrderScreen = ({ match }) => {
-
-
   const override = css`
     display: block;
     margin: 0 auto;
@@ -43,10 +41,34 @@ export const OrderScreen = ({ match }) => {
             Shipping
           </h2>
           <p>
+            <strong>Name: </strong>
+            {order.user.name}
+          </p>
+          <p>
+            <strong>Email: </strong>
+            <a className="underline" href={`mailto: ${order.user.email}`}>{order.user.email}</a>
+          </p>
+          <p>
             <strong className="p-2">Address :</strong>
             <span className=" text-base text-gray-500">
               {address}, {city}, {postCode}, {country}
             </span>
+          </p>
+          <p>
+            <strong className="p-2">Delivery status :</strong>
+            {
+              order.isDelivered ? 
+           ( <span className=" text-md bg-green-400 px-2 rounded-md">
+              Delivered on
+              {order.deliveredAt}
+            </span>) : 
+            (
+         
+              <span className=" text-md bg-red-400 px-2 rounded-md">
+                Not Delivered
+              </span>
+            )
+            }
           </p>
         </div>
         <div>
@@ -58,6 +80,22 @@ export const OrderScreen = ({ match }) => {
             <span className=" text-base text-gray-500">
               {order.paymentMethod}
             </span>
+          </p>
+          <p>
+            <strong className="p-2">Payment status :</strong>
+            {
+              order.isPaid ? 
+           ( <span className=" text-md bg-green-400 px-2 rounded-md">
+              Paid on
+              {order.paidAt}
+            </span>) : 
+            (
+         
+              <span className=" text-md bg-red-400 px-2 rounded-md">
+                Not Paid
+              </span>
+            )
+            }
           </p>
         </div>
         <div>
@@ -123,6 +161,7 @@ export const OrderScreen = ({ match }) => {
                     {cart.shippingPrice} /-
                   </span>
                 </div>
+                
                 <div className="flex justify-between mt-10 mb-5">
                   <span className="font-semibold text-sm uppercase">Tax</span>
                   <span className="font-semibold text-sm">
@@ -143,7 +182,7 @@ export const OrderScreen = ({ match }) => {
                       <span className="bg-red-300 rounded-md p-2">{error}</span>
                     )}
                   </div>
-                  <div className="flex justify-center">
+                  {/* <div className="flex justify-center">
                     {cartItems.length > 0 && (
                       <button
                         // onClick={placerderButton}
@@ -152,7 +191,7 @@ export const OrderScreen = ({ match }) => {
                         Order
                       </button>
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </span>
