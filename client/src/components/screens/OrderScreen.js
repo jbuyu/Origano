@@ -9,10 +9,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { getOrderDetails } from "../../actions/orderActions";
 
 export const OrderScreen = ({ match }) => {
-  const orderId = match.params.id;
-  const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
 
 
   const override = css`
@@ -20,6 +16,12 @@ export const OrderScreen = ({ match }) => {
     margin: 0 auto;
     border-color: red;
   `;
+  const orderId = match.params.id;
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+  let { address, city, postCode, country } = cart.shippingAddress;
+
   //fn
   useEffect(() => {
     dispatch(getOrderDetails(orderId));
@@ -27,7 +29,7 @@ export const OrderScreen = ({ match }) => {
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
-  let { address, city, postCode, country } = order.shippingAddress;
+  // let { address, city, postCode, country } = order.shippingAddress;
 
   return loading ? (
     <ClipLoader css={override} size={250} />
@@ -43,7 +45,7 @@ export const OrderScreen = ({ match }) => {
           <p>
             <strong className="p-2">Address :</strong>
             <span className=" text-base text-gray-500">
-              {/* {address}, {city}, {postCode}, {country} */}
+              {address}, {city}, {postCode}, {country}
             </span>
           </p>
         </div>
