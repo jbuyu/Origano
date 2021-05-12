@@ -69,19 +69,21 @@ export const UserListScreen = () => {
                     <td>{isadmin ? <GrUserAdmin /> : <FiUser />}</td>
 
                     <td className="px-6 py-4 text-center">
-                      <Link to={`user/${_id}/edit`}>
-                        <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold px-2 mx-2 rounded">
-                         <span className="inline-block" >Edit</span>  <FaUserEdit />
+                      <Link className="px-1" to={`user/${_id}/edit`}>
+                        <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded">
+                         <span className="inline-block px-1" >Edit </span> 
+                         <span className="inline-block px-1"><FaUserEdit /></span>
                         </button>
+                      </Link>
                         <button
                           onClick={() => {
                             deleteHanlder(_id);
                           }}
-                          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold px-2 mx-2 rounded"
+                          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded"
                         >
-                          Delete <AiOutlineUsergroupDelete />
+                          <span className="inline-block px-1" >Delete</span>
+                           <span className="inline-block px-1" ><AiOutlineUsergroupDelete /></span> 
                         </button>
-                      </Link>
                     </td>
                   </tr>
                 ))}
