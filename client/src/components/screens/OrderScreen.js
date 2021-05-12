@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import { css } from "@emotion/react";
-import {SyncLoader} from 'react-spinners'
+import { SyncLoader } from "react-spinners";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 import { getOrderDetails, payOrder } from "../../actions/orderActions";
 
-import {ORDER_PAY_RESET} from '../../constants/orderConstants'
+import { ORDER_PAY_RESET } from "../../constants/orderConstants";
 
 export const OrderScreen = ({ match }) => {
   const [sdkReady, setSdkReady] = useState(false);
@@ -50,27 +50,25 @@ export const OrderScreen = ({ match }) => {
         setSdkReady(true);
       };
       document.body.appendChild(script);
-      // console.log('addscr', clientId)
     };
-    // addPayPalScript()
     if (!order || successPay) {
       dispatch({
-        type:ORDER_PAY_RESET
-      })
+        type: ORDER_PAY_RESET,
+      });
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       if (!window.paypal) {
         addPayPalScript();
       } else {
-        setSdkReady(true)
+        setSdkReady(true);
       }
     }
   }, [dispatch, orderId, successPay, order]);
 
-  const successPaymentHandler = (paymentResult)=>{
-    console.log(paymentResult)
-    dispatch(payOrder(orderId, paymentResult))
-  }
+  const successPaymentHandler = (paymentResult) => {
+    console.log(paymentResult);
+    dispatch(payOrder(orderId, paymentResult));
+  };
 
   //calculations
   const addDecimals = (num) => {
@@ -143,7 +141,10 @@ export const OrderScreen = ({ match }) => {
             <strong className="p-2">Payment status :</strong>
             {order.isPaid ? (
               <span className=" text-md bg-green-400 px-2 rounded-md">
-                Paid on
+                <span className="p-2" >
+
+                Paid on 
+                </span>
                 {order.paidAt}
               </span>
             ) : (
@@ -238,26 +239,19 @@ export const OrderScreen = ({ match }) => {
                     )}
                   </div>
                   <div className="flex justify-center">
-                    {!order.isPaid &&
-                    (
+                    {!order.isPaid && (
                       <span>
-                        {
-                          loadingPay && < SyncLoader/>
-                        }
-                        {
-                          !sdkReady ? (
-                            <SyncLoader/>
-                          ) : (
-                            <PayPalButton     
+                        {loadingPay && <SyncLoader />}
+                        {!sdkReady ? (
+                          <SyncLoader />
+                        ) : (
+                          <PayPalButton
                             amount={order.totalPrice}
-                            onSuccess={order.successPaymentHandler}
-
-                            />
-                          )
-                        }
+                            onSuccess={successPaymentHandler}
+                          />
+                        )}
                       </span>
-                    )
-                    }
+                    )}
                   </div>
                 </div>
               </div>

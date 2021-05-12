@@ -21,8 +21,6 @@ export const PlaceOrderScreen = ({ history }) => {
     }
   }, [history, success]);
   const placerderButton = () => {
-    //placeorder
-    console.log("order");
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
@@ -34,6 +32,7 @@ export const PlaceOrderScreen = ({ history }) => {
         totalPrice: cart.totalPrice,
       })
     );
+    console.log('created order');
   };
 
   //price calcs
