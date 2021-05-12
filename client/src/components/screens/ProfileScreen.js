@@ -214,7 +214,7 @@ export const ProfileScreen = ({ location, history }) => {
                                 Paid
                               </span>
                             ) : (
-                              <span className="text-red-400 bg-green-200 font-semibold px-2 rounded-full">
+                              <span className="text-gray-700 bg-red-400 font-semibold px-2 rounded-full">
                                 Due
                               </span>
                             )}
