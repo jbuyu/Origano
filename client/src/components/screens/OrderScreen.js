@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {format} from 'date-fns'
 import Axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import { css } from "@emotion/react";
@@ -145,7 +146,8 @@ export const OrderScreen = ({ match }) => {
 
                 Paid on 
                 </span>
-                {order.paidAt}
+
+                { format(new Date(order.paidAt), 'yyyy-MM-dd') }
               </span>
             ) : (
               <span className=" text-md bg-red-400 px-2 rounded-md">
