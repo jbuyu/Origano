@@ -8,9 +8,9 @@ import {
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
   ORDER_PAY_FAIL,
-  GET_ORDERS_REQUEST,
-  GET_ORDERS_SUCCESS,
-  GET_ORDERS_FAIL,
+  ORDER_LIST_MY_REQUEST,
+  ORDER_LIST_MY_SUCCESS,
+  ORDER_LIST_MY_FAIL,
 } from "../constants/orderConstants";
 import Axios from "axios";
 
@@ -110,10 +110,10 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
   }
 };
 
-export const getUserOrders = () => async (dispatch, getState) => {
+export const listMyOrders = () => async (dispatch, getState) => {
   try {
     dispatch({
-      type: GET_ORDERS_REQUEST,
+      type: ORDER_LIST_MY_REQUEST,
     });
     const {
       userLogin: { userInfo },
@@ -127,12 +127,12 @@ export const getUserOrders = () => async (dispatch, getState) => {
     const { data } = await Axios.get(`${BASE_URL}/api/orders/myorders`, config);
    
     dispatch({
-      type: GET_ORDERS_SUCCESS,
+      type: ORDER_LIST_MY_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: GET_ORDERS_FAIL,
+      type: ORDER_LIST_MY_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

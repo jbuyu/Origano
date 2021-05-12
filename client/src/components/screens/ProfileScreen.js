@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
 import { HashLoader, PropagateLoader } from "react-spinners";
 import { getUserDetails, updateUserProfile } from "../../actions/userActions";
-import { getUserOrders } from "../../actions/orderActions";
+import { listMyOrders } from "../../actions/orderActions";
 
 export const ProfileScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
@@ -25,8 +26,8 @@ export const ProfileScreen = ({ location, history }) => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
-  const userOrders = useSelector((state) => state.userOrders);
-  const { orders, loading: isOrderLoad } = userOrders;
+  const orderListMy = useSelector((state) => state.orderListMy);
+  const { orders, loading: loadingOrders, error: errorOrders } = orderListMy;
 
   useEffect(() => {
     if (!userInfo) {
@@ -34,13 +35,10 @@ export const ProfileScreen = ({ location, history }) => {
     } else {
       if (!user.name) {
         dispatch(getUserDetails("profile"));
+        dispatch(listMyOrders());
       } else {
         setName(user.name);
         setEmail(user.email);
-      }
-      dispatch(getUserOrders());
-      if (userOrders) {
-        console.log("userOrders", orders, isOrderLoad);
       }
     }
   }, [dispatch, userInfo, history, user]);
@@ -65,7 +63,7 @@ export const ProfileScreen = ({ location, history }) => {
     //submit
   };
   return (
-    <div className="lg:flex flex flex-row justify-center items-center">
+    <div className="flex flex-row justify-center">
       <div className="flex flex-col lg:w-1/2 xl:max-w-screen-sm">
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
@@ -161,14 +159,82 @@ export const ProfileScreen = ({ location, history }) => {
           </div>
         </div>
       </div>
-      <div className=" flex flex-col">
-        {isOrderLoad ? (
-          <PropagateLoader />
-        ) : (
-          orders.map((order) => (
-            <span key={order._id}>{order.paymentMethod}</span>
-          ))
-        )}
+      <div className=" flex flex-col items-center ">
+        <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
+          {loadingOrders ? (
+            <PropagateLoader />
+          ) : errorOrders ? (
+            <span className="p-4">{errorOrders}</span>
+          ) : (
+            // orders.map(order=>(
+            //   <span key={order._id} >{order.paymentMethod}</span>
+            // ))
+            <div className="min-h-screen flex items-center px-4">
+              <div className=" w-full">
+                <table className="mx-auto max-w-5xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden">
+                  <thead className="bg-gray-50">
+                    <tr className="text-gray-600 text-left">
+                      <th className="font-semibold text-sm uppercase px-6 py-4">
+                        ID
+                      </th>
+                      <th className="font-semibold text-sm uppercase px-6 py-4">
+                        DATE
+                      </th>
+                      <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
+                        TOTAL
+                      </th>
+                      <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
+                        PAID
+                      </th>
+                      <th className="font-semibold text-sm uppercase px-6 py-4">
+                        DELIVERED
+                      </th>
+                      <th className="font-semibold text-sm uppercase px-6 py-4"></th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    {orders.map(
+                      ({ _id, createdAt, isPaid, isDelivered, totalPrice }) => (
+                        <tr key={_id}>
+                          <td className="px-6 py-4">
+                            <p className="">{_id}</p>
+                          </td>
+                          <td className="px-6 py-4 text-center">
+                            {format(new Date(createdAt), "yyyy-MM-dd")}
+                          </td>
+                          <td className="px-6 py-4 text-center">
+                            {totalPrice} /-
+                          </td>
+
+                          <td className="px-6 py-4 text-center">
+                            {isPaid ? (
+                              <span className="text-green-800 bg-green-200 font-semibold px-2 rounded-full">
+                                Paid
+                              </span>
+                            ) : (
+                              <span className="text-red-400 bg-green-200 font-semibold px-2 rounded-full">
+                                Due
+                              </span>
+                            )}
+                          </td>
+                          <td className="px-6 py-4 text-center">Admin</td>
+                          <td className="px-6 py-4 text-center">
+                            <a
+                              href="#"
+                              className="text-purple-800 hover:underline"
+                            >
+                              Edit
+                            </a>
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
