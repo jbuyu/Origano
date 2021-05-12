@@ -150,13 +150,13 @@ export const PlaceOrderScreen = ({ history }) => {
 
                 <div className="border-t mt-8">
                   <div className="flex font-semibold justify-between py-6 text-sm uppercase">
-                    <span>Total cost</span>
+                    <span >Total cost</span>
                     <span className="font-semibold text-sm">
                       {cart.totalPrice}
                       /-
                     </span>
                   </div>
-                  <div className="flex justify center m-2 ">
+                  <div className="flex justify-center m-2 ">
                     {error && (
                       <span className="bg-red-300 rounded-md p-2">{error}</span>
                     )}

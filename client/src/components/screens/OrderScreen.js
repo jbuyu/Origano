@@ -50,6 +50,7 @@ export const OrderScreen = ({ match }) => {
         setSdkReady(true);
       };
       document.body.appendChild(script);
+      // console.log('addscr', clientId)
     };
     // addPayPalScript()
     if (!order || successPay) {
@@ -60,6 +61,8 @@ export const OrderScreen = ({ match }) => {
     } else if (!order.isPaid) {
       if (!window.paypal) {
         addPayPalScript();
+      } else {
+        setSdkReady(true)
       }
     }
   }, [dispatch, orderId, successPay, order]);
