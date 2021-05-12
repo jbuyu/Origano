@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
-import { HashLoader } from "react-spinners";
+import { HashLoader, PropagateLoader } from "react-spinners";
 import { getUserDetails, updateUserProfile } from "../../actions/userActions";
+import { getUserOrders } from "../../actions/orderActions";
 
 export const ProfileScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
@@ -24,17 +25,22 @@ export const ProfileScreen = ({ location, history }) => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
+  const userOrders = useSelector((state) => state.userOrders);
+  const { orders, loading: isOrderLoad } = userOrders;
+
   useEffect(() => {
-    console.log("usereffect", user);
     if (!userInfo) {
       history.push("/login");
     } else {
       if (!user.name) {
         dispatch(getUserDetails("profile"));
-        console.log("getting");
       } else {
         setName(user.name);
         setEmail(user.email);
+      }
+      dispatch(getUserOrders());
+      if (userOrders) {
+        console.log("userOrders", orders, isOrderLoad);
       }
     }
   }, [dispatch, userInfo, history, user]);
@@ -54,7 +60,7 @@ export const ProfileScreen = ({ location, history }) => {
         password,
       };
       dispatch(updateUserProfile(userData));
-      console.log(userData);
+      // console.log(userData);
     }
     //submit
   };
@@ -156,8 +162,13 @@ export const ProfileScreen = ({ location, history }) => {
         </div>
       </div>
       <div className=" flex flex-col">
-        <h3 className="top-0">My Orders</h3>
-        <p>Miami</p>
+        {isOrderLoad ? (
+          <PropagateLoader />
+        ) : (
+          orders.map((order) => (
+            <span key={order._id}>{order.paymentMethod}</span>
+          ))
+        )}
       </div>
     </div>
   );
