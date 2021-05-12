@@ -46,7 +46,7 @@ export const PaymentScreen = ({ history }) => {
                 <label className="inline-flex items-center">
                   <input
                     type="radio"
-                    className="form-radio"
+                    className="form-radio cursor-pointer"
                     name="paymentmethod"
                     id="paypal"
                     value="paypal"
@@ -61,7 +61,7 @@ export const PaymentScreen = ({ history }) => {
                 <label className="inline-flex items-center md:ml-6">
                   <input
                     type="radio"
-                    className="form-radio"
+                    className="form-radio cursor-pointer"
                     name="paymentmethod"
                     id="mpesa"
                     value="mPesa"

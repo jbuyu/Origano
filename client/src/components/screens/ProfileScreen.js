@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {Link} from 'react-router-dom'
 import { format } from "date-fns";
-import { Link } from "react-router-dom";
+import { FcCheckmark } from "react-icons/fc";
+import { GiCrossMark } from "react-icons/gi";
 import ErrorMessage from "../ErrorMessage";
 import { HashLoader, PropagateLoader } from "react-spinners";
 import { getUserDetails, updateUserProfile } from "../../actions/userActions";
@@ -217,14 +219,13 @@ export const ProfileScreen = ({ location, history }) => {
                               </span>
                             )}
                           </td>
-                          <td className="px-6 py-4 text-center">Admin</td>
+                          <td className=" flex items-center justify-center px-6 py-4 text-center">
+                            {isDelivered ? <FcCheckmark /> : <GiCrossMark />}
+                          </td>
                           <td className="px-6 py-4 text-center">
-                            <a
-                              href="#"
-                              className="text-purple-800 hover:underline"
-                            >
-                              Edit
-                            </a>
+                            <Link to = "/details" >
+                            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" >Details</button>
+                            </Link>
                           </td>
                         </tr>
                       )
