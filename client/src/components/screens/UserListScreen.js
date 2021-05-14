@@ -44,7 +44,7 @@ export const UserListScreen = ({history}) => {
           {error}
         </span>
       ) : (
-        <div className="min-h-screen flex items-center px-4">
+        <div className="flex flex-grow items-center px-4">
           <div className=" w-full">
             <table className="mx-auto max-w-5xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden">
               <thead className="bg-gray-50">

@@ -17,7 +17,7 @@ import { UserListScreen } from "./components/screens/UserListScreen";
 function App() {
   return (
     <Router>
-      <div  className="m-0">
+      <div  className="felx flex-col h-screen">
         <Header />
         <Route exact path="/" component={ProductTable} />
         <Route exact path="/login" component={LoginScreen} />
