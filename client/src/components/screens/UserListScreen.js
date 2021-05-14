@@ -26,11 +26,12 @@ export const UserListScreen = () => {
   };
   return (
     <>
-      <h1>Users</h1>
       {loading ? (
-        <HashLoader />
+        <div className="flex justify-center items-center mt-6">
+          <HashLoader />
+        </div>
       ) : error ? (
-        <span className="text-sm bg-red-300 rounded-lg px-10 py-2 mb-4">
+        <span className="flex justify-center items-center text-sm bg-red-300 rounded-lg px-10 py-2 mb-4">
           {error}
         </span>
       ) : (
@@ -71,19 +72,23 @@ export const UserListScreen = () => {
                     <td className="px-6 py-4 text-center">
                       <Link className="px-1" to={`user/${_id}/edit`}>
                         <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded">
-                         <span className="inline-block px-1" >Edit </span> 
-                         <span className="inline-block px-1"><FaUserEdit /></span>
+                          <span className="inline-block px-1">Edit </span>
+                          <span className="inline-block px-1">
+                            <FaUserEdit />
+                          </span>
                         </button>
                       </Link>
-                        <button
-                          onClick={() => {
-                            deleteHanlder(_id);
-                          }}
-                          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded"
-                        >
-                          <span className="inline-block px-1" >Delete</span>
-                           <span className="inline-block px-1" ><AiOutlineUsergroupDelete /></span> 
-                        </button>
+                      <button
+                        onClick={() => {
+                          deleteHanlder(_id);
+                        }}
+                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded"
+                      >
+                        <span className="inline-block px-1">Delete</span>
+                        <span className="inline-block px-1">
+                          <AiOutlineUsergroupDelete />
+                        </span>
+                      </button>
                     </td>
                   </tr>
                 ))}
