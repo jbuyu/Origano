@@ -83,7 +83,7 @@ const Header = () => {
                       <li>
                         <button
                           onClick={logOutHandler}
-                          className="bg-gray-200 hover:bg-gray-400 py-2 px-12 block whitespace-no-wrap"
+                          className="bg-gray-200 hover:bg-gray-400 py-2 px-12 block whitespace-no-wrap w-full"
                           to="/logout"
                         >
                           Logout
@@ -122,13 +122,29 @@ const Header = () => {
                           Users
                         </Link>
                       </li>
+                      <li className="">
+                        <Link
+                          to="/admin/productList"
+                          className="bg-gray-200 hover:bg-gray-400 py-2 px-12 block whitespace-no-wrap"
+                        >
+                          Products
+                        </Link>
+                      </li>
+                      <li className="">
+                        <Link
+                          to="/admin/orderList"
+                          className="bg-gray-200 hover:bg-gray-400 py-2 px-12 block whitespace-no-wrap"
+                        >
+                          Orders
+                        </Link>
+                      </li>
                       <li>
                         <button
                           onClick={logOutHandler}
-                          className="bg-gray-200 hover:bg-gray-400 py-2 px-12 block whitespace-no-wrap"
-                          to="/prducts"
+                          className="bg-gray-200 hover:bg-gray-400 py-2 px-12 block whitespace-no-wrap w-full"
+                          to="/logout"
                         >
-                          Products
+                          Logout
                         </button>
                       </li>
                     </ul>

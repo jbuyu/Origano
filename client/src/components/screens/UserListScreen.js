@@ -9,17 +9,26 @@ import { HashLoader } from "react-spinners";
 import { GrUserAdmin } from "react-icons/gr";
 import { FiUser } from "react-icons/fi";
 import { FaUserEdit } from "react-icons/fa";
-import { AiOutlineUsergroupDelete } from "react-icons/ai";
+import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-export const UserListScreen = () => {
+export const UserListScreen = ({history}) => {
   const dispatch = useDispatch();
+
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   useEffect(() => {
-    dispatch(listUsers());
-  }, [dispatch]);
+    if(userInfo && userInfo.isAdmin){
+      dispatch(listUsers());
+    } else {
+      history.push('/login')
+    }
+  }, [dispatch, history]);
 
   const deleteHanlder = (id) => {
     console.log(id);
@@ -31,7 +40,7 @@ export const UserListScreen = () => {
           <HashLoader />
         </div>
       ) : error ? (
-        <span className="flex justify-center items-center text-sm bg-red-300 rounded-lg px-10 py-2 mb-4">
+        <span className="flex justify-center items-center text-sm bg-red-300 rounded-lg px-4 py-2 mb-4">
           {error}
         </span>
       ) : (
@@ -58,7 +67,7 @@ export const UserListScreen = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {users.map(({ _id, name, email, isadmin }) => (
+                {users.map(({ _id, name, email, isAdmin }) => (
                   <tr key={_id}>
                     <td className="px-6 py-4">
                       <p className="">{_id}</p>
@@ -67,7 +76,7 @@ export const UserListScreen = () => {
                     <td className="px-6 py-4 text-center">
                       <a href={`mailTo:${email}`}>{email}</a>
                     </td>
-                    <td>{isadmin ? <GrUserAdmin /> : <FiUser />}</td>
+                    <td>{isAdmin ? <GrUserAdmin /> : <FiUser />}</td>
 
                     <td className="px-6 py-4 text-center">
                       <Link className="px-1" to={`user/${_id}/edit`}>
@@ -86,7 +95,7 @@ export const UserListScreen = () => {
                       >
                         <span className="inline-block px-1">Delete</span>
                         <span className="inline-block px-1">
-                          <AiOutlineUsergroupDelete />
+                          <AiFillDelete />
                         </span>
                       </button>
                     </td>
