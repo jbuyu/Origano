@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { listUsers } from "../../actions/userActions";
+import { listUsers, deleteUser } from "../../actions/userActions";
 
 import { HashLoader } from "react-spinners";
 
@@ -22,16 +22,19 @@ export const UserListScreen = ({history}) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success:successDelete } = userDelete;
+
   useEffect(() => {
     if(userInfo && userInfo.isAdmin){
       dispatch(listUsers());
     } else {
       history.push('/login')
     }
-  }, [dispatch, history]);
+  }, [dispatch, history, successDelete]);
 
-  const deleteHanlder = (id) => {
-    console.log(id);
+  const deleteHandler = (id) => {
+    dispatch(deleteUser(id))
   };
   return (
     <>
@@ -89,7 +92,7 @@ export const UserListScreen = ({history}) => {
                       </Link>
                       <button
                         onClick={() => {
-                          deleteHanlder(_id);
+                          deleteHandler(_id);
                         }}
                         className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded"
                       >
