@@ -12,29 +12,30 @@ import { FaUserEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-export const UserListScreen = ({history}) => {
+export const UserListScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   const userDelete = useSelector((state) => state.userDelete);
-  const { success:successDelete } = userDelete;
+  const { success: successDelete } = userDelete;
 
   useEffect(() => {
-    if(userInfo && userInfo.isAdmin){
+    if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers());
     } else {
-      history.push('/login')
+      history.push("/login");
     }
   }, [dispatch, history, successDelete]);
 
   const deleteHandler = (id) => {
-    dispatch(deleteUser(id))
+    if (window.confirm("Are you sure")) {
+      dispatch(deleteUser(id));
+    }
   };
   return (
     <>
