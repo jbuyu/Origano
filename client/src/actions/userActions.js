@@ -223,7 +223,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`${BASE_URL}/api/users/${id}`, config);
+   await axios.delete(`${BASE_URL}/api/users/${id}`, config);
     dispatch({
       type: USER_DELETE_SUCCESS,
     });

@@ -30,7 +30,7 @@ export const UserListScreen = ({ history }) => {
     } else {
       history.push("/login");
     }
-  }, [dispatch, history, successDelete]);
+  }, [dispatch, history, successDelete, userInfo]);
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure")) {
@@ -83,7 +83,7 @@ export const UserListScreen = ({ history }) => {
                     <td>{isAdmin ? <GrUserAdmin /> : <FiUser />}</td>
 
                     <td className="px-6 py-4 text-center">
-                      <Link className="px-1" to={`user/${_id}/edit`}>
+                      <Link className="px-1" to={`/admin/user/${_id}/edit`}>
                         <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded">
                           <span className="inline-block px-1">Edit </span>
                           <span className="inline-block px-1">
