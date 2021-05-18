@@ -18,7 +18,15 @@ export const UserEditScreen = ({ match, history }) => {
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (!user.name || user._id !== userId) {
+      dispatch(getUserDetails(userId));
+    } else {
+      setName(user.name);
+      setEmail(user.email);
+      setIsAdmin(user.isAdmin);
+    }
+  }, [user]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -28,10 +36,10 @@ export const UserEditScreen = ({ match, history }) => {
   return (
     <>
       <div>
-        <span className="inline-block" >
+        <span className="inline-block">
           <BiArrowBack />
         </span>
-        <span className="inline-block" >
+        <span className="inline-block">
           <Link
             className="underline text-indigo-600 font-bold p-2"
             to="/admin/userList"
@@ -93,6 +101,24 @@ export const UserEditScreen = ({ match, history }) => {
                           {error}
                         </span>
                       )}
+                    </div>
+                    <div className="mt-8">
+                      <div className="flex justify-between items-center">
+                        <span className="ml-2 text-gray-700 font-bold">
+                          Is Admin
+                        </span>
+
+                        <label className="inline-flex items-center mt-3">
+                          <input
+                            id="isAdmin"
+                            label="Is Admin"
+                            checked={isAdmin}
+                            onChange={(e) => setIsAdmin(e.target.checked)}
+                            type="checkbox"
+                            className="form-checkbox h-5 w-5 text-indigo-400 cursor-pointer"
+                          />
+                        </label>
+                      </div>
                     </div>
                     <div className="mt-10">
                       <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg">
