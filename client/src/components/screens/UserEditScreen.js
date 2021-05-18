@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
 import { HashLoader } from "react-spinners";
-import { getUserDetails } from "../../actions/userActions";
+import { getUserDetails, updateUser } from "../../actions/userActions";
+import { USER_UPDATE_RESET } from "../../constants/userConstants";
 import { BiArrowBack } from "react-icons/bi";
 
 export const UserEditScreen = ({ match, history }) => {
@@ -18,18 +19,38 @@ export const UserEditScreen = ({ match, history }) => {
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
+  const userUpdate = useSelector((state) => state.userUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = userUpdate;
+
   useEffect(() => {
-    if (!user.name || user._id !== userId) {
-      dispatch(getUserDetails(userId));
+    if (successUpdate) {
+      dispatch({
+        type: USER_UPDATE_RESET,
+      });
+      history.push("/admin/userlist");
     } else {
-      setName(user.name);
-      setEmail(user.email);
-      setIsAdmin(user.isAdmin);
+      if (!user.name || user._id !== userId) {
+        dispatch(getUserDetails(userId));
+      } else {
+        setName(user.name);
+        setEmail(user.email);
+        setIsAdmin(user.isAdmin);
+      }
     }
-  }, [user]);
+  }, [user, userId, dispatch, successUpdate, history]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(updateUser({
+      _id:userId,
+      name,
+      email,
+      isAdmin
+    }))
 
     //submit
   };
@@ -50,7 +71,12 @@ export const UserEditScreen = ({ match, history }) => {
       </div>
       <div className="lg:flex flex flex-row justify-center items-center">
         <div className="lg:w-1/2 xl:max-w-screen-sm">
+          <div className="flex flex-col justify-center items-center" >
+
           {error && <ErrorMessage>{error}</ErrorMessage>}
+          {loadingUpdate && <HashLoader/>}
+          {errorUpdate && <ErrorMessage>{error}</ErrorMessage>}
+          </div>
           <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
             <h2 className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl xl:text-bold">
               <span className="flex flex-row justify-between items-center">
