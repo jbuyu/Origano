@@ -13,6 +13,7 @@ import { PaymentScreen } from "./components/screens/PaymentScreem";
 import { PlaceOrderScreen } from "./components/screens/PlaceOrderScreen";
 import { OrderScreen } from "./components/screens/OrderScreen";
 import { UserListScreen } from "./components/screens/UserListScreen";
+import { ProductListScreen } from "./components/screens/ProductListScreen";
 import { UserEditScreen } from "./components/screens/UserEditScreen";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/order/:id" component={OrderScreen} />
         <Route path="/cart/:id?" component={CartScreen} />
         <Route path="/admin/userlist" component={UserListScreen} />
+        <Route path="/admin/productList" component={ProductListScreen} />
         <Route path="/admin/user/:id/edit" component={UserEditScreen} />
         <Footer />
       </div>
