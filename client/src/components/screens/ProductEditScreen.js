@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
 import { HashLoader } from "react-spinners";
-import { BiArrowBack, BiEdit } from "react-icons/bi";
-import { listProductDetails } from "../../actions/productActions";
+import { BiArrowBack } from "react-icons/bi";
+import {
+  listProductDetails,
+  updateProduct,
+} from "../../actions/productActions";
 import { PRODUCT_UPDATE_RESET } from "../../constants/productConstants";
 
 export const ProductEditScreen = ({ match, history }) => {
@@ -52,6 +55,18 @@ export const ProductEditScreen = ({ match, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      updateProduct({
+        _id: productId,
+        name,
+        price,
+        image,
+        brand,
+        category,
+        description,
+        countInStock,
+      })
+    );
 
     //update prod
   };
@@ -72,18 +87,16 @@ export const ProductEditScreen = ({ match, history }) => {
       </div>
       <div className="lg:flex flex flex-row justify-center items-center">
         <div className="lg:w-1/2 xl:max-w-screen-sm">
-          {/* <div className="flex flex-col justify-center items-center" >
-
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          {loadingUpdate && <HashLoader/>}
-          {errorUpdate && <ErrorMessage>{error}</ErrorMessage>}
-          </div> */}
           <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
             <h2 className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl xl:text-bold">
               <span className="flex flex-row justify-between items-center">
                 Edit Product
               </span>
             </h2>
+            <div className="flex flex-col justify-center items-center">
+              {loadingUpdate && <HashLoader />}
+              {errorUpdate && <ErrorMessage>{error}</ErrorMessage>}
+            </div>
             <div className="mt-12">
               <div className="flex flex-row justify-center items-center">
                 {loading ? (

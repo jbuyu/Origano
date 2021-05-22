@@ -122,13 +122,11 @@ export const ProductListScreen = ({ history, match }) => {
             <table className="mx-auto max-w-5xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden">
               <thead className="bg-gray-50">
                 <tr className="text-gray-600 text-left">
-                  <th className="font-semibold text-sm uppercase px-6 py-4">
+                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
                     Images
                   </th>
-                  <th className="font-semibold text-sm uppercase px-6 py-4">
-                    NAME
-                  </th>
-                  <th className="font-semibold text-sm uppercase px-6 py-4">
+                 
+                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
                     PRICE
                   </th>
                   <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
@@ -164,7 +162,7 @@ export const ProductListScreen = ({ history, match }) => {
                             />
                           </div>
                           <div>
-                            <p className="">Jane Doe</p>
+                            <p className="">{name}</p>
                             <p className="text-gray-500 text-sm font-semibold tracking-wide">
                               <span className="text-gray-500"> count:</span>{" "}
                               {countInStock}
@@ -172,10 +170,7 @@ export const ProductListScreen = ({ history, match }) => {
                           </div>
                         </div>
                       </td>
-                      {/* <td className="px-6 py-4">
-                      <p className="">{_id}</p>
-                    </td> */}
-                      <td className="px-6 py-4 text-center">{name}</td>
+                      
                       <td className="px-6 py-4 text-center">{price} /-</td>
                       <td className="px-6 py-4 text-center">{category}</td>
                       <td className="px-6 py-4 text-center">{brand}</td>
