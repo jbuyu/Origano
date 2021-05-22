@@ -114,18 +114,18 @@ export const ProductListScreen = ({ history, match }) => {
                     countInStock,
                   }) => (
                     <tr key={_id}>
-                      <td class="px-6 py-4">
-                        <div class="flex items-center space-x-3">
-                          <div class="inline-flex w-10 h-10">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center space-x-3">
+                          <div className="inline-flex w-10 h-10">
                             <img
-                              class="w-10 h-10 object-cover rounded-full"
+                              className="w-10 h-10 object-cover rounded-full"
                               alt="User avatar"
                               src={image}
                             />
                           </div>
                           <div>
-                            <p class="">Jane Doe</p>
-                            <p class="text-gray-500 text-sm font-semibold tracking-wide">
+                            <p className="">Jane Doe</p>
+                            <p className="text-gray-500 text-sm font-semibold tracking-wide">
                               <span className="text-gray-500"> count:</span>{" "}
                               {countInStock}
                             </p>
