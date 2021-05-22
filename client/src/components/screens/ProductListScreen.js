@@ -77,7 +77,7 @@ export const ProductListScreen = ({ history, match }) => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {products.map(({ _id, name, price, category, brand }) => (
+                {products.map(({ _id, name, price, category, brand, image, countInStock }) => (
                   <tr key={_id}>
                     <td class="px-6 py-4">
                       <div class="flex items-center space-x-3">
@@ -85,13 +85,13 @@ export const ProductListScreen = ({ history, match }) => {
                           <img
                             class="w-10 h-10 object-cover rounded-full"
                             alt="User avatar"
-                            src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=200"
+                            src={image}
                           />
                         </div>
                         <div>
                           <p class="">Jane Doe</p>
                           <p class="text-gray-500 text-sm font-semibold tracking-wide">
-                            jane20doe@mail.com
+                            <span className="text-gray-500"> count:</span> {countInStock}
                           </p>
                         </div>
                       </div>
