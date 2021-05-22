@@ -15,6 +15,7 @@ import { OrderScreen } from "./components/screens/OrderScreen";
 import { UserListScreen } from "./components/screens/UserListScreen";
 import { ProductListScreen } from "./components/screens/ProductListScreen";
 import { UserEditScreen } from "./components/screens/UserEditScreen";
+import { ProductEditScreen } from "./components/screens/ProductEditScreen";
 
 function App() {
   return (
@@ -32,8 +33,9 @@ function App() {
         <Route path="/order/:id" component={OrderScreen} />
         <Route path="/cart/:id?" component={CartScreen} />
         <Route path="/admin/userlist" component={UserListScreen} />
-        <Route path="/admin/productList" component={ProductListScreen} />
         <Route path="/admin/user/:id/edit" component={UserEditScreen} />
+        <Route path="/admin/productList" component={ProductListScreen} />
+        <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
         <Footer />
       </div>
 

@@ -101,12 +101,10 @@ export const createProduct = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const {data} = await Axios.post(`${BASE_URL}`,{}, config);
-    console.log(data)
-
+    const { data } = await Axios.post(`${BASE_URL}`, {}, config);
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
-      payload:data
+      payload: data,
     });
   } catch (error) {
     dispatch({
