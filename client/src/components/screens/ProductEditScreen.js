@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
 import { HashLoader } from "react-spinners";
-import { BiArrowBack } from "react-icons/bi";
+import { BiArrowBack, BiEdit } from "react-icons/bi";
 import { listProductDetails } from "../../actions/productActions";
 import { PRODUCT_UPDATE_RESET } from "../../constants/productConstants";
 
@@ -99,7 +99,7 @@ export const ProductEditScreen = ({ match, history }) => {
                         </div>
                       </div>
                       <input
-                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm"
+                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm text-gray-400"
                         type="text"
                         placeholder="Enter names"
                         value={name}
@@ -110,10 +110,10 @@ export const ProductEditScreen = ({ match, history }) => {
                     </div>
                     <div>
                       <div className="text-sm font-bold text-gray-700 tracking-wide">
-                        Price
+                        Price (/-)
                       </div>
                       <input
-                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm"
+                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm text-gray-400"
                         type="number"
                         placeholder="Enter Price"
                         value={price}
@@ -127,7 +127,7 @@ export const ProductEditScreen = ({ match, history }) => {
                         Image
                       </div>
                       <input
-                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm"
+                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm text-gray-400"
                         type="text"
                         placeholder="Image"
                         value={image}
@@ -141,7 +141,7 @@ export const ProductEditScreen = ({ match, history }) => {
                         Brand
                       </div>
                       <input
-                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm"
+                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm text-gray-400"
                         type="brand"
                         placeholder="brand"
                         value={brand}
@@ -155,7 +155,7 @@ export const ProductEditScreen = ({ match, history }) => {
                         Count In Stock
                       </div>
                       <input
-                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm"
+                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm text-gray-400"
                         type="number"
                         placeholder="Enter Count"
                         value={countInStock}
@@ -169,7 +169,7 @@ export const ProductEditScreen = ({ match, history }) => {
                         Category
                       </div>
                       <input
-                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm"
+                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm text-gray-400"
                         type="text"
                         placeholder="category"
                         value={category}
@@ -183,7 +183,7 @@ export const ProductEditScreen = ({ match, history }) => {
                         Description
                       </div>
                       <input
-                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm"
+                        className="w-full text-lg py-2 px-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 rounded-sm text-gray-400"
                         type="text"
                         placeholder="Description"
                         value={description}

@@ -13,6 +13,7 @@ import { PRODUCT_CREATE_RESET } from "../../constants/productConstants";
 import { HashLoader } from "react-spinners";
 
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { BiEdit } from "react-icons/bi";
 import { FiUser } from "react-icons/fi";
 import { FaUserEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
@@ -78,7 +79,7 @@ export const ProductListScreen = ({ history, match }) => {
   };
   return (
     <>
-      <div className="flex justify-self-end max-w-7xl">
+      <div className="flex justify-self-end max-w-7xl p-2">
         <button
           onClick={createProductHandler}
           className=" bg-green-500 active:bg-green-700 flex ml-auto p-2 text-white font-bold rounded-md mb-2"
@@ -175,7 +176,7 @@ export const ProductListScreen = ({ history, match }) => {
                       <p className="">{_id}</p>
                     </td> */}
                       <td className="px-6 py-4 text-center">{name}</td>
-                      <td className="px-6 py-4 text-center">{price}</td>
+                      <td className="px-6 py-4 text-center">{price} /-</td>
                       <td className="px-6 py-4 text-center">{category}</td>
                       <td className="px-6 py-4 text-center">{brand}</td>
 
@@ -187,7 +188,7 @@ export const ProductListScreen = ({ history, match }) => {
                           <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded">
                             <span className="inline-block px-1">Edit </span>
                             <span className="inline-block px-1">
-                              <FaUserEdit />
+                              <BiEdit />
                             </span>
                           </button>
                         </Link>
