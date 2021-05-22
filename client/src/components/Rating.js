@@ -39,6 +39,8 @@ const Rating = ({ value, text }) => {
         <FcRating />
       </div>
     );
+  } else if (value === 0){
+    return null
   }
 };
 
