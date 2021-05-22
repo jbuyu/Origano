@@ -2,9 +2,13 @@ import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { listProducts, deleteProduct, createProduct } from "../../actions/productActions";
+import {
+  listProducts,
+  deleteProduct,
+  createProduct,
+} from "../../actions/productActions";
 
-import {PRODUCT_CREATE_RESET} from '../../constants/productConstants'
+import { PRODUCT_CREATE_RESET } from "../../constants/productConstants";
 
 import { HashLoader } from "react-spinners";
 
@@ -30,14 +34,14 @@ export const ProductListScreen = ({ history, match }) => {
   } = productDelete;
 
   //create
-   // delete
-   const productCreate = useSelector((state) => state.productCreate);
-   const {
-     loading: loadingCreate,
-     error: errorCreate,
-     success: successCreate,
-     product: createdProduct
-   } = productCreate;
+  // delete
+  const productCreate = useSelector((state) => state.productCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    product: createdProduct,
+  } = productCreate;
 
   //auth
   const userLogin = useSelector((state) => state.userLogin);
@@ -45,21 +49,27 @@ export const ProductListScreen = ({ history, match }) => {
 
   useEffect(() => {
     dispatch({
-      type: PRODUCT_CREATE_RESET
-    })
-    if (userInfo.isAdmin) {
-      history.push('/login')
-    } 
-
-    if(successCreate){
-      history.push(`/admin/product/${createProduct._id}/edit`)
-    } else{
-      dispatch(listProducts())
+      type: PRODUCT_CREATE_RESET,
+    });
+    if (!userInfo.isAdmin) {
+      history.push("/login");
     }
-  }, [dispatch, history, userInfo, successDelete, successCreate, createProduct]);
+    if (successCreate) {
+      history.push(`/admin/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    createProduct,
+  ]);
 
   const createProductHandler = () => {
-    createProduct()
+    dispatch(createProduct())
   };
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure")) {
@@ -73,7 +83,7 @@ export const ProductListScreen = ({ history, match }) => {
           onClick={createProductHandler}
           className=" bg-green-500 active:bg-green-700 flex ml-auto p-2 text-white font-bold rounded-md mb-2"
         >
-          Product
+          + Product
           <AiOutlineAppstoreAdd />
         </button>
       </div>
@@ -84,8 +94,8 @@ export const ProductListScreen = ({ history, match }) => {
       )}
       {errorDelete && (
         <span className="flex justify-center items-center text-sm bg-red-300 rounded-lg px-4 py-2 mb-4">
-        {errorDelete}
-      </span>
+          {errorDelete}
+        </span>
       )}
       {loadingCreate && (
         <div className="flex justify-center items-center mt-6">
@@ -94,8 +104,8 @@ export const ProductListScreen = ({ history, match }) => {
       )}
       {errorCreate && (
         <span className="flex justify-center items-center text-sm bg-red-300 rounded-lg px-4 py-2 mb-4">
-        {errorCreate}
-      </span>
+          {errorCreate}
+        </span>
       )}
       {loading ? (
         <div className="flex justify-center items-center mt-6">

@@ -102,6 +102,7 @@ export const createProduct = () => async (dispatch, getState) => {
       },
     };
     const {data} = await Axios.post(`${BASE_URL}`,{}, config);
+    console.log(data)
 
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
