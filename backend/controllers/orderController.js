@@ -93,13 +93,24 @@ const getMyOrders = asyncHandler(async (req, res) => {
     user: req.user._id,
   });
   if (orders) {
-    consola.success("retrieving orders");
     res.json(orders);
   } else {
-    consola.error("fail");
     res.status(404);
     throw new Error("Order not found");
   }
 });
 
-export { addOrderItems, getOrderById, updateOrderToPaid, getMyOrders };
+
+//@desc     GET Orders 
+//@route    GET /api/orders
+//@access    Private
+
+
+const getOrders = asyncHandler(async(req,res)=>{
+  const orders = await Order.find({}).populate('user', 'id name')
+  res.json(orders)
+})
+
+
+
+export { addOrderItems, getOrderById, updateOrderToPaid, getMyOrders, getOrders };
