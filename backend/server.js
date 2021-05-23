@@ -16,6 +16,7 @@ import connectDB from "./config/db.js";
 import productsRouter from "./routes/productsRouter.js";
 import userRouter from "./routes/userRouter.js";
 import orderRouter from "./routes/orderRouter.js";
+import uploadRouter from "./routes/uploadRouter.js";
 
 //middleware
 app.use(cors());
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use("/api/products", productsRouter);
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/upload", uploadRouter);
 
 app.get('/api/config/paypal', (req,res)=>{
   res.send(process.env.PAYPAL_CLIENT_ID)
