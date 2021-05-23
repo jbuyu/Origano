@@ -12,6 +12,8 @@ import {
   ORDER_LIST_MY_SUCCESS,
   ORDER_LIST_MY_FAIL,
   ORDER_LIST_REQUEST,
+  ORDER_LIST_SUCCESS,
+  ORDER_LIST_FAIL,
 } from "../constants/orderConstants";
 import Axios from "axios";
 
@@ -159,12 +161,12 @@ export const listOrders = () => async (dispatch, getState) => {
     const { data } = await Axios.get(`${BASE_URL}/api/orders`, config);
    
     dispatch({
-      type: ORDER_LIST_MY_SUCCESS,
+      type: ORDER_LIST_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: ORDER_LIST_MY_FAIL,
+      type: ORDER_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
