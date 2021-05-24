@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {format} from 'date-fns'
+import { format } from "date-fns";
 import Axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import { css } from "@emotion/react";
@@ -10,9 +10,17 @@ import { Link } from "react-router-dom";
 
 import ClipLoader from "react-spinners/ClipLoader";
 
-import { getOrderDetails, payOrder } from "../../actions/orderActions";
+import {
+  getOrderDetails,
+  payOrder,
+  deliverOrder,
+} from "../../actions/orderActions";
 
-import { ORDER_PAY_RESET } from "../../constants/orderConstants";
+import {
+  ORDER_PAY_RESET,
+  ORDER_DELIVER_RESET,
+} from "../../constants/orderConstants";
+import Loader from "react-spinners/BeatLoader";
 
 export const OrderScreen = ({ match }) => {
   const [sdkReady, setSdkReady] = useState(false);
@@ -37,6 +45,12 @@ export const OrderScreen = ({ match }) => {
   const { success: successPay, loading: loadingPay } = orderPay;
   // let { address, city, postCode, country } = order.shippingAddress;
 
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { success: successDeliver, loading: loadingDeliver } = orderDeliver;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   useEffect(() => {
     const BASE_URL = "http://localhost:4000";
     const addPayPalScript = async () => {
@@ -52,9 +66,12 @@ export const OrderScreen = ({ match }) => {
       };
       document.body.appendChild(script);
     };
-    if (!order || successPay) {
+    if (!order || successPay || successDeliver) {
       dispatch({
         type: ORDER_PAY_RESET,
+      });
+      dispatch({
+        type: ORDER_DELIVER_RESET,
       });
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
@@ -64,11 +81,14 @@ export const OrderScreen = ({ match }) => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, orderId, successPay, order]);
+  }, [dispatch, orderId, successPay, order, successDeliver]);
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult));
+  };
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order));
   };
 
   //calculations
@@ -118,8 +138,11 @@ export const OrderScreen = ({ match }) => {
             <strong className="p-2">Delivery status :</strong>
             {order.isDelivered ? (
               <span className=" text-md bg-green-400 px-2 rounded-md">
-                Delivered on
-                {order.deliveredAt}
+                Delivered on 
+                <span className="p-2" >
+
+                 {format(new Date(order.deliveredAt), "yyyy-MM-dd")}
+                </span>
               </span>
             ) : (
               <span className=" text-md bg-red-400 px-2 rounded-md">
@@ -142,12 +165,9 @@ export const OrderScreen = ({ match }) => {
             <strong className="p-2">Payment status :</strong>
             {order.isPaid ? (
               <span className=" text-md bg-green-400 px-2 rounded-md">
-                <span className="p-2" >
+                <span className="p-2">Paid on</span>
 
-                Paid on 
-                </span>
-
-                { format(new Date(order.paidAt), 'yyyy-MM-dd') }
+                {format(new Date(order.paidAt), "yyyy-MM-dd")}
               </span>
             ) : (
               <span className=" text-md bg-red-400 px-2 rounded-md">
@@ -253,6 +273,16 @@ export const OrderScreen = ({ match }) => {
                           />
                         )}
                       </span>
+                    )}
+                    {/* delivering order */}
+                    {loadingDeliver && <SyncLoader/>}
+                    {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                      <button
+                        onClick={deliverHandler}
+                        className=" bg-green-500 active:bg-green-700 flex ml-auto py-2 px-4 text-white font-bold rounded-md mb-2"
+                      >
+                        mark as Delivered
+                      </button>
                     )}
                   </div>
                 </div>

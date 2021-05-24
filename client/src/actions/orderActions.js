@@ -14,8 +14,13 @@ import {
   ORDER_LIST_REQUEST,
   ORDER_LIST_SUCCESS,
   ORDER_LIST_FAIL,
+  ORDER_DELIVER_REQUEST,
+  ORDER_DELIVER_SUCCESS,
+  ORDER_DELIVER_FAIL,
 } from "../constants/orderConstants";
 import Axios from "axios";
+
+import { logout } from '../actions/userActions'
 
 const BASE_URL = "http://localhost:4000";
 
@@ -191,8 +196,8 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.put(
-      `/api/orders/${order._id}/deliver`,
+    const { data } = await Axios.put(
+      `${BASE_URL}/api/orders/${order._id}/deliver`,
       {},
       config
     )
