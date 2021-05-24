@@ -20,26 +20,23 @@ import { ProductEditScreen } from "./components/screens/ProductEditScreen";
 function App() {
   return (
     <Router>
-      <div  className="flex flex-col w-screen">
-        <Header  />
-        <Route exact path="/" component={ProductTable} />
-        <Route exact path="/login" component={LoginScreen} />
-        <Route exact path="/register" component={RegisterScreen} />
-        <Route exact path="/profile" component={ProfileScreen} />
-        <Route exact path="/shipping" component={ShippingScreen} />
-        <Route exact path="/payment" component={PaymentScreen} />
-        <Route exact path="/placeorder" component={PlaceOrderScreen} />
-        <Route path="/product/:id" component={Product} />
-        <Route path="/order/:id" component={OrderScreen} />
-        <Route path="/cart/:id?" component={CartScreen} />
-        <Route path="/admin/userlist" component={UserListScreen} />
-        <Route path="/admin/user/:id/edit" component={UserEditScreen} />
-        <Route path="/admin/productList" component={ProductListScreen} />
-        <Route path="/admin/orderList" component={OrderScreen} />
-        <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
-        <Footer />
-      </div>
-
+      <Header />
+      <Route exact path="/" component={ProductTable} />
+      <Route exact path="/login" component={LoginScreen} />
+      <Route exact path="/register" component={RegisterScreen} />
+      <Route exact path="/profile" component={ProfileScreen} />
+      <Route exact path="/shipping" component={ShippingScreen} />
+      <Route exact path="/payment" component={PaymentScreen} />
+      <Route exact path="/placeorder" component={PlaceOrderScreen} />
+      <Route path="/product/:id" component={Product} />
+      <Route path="/order/:id" component={OrderScreen} />
+      <Route path="/cart/:id?" component={CartScreen} />
+      <Route path="/admin/userlist" component={UserListScreen} />
+      <Route path="/admin/user/:id/edit" component={UserEditScreen} />
+      <Route path="/admin/productList" component={ProductListScreen} />
+      <Route path="/admin/orderList" component={OrderScreen} />
+      <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
+      <Footer />
     </Router>
   );
 }
