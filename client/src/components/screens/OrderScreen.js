@@ -20,9 +20,8 @@ import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
 } from "../../constants/orderConstants";
-import Loader from "react-spinners/BeatLoader";
 
-export const OrderScreen = ({ match }) => {
+export const OrderScreen = ({ match, history }) => {
   const [sdkReady, setSdkReady] = useState(false);
   const override = css`
     display: block;
@@ -52,6 +51,9 @@ export const OrderScreen = ({ match }) => {
   const { userInfo } = userLogin;
 
   useEffect(() => {
+    if(!userInfo){
+      history.push('/login')
+    }
     const BASE_URL = "http://localhost:4000";
     const addPayPalScript = async () => {
       const { data: clientId } = await Axios.get(
@@ -276,7 +278,7 @@ export const OrderScreen = ({ match }) => {
                     )}
                     {/* delivering order */}
                     {loadingDeliver && <SyncLoader/>}
-                    {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                    { userInfo &&  userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                       <button
                         onClick={deliverHandler}
                         className=" bg-green-500 active:bg-green-700 flex ml-auto py-2 px-4 text-white font-bold rounded-md mb-2"
