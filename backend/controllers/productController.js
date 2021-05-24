@@ -97,6 +97,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 // @access  Private
 const createProductReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body
+  console.log(typeof(rating))
 
   const product = await Product.findById(req.params.id)
 

@@ -51,5 +51,4 @@ connectDB();
 
 app.listen(PORT, () => {
   consola.success("Server is running on port", PORT);
-  console.log(process.env.NODE_ENV)
 });
