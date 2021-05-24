@@ -5,17 +5,35 @@ import ClipLoader from "react-spinners/ClipLoader";
 import SyncLoader from "react-spinners/SyncLoader";
 import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
-import { listProductDetails } from "../../actions/productActions";
 import ErrorMessage from "../ErrorMessage";
 import "./Product.css";
 import Select from "react-select";
 
-export const Product = ({ match, history }) => {
-  const [selectedOption, setSelectedOption] = useState(1);
+import {
+  listProductDetails,
+  createProductReview,
+} from "../../actions/productActions";
+import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
+
+export const ProductScreen = ({ match, history }) => {
   const dispatch = useDispatch();
+  const [selectedOption, setSelectedOption] = useState(1);
+
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+
   const productDetails = useSelector((state) => state.productDetails);
   let { loading, error, product } = productDetails;
-  let { image, name, price, countInStock, rating, description, alt } = product;
+  let { image, name, price, countInStock, description, alt } = product;
+
+  const productReviewCreate = useSelector((state) => state.productReviewCreate);
+  let { success: successProductReview, error: errorProductRevview } =
+    productReviewCreate;
+
+    const userLogin = useSelector((state) => state.userLogin);
+    let { userInfo } = userLogin;
+    
+
   const override = css`
     display: block;
     margin: 0 auto;

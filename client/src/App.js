@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Header";
 import { ProductTable } from "./components/screens/ProductTable";
-import { Product } from "./components/screens/Product";
+import { ProductScreen } from "./components/screens/ProductScreen";
 import Footer from "./components/Footer";
 import { CartScreen } from "./components/screens/CartScreen";
 import { LoginScreen } from "./components/screens/LoginScreen";
@@ -29,7 +29,7 @@ function App() {
       <Route exact path="/shipping" component={ShippingScreen} />
       <Route exact path="/payment" component={PaymentScreen} />
       <Route exact path="/placeorder" component={PlaceOrderScreen} />
-      <Route path="/product/:id" component={Product} />
+      <Route path="/product/:id" component={ProductScreen} />
       <Route path="/order/:id" component={OrderScreen} />
       <Route path="/cart/:id?" component={CartScreen} />
       <Route path="/admin/userlist" component={UserListScreen} />
