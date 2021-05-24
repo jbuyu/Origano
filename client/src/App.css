@@ -10,3 +10,9 @@ body{
   box-sizing:border-box;
   width:auto;
 }
+header, footer{
+  min-width: 1152px
+}
+.add-product{
+  min-width:1152px;
+}

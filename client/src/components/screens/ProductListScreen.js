@@ -79,7 +79,7 @@ export const ProductListScreen = ({ history, match }) => {
   };
   return (
     <>
-      <div className="flex justify-self-end max-w-7xl p-2 flex-grow">
+      <div className="flex justify-self-end max-w-7xl p-2 flex-grow add-product">
         <button
           onClick={createProductHandler}
           className=" bg-green-500 active:bg-green-700 flex ml-auto p-2 text-white font-bold rounded-md mb-2"
