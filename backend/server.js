@@ -11,9 +11,9 @@ import morgan from 'morgan'
 // import bodyParser from "body-parser";
 const app = express();
 
-if(process.env.NODE_ENV === 'development'){
+// if(process.env.NODE_ENV === 'development'){
   app.use(morgan('dev'))
-}
+// }
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 //db
