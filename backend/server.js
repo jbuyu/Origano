@@ -7,8 +7,13 @@ import express from "express";
 import consola from "consola";
 const PORT = process.env.PORT || 4000;
 import cors from "cors";
+import morgan from 'morgan'
 // import bodyParser from "body-parser";
 const app = express();
+
+if(process.env.NODE_ENV === 'development'){
+  app.use(morgan('dev'))
+}
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 //db
@@ -46,4 +51,5 @@ connectDB();
 
 app.listen(PORT, () => {
   consola.success("Server is running on port", PORT);
+  console.log(process.env.NODE_ENV)
 });
