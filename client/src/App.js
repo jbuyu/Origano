@@ -20,8 +20,8 @@ import { ProductEditScreen } from "./components/screens/ProductEditScreen";
 function App() {
   return (
     <Router>
-      <div  className="felx flex-col h-screen">
-        <Header />
+      <div  className="flex flex-col w-screen">
+        <Header  />
         <Route exact path="/" component={ProductTable} />
         <Route exact path="/login" component={LoginScreen} />
         <Route exact path="/register" component={RegisterScreen} />

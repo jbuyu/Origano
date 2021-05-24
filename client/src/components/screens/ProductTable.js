@@ -74,7 +74,7 @@ export const ProductTable = () => {
                           />
                         </td>
                         <td>
-                          <span className="text-center ml-2 font-semibold">
+                          <span className="items-center ml-2 font-semibold">
                             {name}
                           </span>
                         </td>

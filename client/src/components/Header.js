@@ -17,13 +17,12 @@ const Header = () => {
     dispatch(logout());
   };
   return (
-    <header className="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
+    <header className="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2 ">
       <div className="flex-1 flex justify-between items-center">
         <Link to="/">
           <img className="h-16 w-16 p-1" src={Logo} alt="logo" />
         </Link>
       </div>
-
       <label htmlFor="menu-toggle" className="cursor-pointer lg:hidden block">
         <FaBars
           className="text-2xl fill-current text-gray-900"
@@ -31,7 +30,6 @@ const Header = () => {
         />
       </label>
       <input className="hidden" type="checkbox" id="menu-toggle" />
-
       <div
         className="hidden lg:flex lg:items-center lg:w-auto w-full"
         id="menu"
