@@ -5,4 +5,8 @@
 .dropdown:hover .dropdown-menu {
   display: block;
 }
-
+body{
+  margin:0;
+  box-sizing:border-box;
+  width:auto;
+}
