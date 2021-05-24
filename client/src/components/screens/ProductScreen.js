@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { FaCartArrowDown } from "react-icons/fa";
+import { FiSend } from "react-icons/fi";
 import Rating from "../Rating";
 import ClipLoader from "react-spinners/ClipLoader";
 import SyncLoader from "react-spinners/SyncLoader";
 import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "../ErrorMessage";
+import {Link} from 'react-router-dom'
 import "./Product.css";
 import Select from "react-select";
+import { format } from "date-fns";
 
 import {
   listProductDetails,
@@ -51,6 +54,9 @@ export const ProductScreen = ({ match, history }) => {
 
     selectedOption && history.push(`/cart/${productId}?qty=${selectedValue}`);
   };
+  const submitHandler = ()=>{
+    //subm
+  }
   return (
     <div className="min-h-full">
       {loading ? (
@@ -90,6 +96,42 @@ export const ProductScreen = ({ match, history }) => {
                       </span>
                     </div>
                   </div>
+                  {product.reviews && (
+                    <div className="mt-2">
+                      <label className="text-gray-700 text-sm" htmlFor="count">
+                        REVIEWS
+                      </label>
+                      <div className="flex mt-1">
+                        <span className="text-gray-700 text-base mx-2">
+                          {product.reviews.length === 0 ? (
+                            <span className="bg-red-200 px-2 rounded">
+                              No reviews
+                            </span>
+                          ) : (
+                            <div>
+                              {product.reviews.map((review) => (
+                                <div key={review._id}>
+                                  <p className="font-medium">{review.name}</p>
+                                  <div className="p-2">
+                                    <Rating value={review.rating} />
+                                  </div>
+                                  <p className="p-2">
+                                    {format(
+                                      new Date(review.createdAt),
+                                      "yyyy-MM-dd"
+                                    )}
+                                  </p>
+                                  <p className="text-indigo-400">
+                                    {review.comment}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="px-4">
                   <div className="mt-2">
@@ -97,14 +139,6 @@ export const ProductScreen = ({ match, history }) => {
                       Quantity
                     </label>
                     <br />
-                    {/* {countInStock && (
-                      <Dropdown
-                        options={[...Array(countInStock).keys()]}
-                        onOptionSelect={(option) => {
-                          console.log("Selected Option", option);
-                        }}
-                      />
-                    )} */}
                     {countInStock && (
                       <Select
                         className="w-2/3 mt-2"
@@ -133,7 +167,7 @@ export const ProductScreen = ({ match, history }) => {
                     <div className="flex items-center mt-6">
                       <button
                         onClick={addToCartHandler}
-                        className="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
+                        className="px-8 mb-2  py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
                       >
                         Order
                       </button>
@@ -146,50 +180,40 @@ export const ProductScreen = ({ match, history }) => {
                       Order
                     </button>
                   )}
-                  <div className="flex mx-auto items-center justify-center shadow-lg mt-4  mb-4 max-w-lg">
-                    <form className="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
-                      <div className="flex flex-wrap -mx-3 mb-6">
-                        <h2 className="px-4 pt-3 pb-2 text-gray-800 text-lg">
-                          Add a new comment
-                        </h2>
-                        <div className="w-full md:w-full px-3 mb-2 mt-2">
-                          <textarea
-                            className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-                            name="body"
-                            placeholder="Type Your Comment"
-                            required
-                          ></textarea>
-                        </div>
-                        <div className="w-full md:w-full flex items-start  px-3">
-                          <div className="flex items-start w-1/2 text-gray-700 px-2 mr-auto">
-                            <svg
-                              fill="none"
-                              className="w-5 h-5 text-gray-600 mr-1"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
-                            </svg>
-                            <p className="text-xs md:text-sm pt-px">
-                              Some HTML is okay.
-                            </p>
+                  {userInfo ? (
+                    <div className="flex mx-auto items-center justify-center shadow-lg mt-4  mb-4 max-w-lg">
+                      <form onSubmit={submitHandler} className="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
+                        <div className="flex flex-wrap -mx-3 mb-6">
+                          <h2 className="px-4 pt-3 pb-2 text-gray-800 text-lg">
+                            Add a new Review
+                          </h2>
+                          <div className="w-full md:w-full px-3 mb-2 mt-2">
+                            <textarea
+                              className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-500 focus:outline-none focus:bg-white"
+                              name="body"
+                              placeholder="Review"
+                              required
+                            ></textarea>
                           </div>
-                          <div className="-mr-1">
-                            <input
-                              type="submit"
-                              className="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100"
-                              value="Post Comment"
-                            />
+                          <div className="w-full md:w-full flex items-start  px-3">
+                            <div className="flex items-start w-1/2 text-gray-700 px-2 mr-auto"></div>
+                            <div className="-mr-1">
+                              <button
+                                type="submit"
+                                className="bg-indigo-500 text-white font-medium py-2 px-6 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100 cursor-pointer"
+                              >
+                                <FiSend />
+                              </button>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </form>
-                  </div>
+                      </form>
+                    </div>
+                  ) : (
+                    <span className='mt-8' >
+                      please <Link className="bg-red-300 px-2 rounded"  to="/login">Sign in</Link> to leave a review{" "}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
