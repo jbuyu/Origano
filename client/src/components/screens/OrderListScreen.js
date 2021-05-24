@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  listOrders
-} from "../../actions/orderActions";
+import { listOrders } from "../../actions/orderActions";
 
 import { PRODUCT_CREATE_RESET } from "../../constants/productConstants";
 
@@ -36,6 +34,11 @@ export const OrderListScreen = ({ history, match }) => {
     }
   }, [dispatch, history, userInfo]);
 
+  //fn
+  const deleteHandler = (id) => {
+    //id
+  };
+
   return (
     <>
       {loading ? (
@@ -53,81 +56,68 @@ export const OrderListScreen = ({ history, match }) => {
               <thead className="bg-gray-50">
                 <tr className="text-gray-600 text-left">
                   <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
-                    Images
-                  </th>
-
-                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
-                    PRICE
+                    ID
                   </th>
                   <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
-                    CATEGORY
+                    USER
                   </th>
                   <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
-                    BRAND
+                    DATE
+                  </th>
+                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
+                    TOTAL
                   </th>
                   <th className="font-semibold text-sm uppercase px-6 py-6 text-center">
-                    Actions
+                    PAID
+                  </th>
+                  <th className="font-semibold text-sm uppercase px-6 py-6 text-center">
+                    DELIVERED
+                  </th>
+                  <th className="font-semibold text-sm uppercase px-6 py-6 text-center">
+                    Details
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {products.map(
+                {orders.map(
                   ({
                     _id,
-                    name,
-                    price,
-                    category,
-                    brand,
-                    image,
-                    countInStock,
+                    user,
+                    createdAt,
+                    totalPrice,
+                    isPaid,
+                    paidAt,
+                    isDelivered,
+                    deliveredAt,
                   }) => (
                     <tr key={_id}>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center space-x-3">
-                          <div className="inline-flex w-10 h-10">
-                            <img
-                              className="w-10 h-10 object-cover rounded-full"
-                              alt="User avatar"
-                              src={image}
-                            />
-                          </div>
-                          <div>
-                            <p className="">{name}</p>
-                            <p className="text-gray-500 text-sm font-semibold tracking-wide">
-                              <span className="text-gray-500"> count:</span>{" "}
-                              {countInStock}
-                            </p>
-                          </div>
-                        </div>
+                      <td className="px-6 py-4 text-center">{_id}</td>
+                      <td className="px-6 py-4 text-center">
+                        {user && user.name}
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        {createdAt.substring(0, 10)}
+                      </td>
+                      <td className="px-6 py-4 text-center">{totalPrice} /-</td>
+                      <td className="px-6 py-4 text-center">
+                        {isPaid ? paidAt.substring(0, 10) : <p>Pending</p>}
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        {isDelivered ? (
+                          deliveredAt.substring(0, 10)
+                        ) : (
+                          <p>Pending</p>
+                        )}
                       </td>
 
-                      <td className="px-6 py-4 text-center">{price} /-</td>
-                      <td className="px-6 py-4 text-center">{category}</td>
-                      <td className="px-6 py-4 text-center">{brand}</td>
-
                       <td className="px-6 py-4 text-center">
-                        <Link
-                          className="px-1"
-                          to={`/admin/product/${_id}/edit`}
-                        >
+                        <Link className="px-1" to={`/order/${_id}`}>
                           <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded">
-                            <span className="inline-block px-1">Edit </span>
                             <span className="inline-block px-1">
                               <BiEdit />
                             </span>
                           </button>
                         </Link>
-                        <button
-                          onClick={() => {
-                            deleteHandler(_id);
-                          }}
-                          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded"
-                        >
-                          <span className="inline-block px-1">Delete</span>
-                          <span className="inline-block px-1">
-                            <AiFillDelete />
-                          </span>
-                        </button>
                       </td>
                     </tr>
                   )
