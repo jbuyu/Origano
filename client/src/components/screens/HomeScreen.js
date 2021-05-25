@@ -26,68 +26,53 @@ export const HomeScreen = ({ match }) => {
       ) : error ? (
         <ErrorMessage>{error}</ErrorMessage>
       ) : (
-        <div className="px-2">
-          <div className="bg-gray-200 rounded-full">
-            {products &&
-              products.map(
-                ({ _id, name, image, description, rating, category, alt }) => {
-                  return (
-                    // <tr
-                    //   key={_id}
-                    //   className="bg-white border-gray-200 rounded-md"
-                    // >
-                    //   <td className="px-16 py-12 flex flex-row items-center justify-center">
-                    //     <img
-                    //       className="md:h-50 md:w-50 h-14 w-14 rounded-2xl object-cover"
-                    //       src={image}
-                    //       alt={alt}
-                    //     />
-                    //   </td>
-                    //   <td>
-                    //     <span className="items-center ml-2 font-semibold">
-                    //       {name}
-                    //     </span>
-                    //   </td>
-                    //   <td className="px-16 py-4">
-                    //     <span>{description}</span>
-                    //   </td>
-                    //   <td className="px-16 py-4">{category}</td>
-                    //   <td className="px-16 py-4">
-                    //     <Rating value={rating} />
-                    //   </td>
-                    //   <td className="px-16 py-4">
-                    //     <Link to={`/product/${_id}`}>
-                    //       <button className="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black ">
-                    //         View
-                    //       </button>
-                    //     </Link>
-                    //   </td>
-                    // </tr>
-
-                    <div class="vacation-card">
+        <div className="bg-gray-100 flex flex-row flex-wrap justify-center items-center mt-4">
+          {products &&
+            products.map(
+              ({ _id, name, image, description, rating, category, alt }) => {
+                return (
+                  <div class="flex flex-col bg-white antialiased text-gray-900 p-4">
+                    <div>
                       <img
-                        class="vacation-card-image"
-                        src={image}
-                        alt="Beach in Cancun"
+                        src="https://source.unsplash.com/random/350x350"
+                        alt=" random imgee"
+                        class="w-full object-cover object-center rounded-lg shadow-md "
                       />
-                      <div class="vacation-card-info">
-                        <div>
-                          <div class="vacation-card-eyebrow">Private Villa</div>
-                          <div class="vacation-card-title">
-                            <a href="/vacations/cancun">
-                              Relaxing All-Inclusive Resort in Cancun
-                            </a>
+
+                      <div class="relative px-4 -mt-16">
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                          <div class="flex items-baseline">
+                            <span class="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
+                              New
+                            </span>
+                            <div class="ml-2 text-gray-600 uppercase text-xs font-semibold tracking-wider">
+                              2 baths &bull; 3 rooms
+                            </div>
                           </div>
-                          <div class="vacation-card-price">
-                            $299 USD per night
+
+                          <h4 class="mt-1 text-xl font-semibold uppercase leading-tight truncate">
+                            A random Title
+                          </h4>
+
+                          <div class="mt-1">
+                            $1800
+                            <span class="text-gray-600 text-sm"> /wk</span>
+                          </div>
+                          <div class="mt-4">
+                            <span class="text-teal-600 text-md font-semibold">
+                              4/5 ratings{" "}
+                            </span>
+                            <span class="text-sm text-gray-600">
+                              (based on 234 ratings)
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
-                  );
-                }
-              )}
-          </div>
+                  </div>
+                );
+              }
+            )}
         </div>
       )}
     </>
