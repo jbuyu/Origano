@@ -53,7 +53,7 @@ export const ProductScreen = ({ match, history }) => {
       });
     }
     dispatch(listProductDetails(productId));
-  }, [dispatch, match,successProductReview]);
+  }, [dispatch, match, successProductReview]);
 
   const addToCartHandler = () => {
     let selectedValue = selectedOption.value ? selectedOption.value : 1;
@@ -106,6 +106,18 @@ export const ProductScreen = ({ match, history }) => {
                     <div className="flex items-center mt-1">
                       <span className="text-gray-700 text-base mx-2">
                         {countInStock > 0 ? countInStock : "Out of Stock"}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-2">
+                    <div className="flex items-center mt-1">
+                      <span className="text-gray-700 text-base mx-2">
+                        {product.rating && (<Rating value={product.rating} />)}
+                      </span>
+                      <span>
+                        {product.numReviews && (
+                          <div> {product.numReviews} reviews </div>
+                        )}
                       </span>
                     </div>
                   </div>
