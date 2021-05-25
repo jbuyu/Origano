@@ -29,41 +29,54 @@ export const HomeScreen = ({ match }) => {
         <div className="bg-gray-50 flex flex-row flex-wrap justify-center items-center mt-4">
           {products &&
             products.map(
-              ({ _id, name, image, description, rating, category, alt }) => {
+              ({
+                _id,
+                name,
+                image,
+                numReviews,
+                rating,
+                category,
+                alt,
+                countInStock,
+                price,
+              }) => {
                 return (
-                  <div className="flex flex-col bg-white antialiased text-gray-900 p-4">
+                  <div
+                    key={_id}
+                    className="flex flex-col bg-white antialiased text-gray-900 p-4"
+                  >
                     <div>
                       <img
                         src={image}
-                        alt=" random imgee"
+                        alt={alt}
                         className="w-80 h-80 object-cover object-center rounded-lg shadow-md "
                       />
 
                       <div className="relative px-4 -mt-16">
                         <div className="bg-white p-6 rounded-lg shadow-lg">
                           <div className="flex items-baseline">
-                            <span className="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
-                              New
+                            <span className="bg-green-200 text-green-800 text-xs py-1 px-2 inline-block rounded-full  uppercase font-medium tracking-wide">
+                              {category}
                             </span>
                             <div className="ml-2 text-gray-600 uppercase text-xs font-semibold tracking-wider">
-                              2 baths &bull; 3 rooms
+                              <span className="text-red-300 p-1">
+                                {countInStock}
+                              </span>
+                              in stock
                             </div>
                           </div>
-
-                          <h4 className="mt-1 text-xl font-semibold uppercase leading-tight truncate">
-                            A random Title
+                          <h4 className="mt-1 text-xl font-medium uppercase leading-tight truncate hover:underline hover:text-gray-400 ">
+                          <Link to={`/product/${_id}`}>
+                            {name}
+                            </Link>
                           </h4>
-
-                          <div className="mt-1">
-                            $1800
-                            <span className="text-gray-600 text-sm"> /wk</span>
-                          </div>
+                          <div className="mt-1">{price} /-</div>
                           <div className="mt-4">
                             <span className="text-teal-600 text-md font-semibold">
-                              4/5 ratings{" "}
+                              <Rating value={rating} />
                             </span>
                             <span className="text-sm text-gray-600">
-                              (based on 234 ratings)
+                              (based on {numReviews} ratings)
                             </span>
                           </div>
                         </div>
