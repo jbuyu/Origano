@@ -7,7 +7,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "../ErrorMessage";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import "./Product.css";
 import Select from "react-select";
 import { format } from "date-fns";
@@ -22,7 +22,7 @@ export const ProductScreen = ({ match, history }) => {
   const dispatch = useDispatch();
   const [selectedOption, setSelectedOption] = useState(1);
 
-  const [rating, setRating] = useState(0);
+  const [ratingObject, setRatingObject] = useState(1);
   const [comment, setComment] = useState("");
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -44,19 +44,32 @@ export const ProductScreen = ({ match, history }) => {
 
   let productId = match.params.id;
   useEffect(() => {
+    if (successProductReview) {
+      alert("Review Submitted");
+      setRatingObject(0);
+      setComment("");
+      dispatch({
+        type: PRODUCT_CREATE_REVIEW_RESET,
+      });
+    }
     dispatch(listProductDetails(productId));
-  }, [dispatch, match]);
+  }, [dispatch, match,successProductReview]);
 
   const addToCartHandler = () => {
-    console.log("mam", selectedOption.value);
-
     let selectedValue = selectedOption.value ? selectedOption.value : 1;
 
     selectedOption && history.push(`/cart/${productId}?qty=${selectedValue}`);
   };
-  const submitHandler = ()=>{
-    //subm
-  }
+  const submitHandler = (e) => {
+    e.preventDefault();
+    let rating = ratingObject.value;
+    dispatch(
+      createProductReview(match.params.id, {
+        rating,
+        comment,
+      })
+    );
+  };
   return (
     <div className="min-h-full">
       {loading ? (
@@ -103,7 +116,7 @@ export const ProductScreen = ({ match, history }) => {
                     <br />
                     {countInStock && (
                       <Select
-                        className="w-2/3 mt-2"
+                        className="w-1/3 mt-2"
                         defaultValue={selectedOption}
                         onChange={setSelectedOption}
                         options={[...Array(countInStock).keys()].map(
@@ -119,7 +132,7 @@ export const ProductScreen = ({ match, history }) => {
                     <div className="flex items-center mt-6">
                       <button
                         onClick={addToCartHandler}
-                        className="px-8 mb-2  py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
+                        className="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
                       >
                         Order
                       </button>
@@ -132,14 +145,39 @@ export const ProductScreen = ({ match, history }) => {
                       Order
                     </button>
                   )}
-                 
                 </div>
                 <div className="px-4">
-                 
-                 
+                  {errorProductRevview && (
+                    <span className="p-2 bg-red-300">
+                      {errorProductRevview}
+                    </span>
+                  )}
                   {userInfo ? (
-                    <div className="flex mx-auto items-center justify-center shadow-lg mt-4  mb-4 max-w-lg">
-                      <form onSubmit={submitHandler} className="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
+                    <div className="flex mx-auto items-center justify-center shadow-lg mt-2 mb-4 max-w-lg">
+                      <form
+                        onSubmit={submitHandler}
+                        className="w-full max-w-xl bg-white rounded-lg px-4 pt-2"
+                      >
+                        <div className="mt-2">
+                          <label
+                            className="text-gray-700 text-sm"
+                            htmlFor="count"
+                          >
+                            Add Rating
+                          </label>
+                          <br />
+                          <Select
+                            className="w-1/3 mt-2"
+                            placeholder="rating"
+                            defaultValue={ratingObject}
+                            required
+                            onChange={setRatingObject}
+                            options={[...Array(5).keys()].map((count) => ({
+                              label: count + 1,
+                              value: count + 1,
+                            }))}
+                          />
+                        </div>
                         <div className="flex flex-wrap -mx-3 mb-6">
                           <h2 className="px-4 pt-3 pb-2 text-gray-800 text-lg">
                             Add a Review
@@ -149,6 +187,9 @@ export const ProductScreen = ({ match, history }) => {
                               className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-500 focus:outline-none focus:bg-white"
                               name="body"
                               placeholder="Review"
+                              onChange={(e) => {
+                                setComment(e.target.value);
+                              }}
                               required
                             ></textarea>
                           </div>
@@ -167,11 +208,15 @@ export const ProductScreen = ({ match, history }) => {
                       </form>
                     </div>
                   ) : (
-                    <span className='mt-8' >
-                      please <Link className="bg-red-300 px-2 rounded"  to="/login">Sign in</Link> to leave a review{" "}
+                    <span className="mt-8">
+                      please
+                      <Link className="bg-red-300 px-2 rounded" to="/login">
+                        Sign in
+                      </Link>
+                      to leave a review
                     </span>
                   )}
-                   {product.reviews && (
+                  {product.reviews && (
                     <div className="mt-2">
                       <label className="text-gray-700 text-sm" htmlFor="count">
                         REVIEWS
@@ -211,7 +256,6 @@ export const ProductScreen = ({ match, history }) => {
               </div>
             </div>
           </div>
-          {/* </div> */}
         </main>
       )}
     </div>
