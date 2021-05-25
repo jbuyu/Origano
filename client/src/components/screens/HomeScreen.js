@@ -6,7 +6,8 @@ import { listProducts } from "../../actions/productActions";
 import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
 import ErrorMessage from "../ErrorMessage";
-export const ProductTable = () => {
+export const HomeScreen = ({match}) => {
+  const keyword = match.params.keyword;
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
@@ -16,7 +17,7 @@ export const ProductTable = () => {
     border-color: red;
   `;
   useEffect(() => {
-    dispatch(listProducts());
+    dispatch(listProducts(keyword));
   }, [dispatch]);
   return (
     <>

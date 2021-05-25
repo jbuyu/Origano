@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Header";
-import { ProductTable } from "./components/screens/ProductTable";
+import { HomeScreen } from "./components/screens/HomeScreen";
 import { ProductScreen } from "./components/screens/ProductScreen";
 import Footer from "./components/Footer";
 import { CartScreen } from "./components/screens/CartScreen";
@@ -22,7 +22,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <Route exact path="/" component={ProductTable} />
+      <Route exact path="/" component={HomeScreen} />
       <Route exact path="/login" component={LoginScreen} />
       <Route exact path="/register" component={RegisterScreen} />
       <Route exact path="/profile" component={ProfileScreen} />
