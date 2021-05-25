@@ -27,12 +27,12 @@ import { logout } from "./userActions";
 import Axios from "axios";
 const BASE_URL = "http://localhost:4000/api/products";
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (keyword="") => async (dispatch) => {
   try {
     dispatch({
       type: PRODUCT_LIST_REQUEST,
     });
-    const { data } = await Axios.get(BASE_URL);
+    const { data } = await Axios.get(`${BASE_URL}?keyword=${keyword}`);
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,
