@@ -6,6 +6,7 @@ import { CgProfile } from "react-icons/cg";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../actions/userActions";
 import { SearchBox } from "./SearchBox";
+import { Route } from "react-router-dom";
 const Header = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
@@ -24,7 +25,7 @@ const Header = () => {
         <Link to="/">
           <img className="h-16 w-16 p-1" src={Logo} alt="logo" />
         </Link>
-      <SearchBox/>
+        <Route render={({ history }) => <SearchBox history={history} />} />
       </div>
       <label htmlFor="menu-toggle" className="cursor-pointer lg:hidden block">
         <FaBars
