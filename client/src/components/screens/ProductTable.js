@@ -87,7 +87,7 @@ export const ProductTable = () => {
                         </td>
                         <td className="px-16 py-4">
                           <Link to={`/product/${_id}`}>
-                            <button className="bg-indigo-400 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black ">
+                            <button className="bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black ">
                               View
                             </button>
                           </Link>

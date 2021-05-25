@@ -80,7 +80,7 @@ export const ProductScreen = ({ match, history }) => {
                   )}
                 </div>
                 <div className="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/2">
-                  <h3 className="text-gray-700 uppercase text-lg mt-2">
+                  <h3 className="text-gray-700 uppercase text-sm mt-2">
                     {name}
                   </h3>
                   <span className="text-gray-500 mt-3">{`Ksh. ${price}`}</span>
@@ -96,44 +96,6 @@ export const ProductScreen = ({ match, history }) => {
                       </span>
                     </div>
                   </div>
-                  {product.reviews && (
-                    <div className="mt-2">
-                      <label className="text-gray-700 text-sm" htmlFor="count">
-                        REVIEWS
-                      </label>
-                      <div className="flex mt-1">
-                        <span className="text-gray-700 text-base mx-2">
-                          {product.reviews.length === 0 ? (
-                            <span className="bg-red-200 px-2 rounded">
-                              No reviews
-                            </span>
-                          ) : (
-                            <div>
-                              {product.reviews.map((review) => (
-                                <div key={review._id}>
-                                  <p className="font-medium">{review.name}</p>
-                                  <div className="p-2">
-                                    <Rating value={review.rating} />
-                                  </div>
-                                  <p className="p-2">
-                                    {format(
-                                      new Date(review.createdAt),
-                                      "yyyy-MM-dd"
-                                    )}
-                                  </p>
-                                  <p className="text-indigo-400">
-                                    {review.comment}
-                                  </p>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <div className="px-4">
                   <div className="mt-2">
                     <label className="text-gray-700 text-sm" htmlFor="count">
                       Quantity
@@ -153,16 +115,6 @@ export const ProductScreen = ({ match, history }) => {
                       />
                     )}
                   </div>
-                  <div className="mt-2">
-                    <label className="text-gray-700 text-sm" htmlFor="count">
-                      Price
-                    </label>
-                    <div className="flex items-center mt-1">
-                      <span className="text-gray-700 text-base mx-2">
-                        {price}
-                      </span>
-                    </div>
-                  </div>
                   {countInStock > 0 ? (
                     <div className="flex items-center mt-6">
                       <button
@@ -180,12 +132,17 @@ export const ProductScreen = ({ match, history }) => {
                       Order
                     </button>
                   )}
+                 
+                </div>
+                <div className="px-4">
+                 
+                 
                   {userInfo ? (
                     <div className="flex mx-auto items-center justify-center shadow-lg mt-4  mb-4 max-w-lg">
                       <form onSubmit={submitHandler} className="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
                         <div className="flex flex-wrap -mx-3 mb-6">
                           <h2 className="px-4 pt-3 pb-2 text-gray-800 text-lg">
-                            Add a new Review
+                            Add a Review
                           </h2>
                           <div className="w-full md:w-full px-3 mb-2 mt-2">
                             <textarea
@@ -213,6 +170,42 @@ export const ProductScreen = ({ match, history }) => {
                     <span className='mt-8' >
                       please <Link className="bg-red-300 px-2 rounded"  to="/login">Sign in</Link> to leave a review{" "}
                     </span>
+                  )}
+                   {product.reviews && (
+                    <div className="mt-2">
+                      <label className="text-gray-700 text-sm" htmlFor="count">
+                        REVIEWS
+                      </label>
+                      <div className="flex mt-1">
+                        <span className="text-gray-700 text-base mx-2">
+                          {product.reviews.length === 0 ? (
+                            <span className="bg-red-200 px-2 rounded">
+                              No reviews
+                            </span>
+                          ) : (
+                            <div>
+                              {product.reviews.map((review) => (
+                                <div key={review._id}>
+                                  <p className="font-medium">{review.name}</p>
+                                  <div className="pt-2">
+                                    <Rating value={review.rating} />
+                                  </div>
+                                  <p className="pt-2">
+                                    {format(
+                                      new Date(review.createdAt),
+                                      "yyyy-MM-dd"
+                                    )}
+                                  </p>
+                                  <p className="text-indigo-400">
+                                    {review.comment}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </span>
+                      </div>
+                    </div>
                   )}
                 </div>
               </div>
