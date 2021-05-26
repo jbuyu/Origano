@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { HashLoader } from "react-spinners";
@@ -7,8 +7,8 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
 export const ProductCarousel = () => {
   const dispatch = useDispatch();
-  const productToprated = useSelector((state) => state.productToprated);
-  const { loading, error, products } = productToprated;
+  const productTopRated = useSelector((state) => state.productTopRated);
+  const { loading, error, products } = productTopRated;
   const [current, setCurrent] = useState(0);
   const length = products.length;
   const nextSlide = () => {
@@ -17,14 +17,14 @@ export const ProductCarousel = () => {
   const prevSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
-  if (!Array.isArray(products) || products.length <= 0) {
-    return null;
-  }
-
+  
   useEffect(() => {
-    dispatch(listTopProducts());
-  }, [dispatch]);
-
+      dispatch(listTopProducts());
+    }, [dispatch]);
+    
+    if (!Array.isArray(products) || products.length <= 0) {
+      return null;
+    }
   return (
     <div className="flex flex-col justify-center items-center ">
       {loading ? (
@@ -54,7 +54,7 @@ export const ProductCarousel = () => {
                 key={index}
               >
                 {index === current && (
-                  <Image
+                  <img
                     className="rounded-md"
                     src={slide.image}
                     alt={slide.alt}

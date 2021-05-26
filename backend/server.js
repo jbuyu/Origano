@@ -37,7 +37,6 @@ app.use("/api/upload", uploadRouter);
 
 app.get("/api/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID);
-  console.log("hit paypal route");
 });
 
 //error middlewares
