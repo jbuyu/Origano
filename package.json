@@ -13,8 +13,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
-    "allInstall": "yarn && cd client && yarn",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "allInstall": "yarn && cd client && yarn"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
