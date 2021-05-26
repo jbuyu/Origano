@@ -18,13 +18,15 @@ import { FiUser } from "react-icons/fi";
 import { FaUserEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { Paginate } from "../Paginate";
 
 export const ProductListScreen = ({ history, match }) => {
+  const keyword = match.params.keyword || ''
   const dispatch = useDispatch();
 
   //list
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
 
   // delete
   const productDelete = useSelector((state) => state.productDelete);
@@ -70,7 +72,7 @@ export const ProductListScreen = ({ history, match }) => {
   ]);
 
   const createProductHandler = () => {
-    dispatch(createProduct())
+    dispatch(createProduct());
   };
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure")) {
@@ -117,93 +119,102 @@ export const ProductListScreen = ({ history, match }) => {
           {error}
         </span>
       ) : (
-        <div className="flex flex-grow items-center px-4">
-          <div className=" w-full">
-            <table className="mx-auto max-w-5xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden">
-              <thead className="bg-gray-50">
-                <tr className="text-gray-600 text-left">
-                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
-                    Images
-                  </th>
-                 
-                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
-                    PRICE
-                  </th>
-                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
-                    CATEGORY
-                  </th>
-                  <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
-                    BRAND
-                  </th>
-                  <th className="font-semibold text-sm uppercase px-6 py-6 text-center">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {products.map(
-                  ({
-                    _id,
-                    name,
-                    price,
-                    category,
-                    brand,
-                    image,
-                    countInStock,
-                  }) => (
-                    <tr key={_id}>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center space-x-3">
-                          <div className="inline-flex w-10 h-10">
-                            <img
-                              className="w-10 h-10 object-cover rounded-full"
-                              alt="User avatar"
-                              src={image}
-                            />
-                          </div>
-                          <div>
-                            <p className="">{name}</p>
-                            <p className="text-gray-500 text-sm font-semibold tracking-wide">
-                              <span className="text-gray-500"> count:</span>{" "}
-                              {countInStock}
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      
-                      <td className="px-6 py-4 text-center">{price} /-</td>
-                      <td className="px-6 py-4 text-center">{category}</td>
-                      <td className="px-6 py-4 text-center">{brand}</td>
+        <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-grow items-center px-4">
+            <div className=" w-full">
+              <table className="mx-auto max-w-5xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden">
+                <thead className="bg-gray-50">
+                  <tr className="text-gray-600 text-left">
+                    <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
+                      Images
+                    </th>
 
-                      <td className="px-6 py-4 text-center">
-                        <Link
-                          className="px-1"
-                          to={`/admin/product/${_id}/edit`}
-                        >
-                          <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded">
-                            <span className="inline-block px-1">Edit </span>
+                    <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
+                      PRICE
+                    </th>
+                    <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
+                      CATEGORY
+                    </th>
+                    <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
+                      BRAND
+                    </th>
+                    <th className="font-semibold text-sm uppercase px-6 py-6 text-center">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {products.map(
+                    ({
+                      _id,
+                      name,
+                      price,
+                      category,
+                      brand,
+                      image,
+                      countInStock,
+                    }) => (
+                      <tr key={_id}>
+                        <td className="px-6 py-4">
+                          <div className="flex items-center space-x-3">
+                            <div className="inline-flex w-10 h-10">
+                              <img
+                                className="w-10 h-10 object-cover rounded-full"
+                                alt="User avatar"
+                                src={image}
+                              />
+                            </div>
+                            <div>
+                              <p className="">{name}</p>
+                              <p className="text-gray-500 text-sm font-semibold tracking-wide">
+                                <span className="text-gray-500"> count:</span>{" "}
+                                {countInStock}
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td className="px-6 py-4 text-center">{price} /-</td>
+                        <td className="px-6 py-4 text-center">{category}</td>
+                        <td className="px-6 py-4 text-center">{brand}</td>
+
+                        <td className="px-6 py-4 text-center">
+                          <Link
+                            className="px-1"
+                            to={`/admin/product/${_id}/edit`}
+                          >
+                            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded">
+                              <span className="inline-block px-1">Edit </span>
+                              <span className="inline-block px-1">
+                                <BiEdit />
+                              </span>
+                            </button>
+                          </Link>
+                          <button
+                            onClick={() => {
+                              deleteHandler(_id);
+                            }}
+                            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded"
+                          >
+                            <span className="inline-block px-1">Delete</span>
                             <span className="inline-block px-1">
-                              <BiEdit />
+                              <AiFillDelete />
                             </span>
                           </button>
-                        </Link>
-                        <button
-                          onClick={() => {
-                            deleteHandler(_id);
-                          }}
-                          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded"
-                        >
-                          <span className="inline-block px-1">Delete</span>
-                          <span className="inline-block px-1">
-                            <AiFillDelete />
-                          </span>
-                        </button>
-                      </td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-            </table>
+                        </td>
+                      </tr>
+                    )
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="mt-8">
+            <Paginate
+              pages={pages}
+              page={page}
+              keyword={keyword ? keyword : ""}
+            />
           </div>
         </div>
       )}
