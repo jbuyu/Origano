@@ -14,15 +14,14 @@ import { HashLoader } from "react-spinners";
 
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
-import { FiUser } from "react-icons/fi";
-import { FaUserEdit } from "react-icons/fa";
+
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Paginate } from "../Paginate";
 
 export const ProductListScreen = ({ history, match }) => {
-  const keyword = match.params.keyword || ''
   const dispatch = useDispatch();
+  const pageNumber = match.params.pageNumber || 1
 
   //list
   const productList = useSelector((state) => state.productList);
@@ -60,7 +59,7 @@ export const ProductListScreen = ({ history, match }) => {
     if (successCreate) {
       history.push(`/admin/product/${createdProduct._id}/edit`);
     } else {
-      dispatch(listProducts());
+      dispatch(listProducts("", pageNumber));
     }
   }, [
     dispatch,
@@ -69,6 +68,7 @@ export const ProductListScreen = ({ history, match }) => {
     successDelete,
     successCreate,
     createProduct,
+    pageNumber
   ]);
 
   const createProductHandler = () => {
@@ -204,7 +204,7 @@ export const ProductListScreen = ({ history, match }) => {
                         </td>
                       </tr>
                     )
-                  )}
+                  )} 
                 </tbody>
               </table>
             </div>
@@ -213,7 +213,7 @@ export const ProductListScreen = ({ history, match }) => {
             <Paginate
               pages={pages}
               page={page}
-              keyword={keyword ? keyword : ""}
+              isAdmin={true}
             />
           </div>
         </div>

@@ -11,6 +11,7 @@ import { FiUser } from "react-icons/fi";
 import { FaUserEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { Paginate } from "../Paginate";
 
 export const UserListScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ export const UserListScreen = ({ history }) => {
           {error}
         </span>
       ) : (
-        <div className="flex flex-grow items-center px-4">
+        <div className="flex flex-col justify-center items-center px-2">
           <div className=" w-full">
             <table className="mx-auto max-w-5xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden">
               <thead className="bg-gray-50">
@@ -108,6 +109,13 @@ export const UserListScreen = ({ history }) => {
               </tbody>
             </table>
           </div>
+          {/* <div className="mt-8">
+            <Paginate
+              pages={pages}
+              page={page}
+              keyword={keyword ? keyword : ""}
+            />
+          </div> */}
         </div>
       )}
     </>
