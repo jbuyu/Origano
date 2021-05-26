@@ -6,7 +6,7 @@ export const Paginate = ({ pages, page, isAdmin = false, keyword = "" }) => {
     pages > 1 && (
       <ul className="flex">
         {[...Array(pages).keys()].map((x) => (
-          <li className="mx-1 px-4 py-2 bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-gray-200 rounded-lg">
+          <li className="mx-1 px-4 py-2 bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-gray-200 rounded-lg cursor-pointer">
             <Link
               className="font-bold"
               key={x + 1}
