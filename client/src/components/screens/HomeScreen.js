@@ -7,6 +7,8 @@ import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
 import ErrorMessage from "../ErrorMessage";
 export const HomeScreen = ({ match }) => {
+
+  const pageNumber = match.params.pageNumber || 1
   const keyword = match.params.keyword;
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
@@ -17,8 +19,8 @@ export const HomeScreen = ({ match }) => {
     border-color: red;
   `;
   useEffect(() => {
-    dispatch(listProducts(keyword));
-  }, [dispatch, keyword]);
+    dispatch(listProducts(keyword, pageNumber));
+  }, [dispatch, keyword, pageNumber]);
   return (
     <>
       {loading ? (

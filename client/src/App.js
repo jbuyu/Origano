@@ -22,7 +22,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <Route exact path="/" component={HomeScreen} />
+      <Route exact path="/" component={HomeScreen} exact />
       <Route exact path="/login" component={LoginScreen} />
       <Route exact path="/register" component={RegisterScreen} />
       <Route exact path="/profile" component={ProfileScreen} />
@@ -37,7 +37,9 @@ function App() {
       <Route path="/admin/productList" component={ProductListScreen} />
       <Route path="/admin/orderList" component={OrderListScreen} />
       <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
-      <Route path="/search/:keyword" component={HomeScreen } />
+      <Route path="/search/:keyword" component={HomeScreen} />
+      <Route path="/page/:pageNumber" component={HomeScreen} exact />
+      <Route path="/search/:keyword/page/:pageNumber" component={HomeScreen} exact />
       <Footer />
     </Router>
   );
