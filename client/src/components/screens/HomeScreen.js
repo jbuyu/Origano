@@ -8,6 +8,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import ErrorMessage from "../ErrorMessage";
 import { Paginate } from "../Paginate";
 import { ProductCarousel } from "../ProductCarousel";
+import { Meta } from "../Meta";
 export const HomeScreen = ({ match }) => {
 
   const pageNumber = match.params.pageNumber || 1
@@ -25,9 +26,10 @@ export const HomeScreen = ({ match }) => {
   }, [dispatch, keyword, pageNumber]);
   return (
     <>
-    {
+    <Meta/>
+    {/* {
       !keyword && <ProductCarousel/>
-    }
+    } */}
     <div className="flex flex-col justify-center items-center" >
       {loading ? (
         <ClipLoader css={override} size={250} />
