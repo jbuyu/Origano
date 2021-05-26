@@ -17,6 +17,7 @@ import {
   createProductReview,
 } from "../../actions/productActions";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
+import { Meta } from "../Meta";
 
 export const ProductScreen = ({ match, history }) => {
   const dispatch = useDispatch();
@@ -77,6 +78,8 @@ export const ProductScreen = ({ match, history }) => {
       ) : error ? (
         <ErrorMessage>{error}</ErrorMessage>
       ) : (
+        <>
+        <Meta title={product.name} />
         <main className="my-2">
           <div className="container mx-auto px-6">
             <div className="md:flex md:items-center">
@@ -269,6 +272,7 @@ export const ProductScreen = ({ match, history }) => {
             </div>
           </div>
         </main>
+        </>
       )}
     </div>
   );

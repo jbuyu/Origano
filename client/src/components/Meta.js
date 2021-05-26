@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Helmet} from 'react-helmet'
 export const Meta = ({ title, description, keywords }) => {
   return (
     <Helmet>
@@ -11,7 +11,7 @@ export const Meta = ({ title, description, keywords }) => {
 };
 
 Meta.defaultProps = {
-  title: "Welcome To Origano",
+  title: "Welcome to Origano | Home",
   description: "Your one stop shop for organic marcantile produce",
   keywords: "organic, farm produce, healthy",
 };
