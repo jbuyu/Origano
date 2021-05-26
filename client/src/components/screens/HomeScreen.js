@@ -6,13 +6,14 @@ import { listProducts } from "../../actions/productActions";
 import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
 import ErrorMessage from "../ErrorMessage";
+import { Paginate } from "../Paginate";
 export const HomeScreen = ({ match }) => {
 
   const pageNumber = match.params.pageNumber || 1
   const keyword = match.params.keyword;
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
   const override = css`
     display: block;
     margin: 0 auto;
@@ -22,12 +23,13 @@ export const HomeScreen = ({ match }) => {
     dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
   return (
-    <>
+    <div className="flex flex-col justify-center items-center" >
       {loading ? (
         <ClipLoader css={override} size={250} />
       ) : error ? (
         <ErrorMessage>{error}</ErrorMessage>
       ) : (
+        <>
         <div className="bg-gray-50 flex flex-row flex-wrap justify-center items-center mt-4">
           {products &&
             products.map(
@@ -89,7 +91,12 @@ export const HomeScreen = ({ match }) => {
               }
             )}
         </div>
+        <div className="mt-8" >
+
+        <Paginate  pages={pages} page={page} keyword={keyword ? keyword: ''} />
+        </div>
+        </>
       )}
-    </>
+    </div>
   );
 };
