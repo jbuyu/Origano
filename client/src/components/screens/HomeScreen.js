@@ -7,6 +7,7 @@ import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
 import ErrorMessage from "../ErrorMessage";
 import { Paginate } from "../Paginate";
+import { ProductCarousel } from "../ProductCarousel";
 export const HomeScreen = ({ match }) => {
 
   const pageNumber = match.params.pageNumber || 1
@@ -23,6 +24,10 @@ export const HomeScreen = ({ match }) => {
     dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
   return (
+    <>
+    {
+      !keyword && <ProductCarousel/>
+    }
     <div className="flex flex-col justify-center items-center" >
       {loading ? (
         <ClipLoader css={override} size={250} />
@@ -98,5 +103,6 @@ export const HomeScreen = ({ match }) => {
         </>
       )}
     </div>
+    </>
   );
 };
