@@ -25,7 +25,8 @@ import { logout } from "./userActions";
 
 // import { CART_ADD_ITEM, REMOVE_CART_ITEM } from "../constants/cartConstants";
 import Axios from "axios";
-const BASE_URL = "http://localhost:4000/api/products";
+import BASE_URL from "../api";
+
 
 export const listProducts =
   (keyword = "", pageNumber = "") =>

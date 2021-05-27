@@ -28,7 +28,13 @@ import {
 
 import { ORDER_LIST_MY_RESET } from "../constants/orderConstants";
 
-const BASE_URL = "http://localhost:4000";
+let BASE_URL;
+if (process.env.NODE_ENV === "development") {
+  BASE_URL = "http://localhost:4000";
+} else {
+  BASE_URL = "https://protomania.herokuapp.com";
+}
+
 
 export const login = (email, password) => async (dispatch) => {
   console.log(email, password);
