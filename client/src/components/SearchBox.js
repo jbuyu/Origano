@@ -12,17 +12,17 @@ export const SearchBox = ({ history }) => {
     }
   };
   return (
-    <form onSubmit={submitHandler} className="flex relative mr-6 my-2">
+    <form onSubmit={submitHandler} className="flex relative m-4 my-1">
       <input
         type="search"
-        className="bg-purple-white shadow rounded border-0 p-3"
+        className="bg-purple-white shadow rounded border-0 p-2 w-3/5 "
         placeholder="Search product..."
         name="q"
         onChange={(e) => setKeyword(e.target.value)}
       />
       <button
         type="submit"
-        className="bg-indigo-500 text-white px-3 ml-4 rounded font-semibold"
+        className="bg-indigo-500 text-white px-3 ml-2 rounded font-semibold"
       >
         Search
       </button>

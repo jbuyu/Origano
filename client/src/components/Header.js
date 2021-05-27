@@ -23,6 +23,7 @@ const Header = () => {
       <div className="flex-1 flex justify-between items-center">
         <Link to="/">
           <img className="h-16 w-16 p-1" src={Logo} alt="logo" />
+          organa
         </Link>
         <Route render={({ history }) => <SearchBox history={history} />} />
       </div>
