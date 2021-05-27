@@ -11,7 +11,7 @@ body{
   width:auto;
 }
 header, footer{
-  min-width: 1152px
+  /* min-width: 1152px */
 }
 .add-product{
   min-width:1152px;

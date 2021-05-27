@@ -20,7 +20,6 @@ const Header = () => {
   };
   return (
     <header className=" lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2 w-auto ">
-      {/* <div className="w-screen flex flex-row justify-between "> */}
       <div className="flex-1 flex justify-between items-center">
         <Link to="/">
           <img className="h-16 w-16 p-1" src={Logo} alt="logo" />
@@ -33,8 +32,7 @@ const Header = () => {
           onClick={btnClick}
         />
       </label>
-      {/* </div> */}
-      {/* <input className="" type="checkbox" id="menu-toggle" /> */}
+      <input className="hidden" type="checkbox" id="menu-toggle" />
       <div
         className="hidden lg:flex lg:items-center lg:w-auto w-full"
         id="menu"
