@@ -8,7 +8,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 export const CartScreen = ({ match, history, location }) => {
   const productID = match.params.id;
-  console.log(productID)
+  console.log(productID);
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
 
   let dispatch = useDispatch();
@@ -34,10 +34,20 @@ export const CartScreen = ({ match, history, location }) => {
   }, []);
   return (
     <div className="container mx-auto mt-10">
-      <div className="flex shadow-md my-10">
-        <div className="w-full bg-white px-10 py-10">
-          <div className="flex justify-between border-b pb-8">
+      <Link to="/" className="flex font-semibold text-indigo-600 text-sm px-2">
+        <svg
+          className="fill-current mr-2 text-indigo-600 w-4"
+          viewBox="0 0 448 512"
+        >
+          <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
+        </svg>
+        Continue Shopping
+      </Link>
+      <div className="flex flex-col md:flex-row shadow-md my-2">
+        <div className="w-full bg-white px-8 py-6">
+          <div className="flex justify-between border-b pb-4">
             <h1 className="font-semibold text-2xl">Shopping Cart</h1>
+
             <div className="flex flex-col">
               <h2 className="font-semibold text-lg">
                 {cartItems &&
@@ -57,7 +67,7 @@ export const CartScreen = ({ match, history, location }) => {
           <table className="w-full">
             <thead className="flex mt-10 mb-5">
               <tr className="py-2 flex w-3/5 content-center">
-                <th className="font-semibold text-gray-600 text-center  uppercase w-3/5 text-xs py-4 ">
+                <th className="hidden md:block font-semibold text-gray-600 text-center  uppercase w-3/5 text-xs py-4 ">
                   Product Details
                 </th>
                 <th className="font-semibold  text-gray-600  uppercase w-2/5 text-left text-xs  py-4">
@@ -88,7 +98,7 @@ export const CartScreen = ({ match, history, location }) => {
                       className="flex items-center hover:bg-gray-100 -mx-8 px-4 py-5 w-3/5"
                     >
                       <td className="flex font-semibold text-gray-600 text-center w-3/5  py-4">
-                        <div className="w-20">
+                        <div className="w-20 hidden md:block">
                           <img
                             className="h-16 w-16 rounded-xl"
                             src={image}
@@ -123,7 +133,7 @@ export const CartScreen = ({ match, history, location }) => {
                             dispatch(addToCart(product, Number(e.target.value)))
                           }
                         />
-                        <div className="text-xs text-gray-400 text-center py-2">
+                        <div className=" hidden md:block text-xs text-gray-400 text-center py-2">
                           {countInStock}
                         </div>
                         {/* <Select
@@ -154,20 +164,8 @@ export const CartScreen = ({ match, history, location }) => {
               )}
             </tbody>
           </table>
-          <Link
-            to="/"
-            className="flex font-semibold text-indigo-600 text-sm mt-10"
-          >
-            <svg
-              className="fill-current mr-2 text-indigo-600 w-4"
-              viewBox="0 0 448 512"
-            >
-              <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
-            </svg>
-            Continue Shopping
-          </Link>
         </div>
-        <div id="summary" className="w-1/4 px-8 py-10">
+        <div id="summary" className="w-full md:w-1/4 mr-3 py-10 px-4">
           <h1 className="font-semibold text-2xl border-b pb-8">
             Order Summary
           </h1>
@@ -181,7 +179,7 @@ export const CartScreen = ({ match, history, location }) => {
                 .toFixed(2)}
             </span>
           </div>
-         
+
           <div className="border-t mt-8">
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span className="font-semibold text-sm ml-auto">
@@ -194,7 +192,7 @@ export const CartScreen = ({ match, history, location }) => {
             {cartItems.length > 0 && (
               <button
                 onClick={checkoutButton}
-                className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+                className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase rounded w-1/2"
               >
                 Checkout
               </button>

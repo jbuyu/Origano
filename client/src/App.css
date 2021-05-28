@@ -9,6 +9,7 @@ body{
   margin:0;
   box-sizing:border-box;
   width:auto;
+  min-height:full;
 }
 header, footer{
   /* min-width: 1152px */
