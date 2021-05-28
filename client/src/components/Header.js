@@ -23,7 +23,6 @@ const Header = () => {
       <div className="flex-1 flex justify-between items-center">
         <Link to="/">
           <img className="h-16 w-16 p-1" src={Logo} alt="logo" />
-          organa
         </Link>
         <Route render={({ history }) => <SearchBox history={history} />} />
       </div>
@@ -38,8 +37,8 @@ const Header = () => {
         className="hidden lg:flex lg:items-center lg:w-auto w-full"
         id="menu"
       >
-        <nav>
-          <ul className="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
+        <nav className="flex justify-end">
+          <ul className="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0 ">
             <li>
               <Link
                 className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400"
@@ -53,7 +52,7 @@ const Header = () => {
             </li>
             {userInfo && !userInfo.isAdmin ? (
               <div>
-                <div className="py-10">
+                <div className="">
                   <div className="dropdown inline-block relative">
                     <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-6 rounded inline-flex items-center">
                       <span className="mr-1 flex flex-row items-center justify-between">
@@ -97,7 +96,7 @@ const Header = () => {
               </div>
             ) : userInfo && userInfo.isAdmin ? (
               <div>
-                <div className="py-10">
+                <div className="">
                   <div className="dropdown inline-block relative">
                     <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-6 rounded inline-flex items-center">
                       <span className="mr-1 flex flex-row items-center justify-between">
