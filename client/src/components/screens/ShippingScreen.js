@@ -28,12 +28,14 @@ export const ShippingScreen = ({ history }) => {
 
   return (
     <div className="flex flex-row justify-center align-middle">
-      <div id="summary" className=" w-1/3 px-8 py-10 ">
-        <div className="flex flex-row w-full justify-center" >
-        <CheckoutStages step1 step2 />
+      <div id="summary" className="w-full md:w-1/3 px-8 py-10 ">
+        <div className="flex flex-row w-full justify-center">
+          <CheckoutStages step1 step2 />
         </div>
         <div className="flex flex-row justify-center align-middle">
-          <h1 className="mt-4 font-semibold text-2xl border-b pb-6">Shipping</h1>
+          <h1 className="mt-4 font-semibold text-2xl border-b pb-6">
+            Shipping
+          </h1>
         </div>
         <form onSubmit={submitHandler}>
           <div className="flex justify-between mt-10 mb-5">
@@ -41,7 +43,7 @@ export const ShippingScreen = ({ history }) => {
               Items {cartItems.reduce((acc, item) => acc + item.qty, 0)}
             </span>
             <span className="font-semibold text-sm">
-              ${" "}
+              $
               {cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}

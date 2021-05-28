@@ -32,7 +32,7 @@ export const PlaceOrderScreen = ({ history }) => {
         totalPrice: cart.totalPrice,
       })
     );
-    console.log('created order');
+    console.log("created order");
   };
 
   //price calcs
@@ -52,8 +52,7 @@ export const PlaceOrderScreen = ({ history }) => {
   ).toFixed(2);
   console.log(cart.taxPrice);
   return (
-    <div className="flex flex-row justify-center m-4">
-      <div className="flex flex-col mt-4 ">
+      <div className="flex flex-col mt-4 p-4">
         <CheckoutStages step1 step2 step3 step4 />
         <div>
           <h2 className="mt-4 mb-4 border-b border-black text-lg text-indigo-600 ">
@@ -81,16 +80,16 @@ export const PlaceOrderScreen = ({ history }) => {
           <h2 className="mt-4 mb-4 border-b border-black text-lg text-indigo-600 ">
             Order Items
           </h2>
-          <div className="flex flex-row divide-x divide-black">
-            <span className="flex w-3/5 mr-2">
+          <div className="flex flex-col md:flex-row md:divide-x md:divide-black">
+            {/* <span className="flex w-3/5 mr-2">
               {cart.cartItems.length === 0 ? (
                 <span> Cart is empty</span>
               ) : (
                 <ul>
                   {cart.cartItems.map((item, index) => (
                     <li key={index}>
-                      <div className="flex flex-row ">
-                        <div className=" flex flex-col w-1/3 h-32 mr-auto">
+                      <div className="w-1/2 md:w-full flex flex-row">
+                        <div className=" flex flex-col w-full md:w-1/3 h-24 mr-auto">
                           <img
                             className="h-3/5 w-1/5 object-cover mx-auto rounded-lg"
                             src={item.image}
@@ -117,10 +116,76 @@ export const PlaceOrderScreen = ({ history }) => {
                   ))}
                 </ul>
               )}
-            </span>
-
-            <span className="w-2/5">
-              <div id="summary" className="w-3/4 px-8 py-10 ml-1 ">
+            </span> */}
+            <table class="divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th
+                    scope="col"
+                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Name
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Title
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Status
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Role
+                  </th>
+                  <th scope="col" class="relative px-4 py-3">
+                    <span class="sr-only">Edit</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                  <td class="px-4 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 h-10 w-10">
+                        <img
+                          class="h-10 w-10 rounded-full"
+                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
+                          alt=""
+                        />
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">
+                          Jane Cooper
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-4 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">
+                      Regional
+                    </div>
+                  </td>
+                  <td class="px-4 py-4 whitespace-nowrap">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                      Active
+                    </span>
+                  </td>
+                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                    Admin
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <span className="w-full">
+              <div id="summary" className="w-full px-8 py-10 ml-1 ">
                 <h1 className="font-semibold text-2xl border-b pb-8">
                   Order Summary
                 </h1>
@@ -149,7 +214,7 @@ export const PlaceOrderScreen = ({ history }) => {
 
                 <div className="border-t mt-8">
                   <div className="flex font-semibold justify-between py-6 text-sm uppercase">
-                    <span >Total cost</span>
+                    <span>Total cost</span>
                     <span className="font-semibold text-sm">
                       {cart.totalPrice}
                       /-
@@ -176,6 +241,5 @@ export const PlaceOrderScreen = ({ history }) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
