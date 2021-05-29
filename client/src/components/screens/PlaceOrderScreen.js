@@ -154,7 +154,8 @@ export const PlaceOrderScreen = ({ history }) => {
               )}
             </tbody>
           </table>
-          <span className="w-full">
+
+          <span className="w-full md:w-1/2">
             <div id="summary" className="w-full px-8 py-10 ml-1 ">
               <h1 className="font-semibold text-2xl border-b pb-8">
                 Order Summary
@@ -197,7 +198,7 @@ export const PlaceOrderScreen = ({ history }) => {
                   {cartItems.length > 0 && (
                     <button
                       onClick={placerderButton}
-                      className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-3/5 rounded-md focus:outline-none border-none "
+                      className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-3/5 rounded-md focus:outline-none border-none md:w-1/3 "
                     >
                       Order
                     </button>

@@ -51,8 +51,8 @@ export const OrderScreen = ({ match, history }) => {
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    if(!userInfo){
-      history.push('/login')
+    if (!userInfo) {
+      history.push("/login");
     }
     const BASE_URL = "http://localhost:4000";
     const addPayPalScript = async () => {
@@ -114,7 +114,7 @@ export const OrderScreen = ({ match, history }) => {
   ) : error ? (
     <span className="bg-red-300 rounded-md p-2">{error}</span>
   ) : (
-    <div className="flex flex-row justify-center m-4">
+    <div className=" justify-center p-4">
       <div className="flex flex-col mt-4 ">
         <div>
           <h2 className="mt-4 mb-4 border-b border-black text-lg text-indigo-600 ">
@@ -140,10 +140,9 @@ export const OrderScreen = ({ match, history }) => {
             <strong className="p-2">Delivery status :</strong>
             {order.isDelivered ? (
               <span className=" text-md bg-green-400 px-2 rounded-md">
-                Delivered on 
-                <span className="p-2" >
-
-                 {format(new Date(order.deliveredAt), "yyyy-MM-dd")}
+                Delivered on
+                <span className="p-2">
+                  {format(new Date(order.deliveredAt), "yyyy-MM-dd")}
                 </span>
               </span>
             ) : (
@@ -182,26 +181,59 @@ export const OrderScreen = ({ match, history }) => {
           <h2 className="mt-4 mb-4 border-b border-black text-lg text-indigo-600 ">
             Order Items
           </h2>
-          <div className="flex flex-row divide-x divide-black">
-            <span className="flex w-3/5 mr-2">
-              {order.orderItems.length === 0 ? (
-                <span> Cart is empty</span>
-              ) : (
-                <ul>
-                  {order.orderItems.map((item, index) => (
-                    <li key={index}>
-                      <div className="flex flex-row ">
-                        <div className=" flex flex-col w-1/3 h-32 mr-auto">
-                          <img
-                            className="h-3/5 w-1/5 object-cover mx-auto rounded-lg"
-                            src={item.image}
-                            alt={item.name}
-                          />
+          <div className="flex flex-col md:flex-row divide-x divide-black">
+          <span className="flex w-1/2 mr-2">
+
+            <table className="divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Details
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Name
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Price
+                  </th>
+                  <th scope="col" className="relative px-4 py-3">
+                    <span className="sr-only">Edit</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {order.orderItems.length === 0 ? (
+                  <span>Cart is Empty</span>
+                ) : (
+                  order.orderItems.map((item, index) => (
+                    <tr key={index}>
+                      <td className="px-4 py-4 whitespace-nowrap">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0 h-10 w-10">
+                            <img
+                              className="h-10 w-10 rounded-full"
+                              src={item.image}
+                              alt={item.name}
+                            />
+                          </div>
+                          <div className="ml-4">
+                            <div className="text-sm font-medium text-gray-900">
+                              {item.quantity}
+                            </div>
+                          </div>
                         </div>
-                        <div className="flex flex-col justify-center float-left mr-auto text-md text-red-500">
-                          {item.qty}
-                        </div>
-                        <div className=" flex flex-col justify-center align-middle items-center">
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap">
+                        <div className="text-sm text-gray-900">
                           <Link
                             to={`/product/${item.product}`}
                             className="hover:text-indigo-600"
@@ -209,18 +241,20 @@ export const OrderScreen = ({ match, history }) => {
                             {item.name}
                           </Link>
                         </div>
-                        <div className="flex flex-col justify-center float-left ml-auto ">
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap">
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                           {item.qty} x {item.price}/- = Ksh.
                           {item.qty * item.price}
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              )}
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
             </span>
-
-            <span className="w-2/5">
+            <span className="w-screen md:w-2/5">
               <div id="summary" className="w-3/4 px-8 py-10 ml-1 ">
                 <h1 className="font-semibold text-2xl border-b pb-8">
                   Order Summary
@@ -277,15 +311,18 @@ export const OrderScreen = ({ match, history }) => {
                       </span>
                     )}
                     {/* delivering order */}
-                    {loadingDeliver && <SyncLoader/>}
-                    { userInfo &&  userInfo.isAdmin && order.isPaid && !order.isDelivered && (
-                      <button
-                        onClick={deliverHandler}
-                        className=" bg-green-500 active:bg-green-700 flex ml-auto py-2 px-4 text-white font-bold rounded-md mb-2"
-                      >
-                        mark as Delivered
-                      </button>
-                    )}
+                    {loadingDeliver && <SyncLoader />}
+                    {userInfo &&
+                      userInfo.isAdmin &&
+                      order.isPaid &&
+                      !order.isDelivered && (
+                        <button
+                          onClick={deliverHandler}
+                          className=" bg-green-500 active:bg-green-700 flex ml-auto py-2 px-4 text-white font-bold rounded-md mb-2"
+                        >
+                          mark as Delivered
+                        </button>
+                      )}
                   </div>
                 </div>
               </div>
