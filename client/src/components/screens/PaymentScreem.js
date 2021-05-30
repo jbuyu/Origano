@@ -58,7 +58,7 @@ export const PaymentScreen = ({ history }) => {
                     <img className="h-9 w-9" src={PaypalSvg} alt="logo" />
                   </span>
                 </label>
-                <label className="inline-flex items-center md:ml-6">
+                {/* <label className="inline-flex items-center md:ml-6">
                   <input
                     type="radio"
                     className="form-radio cursor-pointer"
@@ -72,7 +72,7 @@ export const PaymentScreen = ({ history }) => {
                   <span className="ml-2">
                     <img className="h-16 w-16 p-1" src={MpesaSvg} alt="logo" />
                   </span>
-                </label>
+                </label> */}
               </div>
               <div className="flex flex-row justify-center align-middle">
                 <button
