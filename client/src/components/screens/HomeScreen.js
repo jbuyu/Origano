@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import Rating from "../Rating";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -63,7 +65,7 @@ export const HomeScreen = ({ match }) => {
                         className="flex flex-col bg-white antialiased text-gray-900 p-4"
                       >
                         <div>
-                          <img
+                          <LazyLoadImage
                           loading="lazy"
                             src={image}
                             alt={alt}
