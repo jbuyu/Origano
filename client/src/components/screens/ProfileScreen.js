@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { FcCheckmark } from "react-icons/fc";
 import { GiCrossMark } from "react-icons/gi";
@@ -65,10 +65,10 @@ export const ProfileScreen = ({ location, history }) => {
     //submit
   };
   return (
-    <div className="flex flex-row justify-center">
-      <div className="flex flex-col lg:w-1/2 xl:max-w-screen-sm">
+    <div className="flex flex-col sm:flex-row justify-center h-screen">
+      <div className="flex justify-center">
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
+        <div className="mt-10 px-6 sm:px-12 md:px-24 lg:px-6 lg:mt-8 xl:px-12 xl:max-w-2xl">
           <div className="mt-12">
             <div className="mt-2 flex flex-row justify-center items-center ">
               {message && (
@@ -146,7 +146,7 @@ export const ProfileScreen = ({ location, history }) => {
                 />
               </div>
 
-              <div className="m-10">
+              <div className="my-10">
                 <button
                   onClick={submitHandler}
                   className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg"
@@ -161,81 +161,86 @@ export const ProfileScreen = ({ location, history }) => {
           </div>
         </div>
       </div>
-      <div className=" flex flex-col items-center ">
-        <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
-          {loadingOrders ? (
-            <PropagateLoader />
-          ) : errorOrders ? (
-            <span className="p-4">{errorOrders}</span>
-          ) : (
-            // orders.map(order=>(
-            //   <span key={order._id} >{order.paymentMethod}</span>
-            // ))
-            <div className="min-h-screen flex items-center px-4">
-              <div className=" w-full">
-                <table className="mx-auto max-w-5xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden">
-                  <thead className="bg-gray-50">
-                    <tr className="text-gray-600 text-left">
-                      <th className="font-semibold text-sm uppercase px-6 py-4">
+      <div className=" flex flex-col items-center sm:p-16">
+        {/* <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl"> */}
+        {loadingOrders ? (
+          <PropagateLoader />
+        ) : errorOrders ? (
+          <span className="p-4">{errorOrders}</span>
+        ) : (
+          // orders.map(order=>(
+          //   <span key={order._id} >{order.paymentMethod}</span>
+          // ))
+          <div className="flex items-center">
+            <div className="w-full">
+              <table className="mx-auto max-w-3xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-auto mb-16">
+                <thead className="bg-gray-50">
+                  <tr className="text-gray-600 text-left">
+                    {/* <th className="font-semibold text-sm uppercase px-6 py-4">
                         ID
-                      </th>
-                      <th className="font-semibold text-sm uppercase px-6 py-4">
-                        DATE
-                      </th>
-                      <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
-                        TOTAL
-                      </th>
-                      <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
-                        PAID
-                      </th>
-                      <th className="font-semibold text-sm uppercase px-6 py-4">
-                        DELIVERED
-                      </th>
-                      <th className="font-semibold text-sm uppercase px-6 py-4"></th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {orders.map(
-                      ({ _id, createdAt, isPaid, isDelivered, totalPrice }) => (
-                        <tr key={_id}>
-                          <td className="px-6 py-4">
+                      </th> */}
+                    {/* <th className="font-semibold text-sm uppercase px-6 py-4">
+                      DATE
+                    </th> */}
+                    <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
+                      TOTAL
+                    </th>
+                    <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
+                      PAID
+                    </th>
+                    {/* <th className="font-semibold text-sm uppercase px-6 py-4 text-center">
+                      DETAILS
+                    </th> */}
+                    <th className="font-semibold text-sm uppercase px-6 py-4">
+                      DELIVERED
+                    </th>
+                    <th className="font-semibold text-sm uppercase px-6 py-4"></th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {orders.map(
+                    ({ _id, createdAt, isPaid, isDelivered, totalPrice }) => (
+                      <tr key={_id}>
+                        {/* <td className="px-6 py-4">
                             <p className="">{_id}</p>
-                          </td>
-                          <td className="px-6 py-4 text-center">
-                            {format(new Date(createdAt), "yyyy-MM-dd")}
-                          </td>
-                          <td className="px-6 py-4 text-center">
-                            {totalPrice} /-
-                          </td>
+                          </td> */}
+                        {/* <td className="px-6 py-4 text-center">
+                          {format(new Date(createdAt), "yyyy-MM-dd")}
+                        </td> */}
+                        <td className="px-6 py-4 text-center">
+                          {totalPrice} /-
+                        </td>
 
-                          <td className="px-6 py-4 text-center">
-                            {isPaid ? (
-                              <span className="text-green-800 bg-green-200 font-semibold px-2 rounded-full">
-                                Paid
-                              </span>
-                            ) : (
-                              <span className="text-gray-700 bg-red-400 font-semibold px-2 rounded-full">
-                                Due
-                              </span>
-                            )}
-                          </td>
-                          <td className=" flex items-center justify-center px-6 py-4 text-center">
-                            {isDelivered ? <FcCheckmark /> : <GiCrossMark />}
-                          </td>
-                          <td className="px-6 py-4 text-center">
-                            <Link to = "/details" >
-                            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" >Details</button>
-                            </Link>
-                          </td>
-                        </tr>
-                      )
-                    )}
-                  </tbody>
-                </table>
-              </div>
+                        <td className="px-6 py-4 text-center">
+                          {isPaid ? (
+                            <span className="text-green-800 bg-green-200 font-semibold px-2 rounded-full">
+                              Paid
+                            </span>
+                          ) : (
+                            <span className="text-gray-700 bg-red-400 font-semibold px-2 rounded-full">
+                              Due
+                            </span>
+                          )}
+                        </td>
+                        <td className=" flex items-center justify-center px-6 py-4 text-center">
+                          {isDelivered ? <FcCheckmark /> : <GiCrossMark />}
+                        </td>
+                        {/* <td className="px-6 py-4 text-center">
+                          <Link to="/details">
+                            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+                              Details
+                            </button>
+                          </Link>
+                        </td> */}
+                      </tr>
+                    )
+                  )}
+                </tbody>
+              </table>
             </div>
-          )}
-        </div>
+          </div>
+        )}
+        {/* </div> */}
       </div>
     </div>
   );
