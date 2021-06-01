@@ -31,17 +31,17 @@ export const PaymentScreen = ({ history }) => {
   };
 
   return (
-    <div className="flex flex-row justify-center align-middle">
+    <div className="flex flex-row justify-center align-middle h-screen">
       <div id="summary" className=" w-1/3 px-8 py-10 ">
         <div className="flex flex-row w-full justify-center">
           <CheckoutStages step1 step2 step3 />
         </div>
-        <div className="flex flex-row justify-center align-middle">
+        <div className="flex flex-row justify-center align-middle mt-12">
           <div className="flex flex-col">
             <h1 className="mt-4 font-semibold text-2xl border-b pb-6">
               Payment
             </h1>
-            <form  onSubmit={submitHandler}>
+            <form  onSubmit={submitHandler} className="mt-8">
               <div className="mt-4">
                 <label className="inline-flex items-center">
                   <input
@@ -74,7 +74,7 @@ export const PaymentScreen = ({ history }) => {
                   </span>
                 </label> */}
               </div>
-              <div className="flex flex-row justify-center align-middle">
+              <div className="flex flex-row justify-center align-middle mt-4">
                 <button
                   type="submit"
                   className="bg-indigo-500 font-semibold hover:bg-indigo-600 p-2 text-sm text-white uppercase mt-4  rounded-lg"

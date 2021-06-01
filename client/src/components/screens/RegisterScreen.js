@@ -36,7 +36,7 @@ export const RegisterScreen = ({ location, history }) => {
     //submit
   };
   return (
-    <div className="lg:flex flex flex-row justify-center items-center">
+    <div className="lg:flex flex flex-row justify-center items-center h-screen">
       <div className="lg:w-1/2 xl:max-w-screen-sm">
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">

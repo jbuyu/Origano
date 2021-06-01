@@ -33,7 +33,7 @@ export const CartScreen = ({ match, history, location }) => {
     dispatch(addToCart(productID, qty));
   }, []);
   return (
-    <div className="container mx-auto mt-10">
+    <div className="container mx-auto mt-10 h-sreen">
       <Link to="/" className="flex font-semibold text-indigo-600 text-sm px-2">
         <svg
           className="fill-current mr-2 text-indigo-600 w-4"

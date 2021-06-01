@@ -27,7 +27,7 @@ export const ShippingScreen = ({ history }) => {
   };
 
   return (
-    <div className="flex flex-row justify-center align-middle">
+    <div className="flex flex-row justify-center align-middle h-screen">
       <div id="summary" className="w-full md:w-1/3 px-8 py-10 ">
         <div className="flex flex-row w-full justify-center">
           <CheckoutStages step1 step2 />

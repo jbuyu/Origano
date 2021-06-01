@@ -32,7 +32,10 @@ export const HomeScreen = ({ match }) => {
     } */}
       <div className="flex flex-col justify-center items-center">
         {loading ? (
-          <ClipLoader css={override} size={250} />
+          <div className="h-screen" >
+
+            <ClipLoader  css={override} size={250} />
+          </div>
         ) : error ? (
           <ErrorMessage>{error}</ErrorMessage>
         ) : (
