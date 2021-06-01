@@ -21,27 +21,37 @@ import { OrderListScreen } from "./components/screens/OrderListScreen";
 function App() {
   return (
     <Router>
-      <Header />
-      <Route exact path="/" component={HomeScreen} exact />
-      <Route exact path="/login" component={LoginScreen} />
-      <Route exact path="/register" component={RegisterScreen} />
-      <Route exact path="/profile" component={ProfileScreen} />
-      <Route exact path="/shipping" component={ShippingScreen} />
-      <Route exact path="/payment" component={PaymentScreen} />
-      <Route exact path="/placeorder" component={PlaceOrderScreen} />
-      <Route path="/product/:id" component={ProductScreen} />
-      <Route path="/order/:id" component={OrderScreen} />
-      <Route path="/cart/:id?" component={CartScreen} />
-      <Route path="/admin/userlist" component={UserListScreen} />
-      <Route path="/admin/user/:id/edit" component={UserEditScreen} />
-      <Route path="/admin/productList" component={ProductListScreen} exact />
-      <Route path="/admin/productList/:pageNumber" component={ProductListScreen} exact />
-      <Route path="/admin/orderList" component={OrderListScreen} />
-      <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
-      <Route path="/search/:keyword" component={HomeScreen} exact/>
-      <Route path="/page/:pageNumber" component={HomeScreen} exact />
-      <Route path="/search/:keyword/page/:pageNumber" component={HomeScreen} exact />
-      <Footer />
+      <div className="h-screen">
+        <Header />
+        <Route exact path="/" component={HomeScreen} exact />
+        <Route exact path="/login" component={LoginScreen} />
+        <Route exact path="/register" component={RegisterScreen} />
+        <Route exact path="/profile" component={ProfileScreen} />
+        <Route exact path="/shipping" component={ShippingScreen} />
+        <Route exact path="/payment" component={PaymentScreen} />
+        <Route exact path="/placeorder" component={PlaceOrderScreen} />
+        <Route path="/product/:id" component={ProductScreen} />
+        <Route path="/order/:id" component={OrderScreen} />
+        <Route path="/cart/:id?" component={CartScreen} />
+        <Route path="/admin/userlist" component={UserListScreen} />
+        <Route path="/admin/user/:id/edit" component={UserEditScreen} />
+        <Route path="/admin/productList" component={ProductListScreen} exact />
+        <Route
+          path="/admin/productList/:pageNumber"
+          component={ProductListScreen}
+          exact
+        />
+        <Route path="/admin/orderList" component={OrderListScreen} />
+        <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
+        <Route path="/search/:keyword" component={HomeScreen} exact />
+        <Route path="/page/:pageNumber" component={HomeScreen} exact />
+        <Route
+          path="/search/:keyword/page/:pageNumber"
+          component={HomeScreen}
+          exact
+        />
+        <Footer />
+      </div>
     </Router>
   );
 }

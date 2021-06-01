@@ -58,6 +58,7 @@ export const HomeScreen = ({ match }) => {
                       >
                         <div>
                           <img
+                          loading="lazy"
                             src={image}
                             alt={alt}
                             className="w-80 h-80 object-cover object-center rounded-lg shadow-md "
