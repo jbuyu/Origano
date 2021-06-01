@@ -59,7 +59,7 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 grid-flow-row-dense px-8 py-3">
         <div className="flex justify-center space-x-8 whitespace-nowrap md:justify-self-start">
           <p>Services</p>
-          <p>Grocery Pickup</p>
+          <p>Groceries</p>
           <p>Store</p>
         </div>
         <div className="flex justify-center space-x-8 whitespace-nowrap md:ml-auto">
@@ -68,8 +68,8 @@ const Footer = () => {
           <p>Security</p>
         </div>
         <div className="flex justify-center space-x-8 whitespace-nowrap md:ml-auto">
-          <p>Customer Service</p>
-          <p>Terms of Use</p>
+          <p>Customer Care</p>
+          <p>Terms</p>
         </div>
       </div>
     </footer>
