@@ -22,7 +22,7 @@ const Header = () => {
     <header className=" lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2 w-auto ">
       <div className="flex-1 flex justify-between items-center">
         <Link to="/">
-          <img className="h-16 w-16 p-1" src={Logo} alt="logo" />
+          <img loading="lazy" className="h-16 w-16 p-1" src={Logo} alt="logo" />
         </Link>
         <Route render={({ history }) => <SearchBox history={history} />} />
       </div>

@@ -55,7 +55,7 @@ export const PaymentScreen = ({ history }) => {
                     }}
                   />
                   <span className="ml-2">
-                    <img className="h-9 w-9" src={PaypalSvg} alt="logo" />
+                    <img loading="lazy" className="h-9 w-9" src={PaypalSvg} alt="logo" />
                   </span>
                 </label>
                 {/* <label className="inline-flex items-center md:ml-6">

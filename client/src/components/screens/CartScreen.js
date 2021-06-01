@@ -100,6 +100,7 @@ export const CartScreen = ({ match, history, location }) => {
                       <td className="flex font-semibold text-gray-600 text-center w-3/5  py-4">
                         <div className="w-20 hidden md:block">
                           <img
+                          loading="lazy"
                             className="h-16 w-16 rounded-xl"
                             src={image}
                             // alt={alt}

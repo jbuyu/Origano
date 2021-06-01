@@ -15,10 +15,10 @@ const Footer = () => {
               </span>
               <span className=" flex flex-col items-center">
                 <span className="ml-2">
-                  <img className="h-12 w-12 p-1" src={MpesaSvg} alt="logo" />
+                  <img loading="lazy" className="h-12 w-12 p-1" src={MpesaSvg} alt="logo" />
                 </span>
                 <span className="ml-2">
-                  <img className="h-12 w-12 p-1" src={PaypalSvg} alt="logo" />
+                  <img loading="lazy" className="h-12 w-12 p-1" src={PaypalSvg} alt="logo" />
                 </span>
               </span>
             </div>

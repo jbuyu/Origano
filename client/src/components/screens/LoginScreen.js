@@ -36,7 +36,7 @@ export const LoginScreen = ({ location, history }) => {
           <h2 className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl xl:text-bold">
             <span className="flex flex-row justify-between items-center">
               Log in
-              <img src="log.png" alt="log_in" />
+              <img loading="lazy" src="log.png" alt="log_in" />
             </span>
           </h2>
           <div className="mt-12">

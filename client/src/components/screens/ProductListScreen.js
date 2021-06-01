@@ -159,6 +159,7 @@ export const ProductListScreen = ({ history, match }) => {
                           <div className="flex items-center space-x-3">
                             <div className="inline-flex w-10 h-10">
                               <img
+                              loading="lazy"
                                 className="w-10 h-10 object-cover rounded-full"
                                 alt="User avatar"
                                 src={image}

@@ -55,6 +55,7 @@ export const ProductCarousel = () => {
               >
                 {index === current && (
                   <img
+                  loading="lazy"
                     className="rounded-md"
                     src={slide.image}
                     alt={slide.alt}

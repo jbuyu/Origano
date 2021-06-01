@@ -87,6 +87,7 @@ export const ProductScreen = ({ match, history }) => {
                 <div className="w-full h-64 md:w-1/2 lg:h-96">
                   {image ? (
                     <img
+                    loading="lazy"
                       className="h-4/5 w-full rounded-3xl object-cover max-w-sm mx-auto"
                       src={image}
                       alt={alt}
@@ -161,7 +162,7 @@ export const ProductScreen = ({ match, history }) => {
                     </button>
                   )}
                 </div>
-                <div className="px-4">
+                <div className="sm:px-4">
                   {errorProductRevview && (
                     <span className="p-2 bg-red-300">
                       {errorProductRevview}
@@ -237,7 +238,7 @@ export const ProductScreen = ({ match, history }) => {
                         REVIEWS
                       </label>
                       <div className="flex mt-1">
-                        <span className="text-gray-700 text-base mx-2">
+                        <span className="text-gray-700 text-base">
                           {product.reviews.length === 0 ? (
                             <span className="bg-red-200 px-2 rounded">
                               No reviews
