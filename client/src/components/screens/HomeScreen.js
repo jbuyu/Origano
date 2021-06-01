@@ -37,10 +37,13 @@ export const HomeScreen = ({ match }) => {
             <ClipLoader  css={override} size={250} />
           </div>
         ) : error ? (
-          <ErrorMessage>{error}</ErrorMessage>
+          <div className="h-screen">
+
+            <ErrorMessage>{error}</ErrorMessage>
+          </div>
         ) : (
           <>
-            <div className="bg-gray-50 flex flex-row flex-wrap justify-center items-center mt-4">
+            <div className="bg-gray-50 flex flex-row flex-wrap justify-center items-center mt-4 h-full">
               {products &&
                 products.map(
                   ({

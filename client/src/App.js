@@ -21,7 +21,7 @@ import { OrderListScreen } from "./components/screens/OrderListScreen";
 function App() {
   return (
     <Router>
-      <div className="h-screen">
+      <div className="h-full">
         <Header />
         <Route exact path="/" component={HomeScreen} exact />
         <Route exact path="/login" component={LoginScreen} />
