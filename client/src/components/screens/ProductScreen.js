@@ -162,7 +162,7 @@ export const ProductScreen = ({ match, history }) => {
                     </button>
                   )}
                 </div>
-                <div className="sm:px-4">
+                <div className="sm:px-4 pt-2">
                   {errorProductRevview && (
                     <span className="p-2 bg-red-300">
                       {errorProductRevview}
