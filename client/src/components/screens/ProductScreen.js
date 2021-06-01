@@ -80,7 +80,7 @@ export const ProductScreen = ({ match, history }) => {
       ) : (
         <>
         <Meta title={product.name} />
-        <main className="my-2">
+        <main className="my-2 h-screen">
           <div className="container mx-auto px-6">
             <div className="md:flex md:items-center">
               <div className="flex flex-col md:flex-row">
