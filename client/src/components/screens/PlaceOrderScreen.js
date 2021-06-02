@@ -52,7 +52,7 @@ export const PlaceOrderScreen = ({ history }) => {
   ).toFixed(2);
   console.log(cart.taxPrice);
   return (
-    <div className="flex flex-col mt-4 p-4 h-screen">
+    <div className="flex flex-col mt-4 p-4 min-h-screen">
       <CheckoutStages step1 step2 step3 step4 />
       <div>
         <h2 className="mt-4 mb-4 border-b border-black text-lg text-indigo-600 ">
