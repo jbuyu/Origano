@@ -72,7 +72,7 @@ export const ProductScreen = ({ match, history }) => {
     );
   };
   return (
-    <div className="min-h-full">
+    <div className="min-h-screen">
       {loading ? (
         <ClipLoader css={override} size={250} />
       ) : error ? (
@@ -80,7 +80,7 @@ export const ProductScreen = ({ match, history }) => {
       ) : (
         <>
         <Meta title={product.name} />
-        <main className="my-2 h-screen">
+        <main className="my-2 min-h-screen">
           <div className="container mx-auto px-6">
             <div className="md:flex md:items-center">
               <div className="flex flex-col md:flex-row">
