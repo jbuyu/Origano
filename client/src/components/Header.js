@@ -41,7 +41,7 @@ const Header = () => {
           <ul className="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0 ">
             <li>
               <Link
-                className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400"
+                className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 hover:text-gray-900"
                 to="/cart"
               >
                 <button className="mx-2 text-gray-600 border rounded-md p-2 hover:bg-gray-200 focus:outline-none">
@@ -154,7 +154,7 @@ const Header = () => {
               </div>
             ) : (
               <Link
-                className="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2"
+                className="lg:p-4 py-3 px-2 block border-b-2 border-transparent hover:border-indigo-400 lg:mb-0 mb-2"
                 to="/login"
               >
                 SIGN IN
