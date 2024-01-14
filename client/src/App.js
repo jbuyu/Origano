@@ -23,7 +23,7 @@ function App() {
     <Router>
       <div className="h-full">
         <Header />
-        <Route exact path="/" component={HomeScreen} exact />
+        <Route exact path="/" component={HomeScreen}  />
         <Route exact path="/login" component={LoginScreen} />
         <Route exact path="/register" component={RegisterScreen} />
         <Route exact path="/profile" component={ProfileScreen} />
@@ -50,7 +50,7 @@ function App() {
           component={HomeScreen}
           exact
         />
-        <Footer />
+        {/* <Footer />` */}
       </div>
     </Router>
   );

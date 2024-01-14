@@ -11,9 +11,9 @@ body{
   width:auto;
   min-height:full;
 }
-header, footer{
-  /* min-width: 1152px */
+html{
+  min-height: 100vh;
 }
-.add-product,{
+.add-product{
   min-width:1152px;
 }
